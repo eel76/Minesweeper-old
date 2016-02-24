@@ -22,7 +22,7 @@ auto SelectCovered(Board const& board)
 }
 Positions Branch(Board const& board, Position const& position)
 {
-  if (!get<MineCount>(board.at(position)))
+  if (get<MineCount>(board.at(position)) == 0)
     return NeighborPositions(board, position);
 
   return{};

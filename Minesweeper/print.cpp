@@ -11,6 +11,7 @@ char const kStateChar[2][19] =
 {
   "##################", "XXXXXXXXX.12345678"
 };
+
 string ToString(State const& state)
 {
   return { kStateChar[get<Uncovered>(state)][get<MineCount>(state) + 9] };
