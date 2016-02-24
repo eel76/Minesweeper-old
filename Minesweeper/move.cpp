@@ -33,8 +33,6 @@ bool IsValid(Board const& board, Position const& position)
 
 Position PlayerMove(Board const& board)
 {
-  Print(board);
-
   Optional<Position> move{};
   while (!get<bool>(move) || !IsValid(board, get<Position>(move)))
     move = RequestMove();

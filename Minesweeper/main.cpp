@@ -26,7 +26,10 @@ int main()
   auto board = SetMines(CreateBoard(kHeight, kWidth), kMineCount);
 
   while (!AnyMineUncovered(board) && !AllSafeUncovered(board))
+  {
+    Print(board);
     board = Uncover(board, PlayerMove(board));
+  }
 
   Print(UncoverAllMines(board));
   Print(Outcome(board));
