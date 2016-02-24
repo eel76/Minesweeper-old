@@ -5,9 +5,8 @@
 #include <random>
 
 using namespace std;
+using namespace minesweeper;
 
-namespace minesweeper
-{
 namespace
 {
 constexpr array<Position, 8> kOffsets
@@ -18,7 +17,7 @@ constexpr array<Position, 8> kOffsets
 } };
 }
 
-Positions NeighborPositions(Board const& board, Position const& position)
+Positions minesweeper::NeighborPositions(Board const& board, Position const& position)
 {
   Positions neighbors{ kOffsets.size() };
   transform(begin(kOffsets), end(kOffsets), begin(neighbors), [=](auto const& offset)
@@ -32,7 +31,7 @@ Positions NeighborPositions(Board const& board, Position const& position)
   });
   return{ begin(neighbors), on_board };
 }
-Positions RandomPositions(Board const& board, unsigned position_count)
+Positions minesweeper::RandomPositions(Board const& board, unsigned position_count)
 {
   Positions positions{ board.size() };
   transform(begin(board), end(board), begin(positions), [](auto const& cell)
@@ -44,5 +43,4 @@ Positions RandomPositions(Board const& board, unsigned position_count)
 
   auto const count = min<size_t>(position_count, positions.size());
   return{ begin(positions), next(begin(positions), count) };
-}
 }

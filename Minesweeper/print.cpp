@@ -3,9 +3,8 @@
 #include <iostream>
 
 using namespace std;
+using namespace minesweeper;
 
-namespace minesweeper
-{
 namespace
 {
 char const kStateChar[2][19] =
@@ -31,14 +30,13 @@ auto PrintRow(Board::const_iterator begin, Board::const_iterator end)
 }
 }
 
-void Print(Board const& board)
+void minesweeper::Print(Board const& board)
 {
   auto row_end = begin(board);
   while (row_end != end(board))
     row_end = PrintRow(row_end, end(board));
 }
-void Print(std::string const& str)
+void minesweeper::Print(std::string const& str)
 {
   cout << str;
-}
 }

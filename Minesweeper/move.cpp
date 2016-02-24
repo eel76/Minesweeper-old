@@ -4,9 +4,8 @@
 #include <regex>
 
 using namespace std;
+using namespace minesweeper;
 
-namespace minesweeper
-{
 namespace
 {
 template <class ValueType>
@@ -31,12 +30,11 @@ bool IsValid(Board const& board, Position const& position)
 }
 }
 
-Position PlayerMove(Board const& board)
+Position minesweeper::PlayerMove(Board const& board)
 {
   Optional<Position> move{};
   while (!get<bool>(move) || !IsValid(board, get<Position>(move)))
     move = RequestMove();
 
   return get<Position>(move);
-}
 }

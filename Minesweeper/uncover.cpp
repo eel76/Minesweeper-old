@@ -4,9 +4,8 @@
 #include <iterator>
 
 using namespace std;
+using namespace minesweeper;
 
-namespace minesweeper
-{
 namespace
 {
 auto SelectCovered(Board const& board)
@@ -30,7 +29,7 @@ Positions Branch(Board const& board, Position const& position)
 }
 }
 
-Board Uncover(Board board, Position const& starting_position)
+Board minesweeper::Uncover(Board board, Position const& starting_position)
 {
   Positions positions{ starting_position };
   while (!positions.empty())
@@ -42,5 +41,4 @@ Board Uncover(Board board, Position const& starting_position)
   }
 
   return board;
-}
 }

@@ -4,11 +4,10 @@
 #include <functional>
 
 using namespace std;
-using placeholders::_1;
+using namespace std::placeholders;
+using namespace minesweeper;
 
-namespace minesweeper
-{
-Board SetMines(Board board, unsigned mine_count)
+Board minesweeper::SetMines(Board board, unsigned mine_count)
 {
   auto const adjust_mine_count = [&](auto const& position, auto value)
   {
@@ -24,14 +23,14 @@ Board SetMines(Board board, unsigned mine_count)
 
   return board;
 }
-Board UncoverAllMines(Board board)
+Board minesweeper::UncoverAllMines(Board board)
 {
   for (auto& cell : board)
     get<Uncovered>(get<State>(cell)) |= get<MineCount>(get<State>(cell)) < 0;
 
   return board;
 }
-bool AnyMineUncovered(Board const& board)
+bool minesweeper::AnyMineUncovered(Board const& board)
 {
   return any_of(begin(board), end(board), [](auto const& cell)
   {
@@ -39,12 +38,11 @@ bool AnyMineUncovered(Board const& board)
     return get<Uncovered>(state) && get<MineCount>(state) < 0;
   });
 }
-bool AllSafeUncovered(Board const& board)
+bool minesweeper::AllSafeUncovered(Board const& board)
 {
   return all_of(begin(board), end(board), [](auto const& cell)
   {
     auto const& state = get<State>(cell);
     return get<Uncovered>(state) || get<MineCount>(state) < 0;
   });
-}
 }

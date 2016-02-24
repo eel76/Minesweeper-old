@@ -3,9 +3,8 @@
 #include <array>
 
 using namespace std;
+using namespace minesweeper;
 
-namespace minesweeper
-{
 namespace
 {
 using Rectangle = pair<Position, Position>;
@@ -31,7 +30,7 @@ bool MoveNonEmptyToFront(Rectangles::iterator begin, Rectangles::iterator end)
 }
 }
 
-Board CreateBoard(unsigned height, unsigned width)
+Board minesweeper::CreateBoard(unsigned height, unsigned width)
 {
   Board board;
 
@@ -44,5 +43,4 @@ Board CreateBoard(unsigned height, unsigned width)
   }
 
   return board;
-}
 }
