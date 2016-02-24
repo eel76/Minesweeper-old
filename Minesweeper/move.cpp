@@ -20,10 +20,10 @@ Optional<Position> RequestMove()
   Print("Your move (row, column): ");
   getline(cin, line);
 
-  if (!regex_match(line, match, regex{ " *([1-9]*[0-9]) *[,] *([1-9]*[0-9]) *" }))
-    return{ false, {} };
+  if (regex_match(line, match, regex{ " *([1-9]*[0-9]) *, *([1-9]*[0-9]) *" }))
+    return{ true, { stoi(match[1]), stoi(match[2]) } };
 
-  return{ true, { stoi(match[1]), stoi(match[2]) } };
+  return{ false, {} };
 }
 bool IsValid(Board const& board, Position const& position)
 {
