@@ -1,9 +1,0 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/x64
-/Minesweeper/x64
-/Minesweeper/Minesweeper.vcxproj.user
-/Minesweeper.sdf
-/.vs
