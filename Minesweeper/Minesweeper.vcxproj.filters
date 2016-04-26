@@ -71,5 +71,6 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="rules.txt" />
+    <Text Include="CMakeLists.txt" />
   </ItemGroup>
 </Project>

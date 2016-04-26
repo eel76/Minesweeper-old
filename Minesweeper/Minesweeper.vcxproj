@@ -166,6 +166,7 @@
     <ClCompile Include="uncover.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="CMakeLists.txt" />
     <Text Include="rules.txt" />
     <Text Include="todo.txt" />
   </ItemGroup>
