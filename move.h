@@ -3,5 +3,5 @@
 
 namespace minesweeper
 {
-Position PlayerMove(Board const& board);
+  Position PlayerMove(Board const& board);
 }

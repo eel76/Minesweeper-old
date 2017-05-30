@@ -8,17 +8,17 @@ using namespace minesweeper;
 
 namespace
 {
-auto constexpr kHeight    = 9u;
-auto constexpr kWidth     = 16u;
-auto constexpr kMineCount = 20u;
+  auto constexpr kHeight = 9u;
+  auto constexpr kWidth = 16u;
+  auto constexpr kMineCount = 20u;
 
-auto Outcome(Board const& board)
-{
-  if (AllSafeUncovered(board))
-    return "You win :-)\n";
+  auto Outcome(Board const& board)
+  {
+    if (AllSafeUncovered(board))
+      return "You win :-)\n";
 
-  return "You loose :-(\n";
-}
+    return "You loose :-(\n";
+  }
 }
 
 int main()

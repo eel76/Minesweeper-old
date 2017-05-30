@@ -3,5 +3,5 @@
 
 namespace minesweeper
 {
-Board Uncover(Board board, Position const& starting_position);
+  Board Uncover(Board board, Position const& starting_position);
 }

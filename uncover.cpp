@@ -1,32 +1,31 @@
 #include "uncover.h"
-#include "positions.h"
 #include <algorithm>
 #include <iterator>
+#include "positions.h"
 
 using namespace std;
 using namespace minesweeper;
 
 namespace
 {
-auto SelectCovered(Board const& board)
-{
-  auto const not_covered = [&](auto const& position)
+  auto SelectCovered(Board const& board)
   {
-    return get<Uncovered>(board.at(position));
-  };
+    auto const not_covered = [&](auto const& position) {
+      return get<Uncovered>(board.at(position));
+    };
 
-  return [=](auto begin, auto end)
+    return [=](auto begin, auto end) {
+      return distance(begin, remove_if(begin, end, not_covered));
+    };
+  }
+
+  Positions Branch(Board const& board, Position const& position)
   {
-    return distance(begin, remove_if(begin, end, not_covered));
-  };
-}
-Positions Branch(Board const& board, Position const& position)
-{
-  if (get<MineCount>(board.at(position)) == 0)
-    return NeighborPositions(board, position);
+    if (get<MineCount>(board.at(position)) == 0)
+      return NeighborPositions(board, position);
 
-  return{};
-}
+    return {};
+  }
 }
 
 Board minesweeper::Uncover(Board board, Position const& starting_position)

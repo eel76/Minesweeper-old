@@ -1,9 +1,9 @@
 #pragma once
-#include "board.h"
 #include <string>
+#include "board.h"
 
 namespace minesweeper
 {
-void Print(Board const& board);
-void Print(std::string const& str);
+  void Print(Board const& board);
+  void Print(std::string const& str);
 }

@@ -1,7 +1,7 @@
 #include "mines.h"
-#include "positions.h"
 #include <algorithm>
 #include <functional>
+#include "positions.h"
 
 using namespace std;
 using namespace std::placeholders;
@@ -9,8 +9,7 @@ using namespace minesweeper;
 
 Board minesweeper::SetMines(Board board, unsigned mine_count)
 {
-  auto const adjust_mine_count = [&](auto const& position, auto value)
-  {
+  auto const adjust_mine_count = [&](auto const& position, auto value) {
     get<MineCount>(board.at(position)) += value;
   };
 
@@ -32,16 +31,14 @@ Board minesweeper::UncoverAllMines(Board board)
 }
 bool minesweeper::AnyMineUncovered(Board const& board)
 {
-  return any_of(begin(board), end(board), [](auto const& cell)
-  {
+  return any_of(begin(board), end(board), [](auto const& cell) {
     auto const& state = get<State>(cell);
     return get<Uncovered>(state) && get<MineCount>(state) < 0;
   });
 }
 bool minesweeper::AllSafeUncovered(Board const& board)
 {
-  return all_of(begin(board), end(board), [](auto const& cell)
-  {
+  return all_of(begin(board), end(board), [](auto const& cell) {
     auto const& state = get<State>(cell);
     return get<Uncovered>(state) || get<MineCount>(state) < 0;
   });
