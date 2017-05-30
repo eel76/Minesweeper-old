@@ -18,3 +18,8 @@ Board minesweeper::CreateBoard(unsigned height, unsigned width)
 
   return board;
 }
+
+bool minesweeper::Contains(Board const& board, Position const& position)
+{
+  return board.count(position);
+}

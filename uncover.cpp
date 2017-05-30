@@ -1,7 +1,6 @@
 #include "uncover.h"
 #include <algorithm>
 #include <iterator>
-#include "positions.h"
 
 using namespace std;
 using namespace minesweeper;
@@ -28,9 +27,8 @@ namespace
   }
 }
 
-Board minesweeper::Uncover(Board board, Position const& starting_position)
+Board minesweeper::Uncover(Board board, Positions positions)
 {
-  Positions positions{ starting_position };
   while (!positions.empty())
   {
     auto const neighbors = Branch(board, positions.back());
@@ -40,4 +38,13 @@ Board minesweeper::Uncover(Board board, Position const& starting_position)
   }
 
   return board;
+}
+
+Board minesweeper::Uncover(Board board, Move move)
+{
+  if (!get<bool>(move) || !Contains(board, get<Position>(move)) ||
+      get<Uncovered>(board.at(get<Position>(move))))
+    return board;
+
+  return Uncover(board, { get<Position>(move) });
 }

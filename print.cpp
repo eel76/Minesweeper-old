@@ -7,12 +7,6 @@ using namespace minesweeper;
 
 namespace
 {
-  char const kStateChar[2][19] = { "##################", "XXXXXXXXX.12345678" };
-
-  string ToString(State const& state)
-  {
-    return { kStateChar[get<Uncovered>(state)][get<MineCount>(state) + 9] };
-  }
   auto Row(Board::const_iterator iterator)
   {
     return get<0>(get<Position const>(*iterator));

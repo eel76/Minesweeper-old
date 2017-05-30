@@ -1,7 +1,9 @@
 #pragma once
-#include "board.h"
+#include "optional.h"
+#include "position.h"
 
 namespace minesweeper
 {
-  Position PlayerMove(Board const& board);
+  using Move = Optional<Position>;
+  Move PlayerMove();
 }

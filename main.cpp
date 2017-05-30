@@ -28,7 +28,8 @@ int main()
   while (!AnyMineUncovered(board) && !AllSafeUncovered(board))
   {
     Print(board);
-    board = Uncover(board, PlayerMove(board));
+    Print("Your move (row, column): ");
+    board = Uncover(board, PlayerMove());
   }
 
   Print(UncoverAllMines(board));

@@ -1,7 +1,9 @@
 #pragma once
-#include "board.h"
+#include "move.h"
+#include "positions.h"
 
 namespace minesweeper
 {
-  Board Uncover(Board board, Position const& starting_position);
+  Board Uncover(Board board, Positions positions);
+  Board Uncover(Board board, Move move);
 }

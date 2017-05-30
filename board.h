@@ -7,4 +7,5 @@ namespace minesweeper
 {
   using Board = std::map<Position, State>;
   Board CreateBoard(unsigned height, unsigned width);
+  bool Contains(Board const& board, Position const& position);
 }
