@@ -1,7 +1,10 @@
-project (Minesweeper)
+cmake_minimum_required (VERSION 3.0)
+
+project (Minesweeper CXX)
+set (CMAKE_CXX_STANDARD 14)
 
 add_executable (
-  ${CMAKE_PROJECT_NAME}
+  ${PROJECT_NAME}
   board.cpp
   board.h
   main.cpp
@@ -15,6 +18,10 @@ add_executable (
   positions.h
   print.cpp
   print.h
+  rectangle.cpp
+  rectangle.h
+  rectangles.cpp
+  rectangles.h
   state.h
   uncover.cpp
   uncover.h

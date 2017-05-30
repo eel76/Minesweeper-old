@@ -12,7 +12,7 @@ auto constexpr kHeight    = 9u;
 auto constexpr kWidth     = 16u;
 auto constexpr kMineCount = 20u;
 
-string Outcome(Board const& board)
+auto Outcome(Board const& board)
 {
   if (AllSafeUncovered(board))
     return "You win :-)\n";

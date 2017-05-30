@@ -5,6 +5,6 @@
 
 namespace minesweeper
 {
-using Board = std::map<Position, State>;
-Board CreateBoard(unsigned height, unsigned width);
+  using Board = std::map<Position, State>;
+  Board CreateBoard (unsigned height, unsigned width);
 }
