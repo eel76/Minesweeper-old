@@ -6,12 +6,18 @@
 using namespace std;
 using namespace minesweeper;
 
-Positions minesweeper::RandomPositions(Board const& board, unsigned position_count)
+Positions minesweeper::AllPositions(Board const& board)
 {
-  Positions positions{ board.size() };
+  auto positions = Positions{ board.size() };
   transform(begin(board), end(board), begin(positions),
             [](auto const& cell) { return get<Position const>(cell); });
 
+  return positions;
+}
+
+Positions minesweeper::RandomPositions(Board const& board, unsigned position_count)
+{
+  auto positions = AllPositions(board);
   shuffle(begin(positions), end(positions), ranlux48{ random_device{}() });
 
   auto const count = min<size_t>(position_count, positions.size());
