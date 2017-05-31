@@ -12,11 +12,10 @@ add_executable (
   main.cpp
   mines.cpp
   mines.h
-  move.cpp
-  move.h
   neighbors.cpp
   neighbors.h
-  optional.h
+  parse.cpp
+  parse.h
   position.cpp
   position.h
   positions.cpp

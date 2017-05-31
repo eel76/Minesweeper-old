@@ -16,7 +16,7 @@ Positions minesweeper::Neighbors(Position const& position)
 {
   auto neighbors = NeighborOffsets();
   for_each(begin(neighbors), end(neighbors),
-           [=](auto& neighbor) { neighbor = Add(position, neighbor); });
+           [=](auto& neighbor) { neighbor = position + neighbor; });
 
   return neighbors;
 }

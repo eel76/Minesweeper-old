@@ -1,5 +1,6 @@
 #include "input.h"
 #include "mines.h"
+#include "parse.h"
 #include "print.h"
 #include "uncover.h"
 
@@ -29,7 +30,7 @@ int main()
   {
     Print(board);
     Print("Your move (row, column): ");
-    board = Uncover(board, ParseMove(InputLine()));
+    board = Uncover(board, ParsePosition(InputLine()));
   }
 
   Print(UncoverAllMines(board));
