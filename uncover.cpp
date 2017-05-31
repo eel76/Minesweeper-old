@@ -42,8 +42,7 @@ Board minesweeper::Uncover(Board board, Positions positions)
 
 Board minesweeper::Uncover(Board board, Move move)
 {
-  if (!get<bool>(move) || !Contains(board, get<Position>(move)) ||
-      get<Uncovered>(board.at(get<Position>(move))))
+  if (!get<bool>(move) || !Contains(board, get<Position>(move)))
     return board;
 
   return Uncover(board, { get<Position>(move) });
