@@ -8,8 +8,8 @@ using namespace minesweeper;
 
 Positions minesweeper::AllPositions(Board const& board)
 {
-  auto positions = Positions{ board.size() };
-  transform(begin(board), end(board), begin(positions),
+  auto positions = Positions{};
+  transform(begin(board), end(board), back_inserter(positions),
             [](auto const& cell) { return get<Position const>(cell); });
 
   return positions;
