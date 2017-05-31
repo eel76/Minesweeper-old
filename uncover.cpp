@@ -1,6 +1,7 @@
 #include "uncover.h"
 #include <algorithm>
 #include <iterator>
+#include "neighbors.h"
 
 using namespace std;
 using namespace minesweeper;
@@ -21,7 +22,7 @@ namespace
   Positions Branch(Board const& board, Position const& position)
   {
     if (get<MineCount>(board.at(position)) == 0)
-      return NeighborPositions(board, position);
+      return Neighbors(board, position);
 
     return {};
   }

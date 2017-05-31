@@ -14,6 +14,8 @@ add_executable (
   mines.h
   move.cpp
   move.h
+  neighbors.cpp
+  neighbors.h
   optional.h
   position.cpp
   position.h

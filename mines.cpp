@@ -1,7 +1,7 @@
 #include "mines.h"
 #include <algorithm>
 #include <functional>
-#include "positions.h"
+#include "neighbors.h"
 
 using namespace std;
 using namespace std::placeholders;
@@ -15,7 +15,7 @@ Board minesweeper::SetMines(Board board, unsigned mine_count)
 
   for (auto const& position : RandomPositions(board, mine_count))
   {
-    auto const neighbors = NeighborPositions(board, position);
+    auto const neighbors = Neighbors(board, position);
     for_each(begin(neighbors), end(neighbors), bind(adjust_mine_count, _1, +1));
     adjust_mine_count(position, -9);
   }
