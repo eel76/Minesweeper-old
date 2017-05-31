@@ -6,9 +6,9 @@ using namespace minesweeper;
 
 Board minesweeper::CreateBoard(unsigned height, unsigned width)
 {
-  Board board;
+  auto board = Board{};
 
-  Rectangles rectangles{ Rectangle{ { 0, 0 }, { height, width } } };
+  auto rectangles = Rectangles{ Rectangle{ { 0, 0 }, { height, width } } };
   while (MoveNonEmptyToFront(begin(rectangles), end(rectangles)))
   {
     board[get<0>(rectangles[0])] = {};

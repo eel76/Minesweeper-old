@@ -6,7 +6,7 @@ using namespace minesweeper;
 
 Position minesweeper::ParsePosition(std::string const& input)
 {
-  smatch match;
+  auto match = smatch{};
   if (regex_match(input, match, regex{ " *([1-9]*[0-9]) *, *([1-9]*[0-9]) *" }))
     return { stoi(match[1]), stoi(match[2]) };
 

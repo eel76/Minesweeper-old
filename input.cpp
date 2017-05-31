@@ -6,7 +6,7 @@ using namespace minesweeper;
 
 string minesweeper::InputLine()
 {
-  string line;
+  auto line = string{};
   getline(cin, line);
 
   return line;
