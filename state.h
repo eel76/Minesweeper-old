@@ -6,4 +6,5 @@ namespace minesweeper
   using Uncovered = bool;
   using MineCount = int;
   using State = std::pair<Uncovered, MineCount>;
+  bool IsMine(State const& state);
 }
