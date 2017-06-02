@@ -1,2 +1,0 @@
-// FIXME: first user move is always ok
-// FIXME: print row and column numbers

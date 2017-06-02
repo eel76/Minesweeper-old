@@ -45,6 +45,5 @@ add_executable (
   state.h
   uncover.cpp
   uncover.h
-  rules.txt
-  todo.txt
+  Readme.md
   )
