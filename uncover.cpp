@@ -10,7 +10,7 @@ namespace
 {
   auto SelectCovered(Board const& board)
   {
-    auto const not_covered = [&](auto const& position) {
+    auto not_covered = [&](auto position) {
       return get<Uncovered>(board.at(position));
     };
 
@@ -32,7 +32,7 @@ Board minesweeper::Uncover(Board board, Positions positions)
 {
   while (!positions.empty())
   {
-    auto const neighbors                    = Branch(board, positions.back());
+    auto neighbors                          = Branch(board, positions.back());
     get<Uncovered>(board[positions.back()]) = true;
     positions.insert(end(positions), begin(neighbors), end(neighbors));
     positions.resize(SelectCovered(board)(begin(positions), end(positions)));

@@ -25,8 +25,8 @@ Positions minesweeper::Neighbors(Board board, Position position)
 {
   auto neighbors = Neighbors(position);
 
-  auto const on_board =
+  auto on_board =
   remove_if(begin(neighbors), end(neighbors),
-            [&](auto const& position) { return !Contains(board, position); });
+            [&](auto position) { return !Contains(board, position); });
   return { begin(neighbors), on_board };
 }
