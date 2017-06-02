@@ -7,13 +7,13 @@ using namespace std;
 using namespace std::placeholders;
 using namespace minesweeper;
 
-Board minesweeper::SetMines(Board board, unsigned mine_count)
+Board minesweeper::LayMines(Board board, MineCount mineCount)
 {
   auto const adjust_mine_count = [&](auto const& position, auto value) {
-    get<MineCount>(board.at(position)) += value;
+    get<Mines>(board.at(position)) += value;
   };
 
-  for (auto const& position : RandomPositions(board, mine_count))
+  for (auto const& position : RandomPositions(board, mineCount))
   {
     auto const neighbors = Neighbors(board, position);
     for_each(begin(neighbors), end(neighbors), bind(adjust_mine_count, _1, +1));

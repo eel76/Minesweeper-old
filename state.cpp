@@ -5,5 +5,5 @@ using namespace minesweeper;
 
 bool minesweeper::IsMine(State const& state)
 {
-  return get<MineCount>(state) < 0;
+  return get<Mines>(state) < 0;
 }

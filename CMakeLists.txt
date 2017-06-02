@@ -7,15 +7,23 @@ add_executable (
   ${PROJECT_NAME}
   board.cpp
   board.h
+  column.cpp
+  column.h
+  game.cpp
+  game.h
   input.cpp
   input.h
   main.cpp
+  mine.cpp
+  mine.h
   mines.cpp
   mines.h
   neighbors.cpp
   neighbors.h
   parse.cpp
   parse.h
+  player.cpp
+  player.h
   position.cpp
   position.h
   positions.cpp
@@ -26,6 +34,11 @@ add_executable (
   rectangle.h
   rectangles.cpp
   rectangles.h
+  round.cpp
+  round.h
+  row.cpp
+  row.h
+  size.h
   state.cpp
   state.h
   uncover.cpp

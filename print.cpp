@@ -34,7 +34,7 @@ void minesweeper::Print(State const& state)
   char constexpr kStateChar[2][19] = { "##################",
                                        "XXXXXXXXX.12345678" };
 
-  Print({ kStateChar[get<Uncovered>(state)][get<MineCount>(state) + 9] });
+  Print({ kStateChar[get<Uncovered>(state)][get<Mines>(state) + 9] });
 }
 
 void minesweeper::Print(std::string const& str)

@@ -21,7 +21,7 @@ namespace
 
   Positions Branch(Board const& board, Position const& position)
   {
-    if (get<MineCount>(board.at(position)) == 0)
+    if (get<Mines>(board.at(position)) == 0)
       return Neighbors(board, position);
 
     return {};
@@ -32,7 +32,7 @@ Board minesweeper::Uncover(Board board, Positions positions)
 {
   while (!positions.empty())
   {
-    auto const neighbors = Branch(board, positions.back());
+    auto const neighbors                    = Branch(board, positions.back());
     get<Uncovered>(board[positions.back()]) = true;
     positions.insert(end(positions), begin(neighbors), end(neighbors));
     positions.resize(SelectCovered(board)(begin(positions), end(positions)));
@@ -43,8 +43,8 @@ Board minesweeper::Uncover(Board board, Positions positions)
 
 Board minesweeper::Uncover(Board board, Position position)
 {
-  if (!Contains(board, position))
-    return board;
+  if (Contains(board, position))
+    return Uncover(board, Positions{ position });
 
-  return Uncover(board, Positions{ position });
+  return board;
 }
