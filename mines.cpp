@@ -1,11 +1,9 @@
 #include "mines.h"
 #include <algorithm>
-#include <functional>
 #include "neighbors.h"
 
-using namespace std;
-using namespace std::placeholders;
 using namespace minesweeper;
+using namespace std;
 
 Board minesweeper::UncoverAllMines(Board board)
 {

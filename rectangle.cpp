@@ -1,7 +1,8 @@
 #include "rectangle.h"
+#include <utility>
 
-using namespace std;
 using namespace minesweeper;
+using namespace std;
 
 Rectangle minesweeper::WithoutFirstRow(Rectangle rectangle)
 {

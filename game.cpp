@@ -2,7 +2,6 @@
 #include "preparation.h"
 #include "round.h"
 
-using namespace std;
 using namespace minesweeper;
 
 void minesweeper::PlayGame(Size size, MineCount mineCount)

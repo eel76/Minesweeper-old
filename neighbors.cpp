@@ -2,8 +2,8 @@
 #include <algorithm>
 #include <iterator>
 
-using namespace std;
 using namespace minesweeper;
+using namespace std;
 
 Positions minesweeper::NeighborOffsets()
 {

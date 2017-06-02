@@ -3,8 +3,8 @@
 #include <iterator>
 #include <random>
 
-using namespace std;
 using namespace minesweeper;
+using namespace std;
 
 Positions minesweeper::AllPositions(Board const& board)
 {

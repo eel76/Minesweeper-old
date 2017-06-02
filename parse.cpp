@@ -1,8 +1,8 @@
 #include "parse.h"
 #include <regex>
 
-using namespace std;
 using namespace minesweeper;
+using namespace std;
 
 Position minesweeper::ParsePosition(std::string const& input)
 {

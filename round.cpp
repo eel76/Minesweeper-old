@@ -4,7 +4,6 @@
 #include "print.h"
 #include "uncover.h"
 
-using namespace std;
 using namespace minesweeper;
 
 bool minesweeper::NextRoundPossible(Board board)

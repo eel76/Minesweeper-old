@@ -1,7 +1,8 @@
 #include "position.h"
+#include <utility>
 
-using namespace std;
 using namespace minesweeper;
+using namespace std;
 
 Position minesweeper::operator+(Position const& first, Position const& second)
 {

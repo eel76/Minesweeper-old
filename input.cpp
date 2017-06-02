@@ -1,8 +1,8 @@
 #include "input.h"
 #include <iostream>
 
-using namespace std;
 using namespace minesweeper;
+using namespace std;
 
 string minesweeper::InputLine()
 {

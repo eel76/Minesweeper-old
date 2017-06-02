@@ -2,7 +2,6 @@
 #include "input.h"
 #include "parse.h"
 
-using namespace std;
 using namespace minesweeper;
 
 Position minesweeper::RequestPlayerMove()

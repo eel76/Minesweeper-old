@@ -1,7 +1,8 @@
 #include "state.h"
+#include <utility>
 
-using namespace std;
 using namespace minesweeper;
+using namespace std;
 
 bool minesweeper::IsMine(State const& state)
 {

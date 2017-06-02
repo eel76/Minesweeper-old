@@ -2,8 +2,8 @@
 #include <algorithm>
 #include <iostream>
 
-using namespace std;
 using namespace minesweeper;
+using namespace std;
 
 namespace
 {

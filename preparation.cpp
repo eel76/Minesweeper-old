@@ -5,8 +5,8 @@
 #include <algorithm>
 #include <functional>
 
-using namespace std;
 using namespace minesweeper;
+using namespace std;
 
 Board minesweeper::MakeBoard(Size size)
 {

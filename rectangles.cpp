@@ -1,8 +1,8 @@
 #include "rectangles.h"
 #include <algorithm>
 
-using namespace std;
 using namespace minesweeper;
+using namespace std;
 
 bool minesweeper::MoveNonEmptyToFront(Rectangles::iterator begin, Rectangles::iterator end)
 {
