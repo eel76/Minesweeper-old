@@ -16,9 +16,9 @@ Board minesweeper::MakeBoard(Size size)
   Rectangles{ Rectangle{ { 0, 0 }, { get<RowCount>(size), get<ColumnCount>(size) } } };
   while (MoveNonEmptyToFront(begin(rectangles), end(rectangles)))
   {
-    board[get<0>(rectangles[0])] = {};
-    rectangles[2]                = WithoutFirstRow(rectangles[0]);
-    rectangles[0]                = FirstRowWithoutFirstColumn(rectangles[0]);
+    board.insert({ get<0>(rectangles[0]), {} });
+    rectangles[2] = WithoutFirstRow(rectangles[0]);
+    rectangles[0] = FirstRowWithoutFirstColumn(rectangles[0]);
   }
 
   return board;
@@ -26,13 +26,13 @@ Board minesweeper::MakeBoard(Size size)
 
 Board minesweeper::LayMines(Board board, MineCount mineCount)
 {
-  auto const adjust_mine_count = [&](auto const& position, auto value) {
+  auto adjust_mine_count = [&](auto position, auto value) {
     get<Mines>(board.at(position)) += value;
   };
 
-  for (auto const& position : RandomPositions(AllPositions(board), mineCount))
+  for (auto position : RandomPositions(AllPositions(board), mineCount))
   {
-    auto const neighbors = Neighbors(board, position);
+    auto neighbors = Neighbors(board, position);
     for_each(begin(neighbors), end(neighbors),
              bind(adjust_mine_count, placeholders::_1, +1));
     adjust_mine_count(position, -9);
