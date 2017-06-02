@@ -7,12 +7,12 @@
 using namespace std;
 using namespace minesweeper;
 
-bool minesweeper::IsRoundPossible(Board board)
+bool minesweeper::NextRoundPossible(Board board)
 {
   return !AnyMineUncovered(board) && !AllSafeUncovered(board);
 }
 
-Board minesweeper::PlayRound(Board board)
+Board minesweeper::NextRound(Board board)
 {
   Print(board);
   Print("Your move (row, column): ");
@@ -20,7 +20,7 @@ Board minesweeper::PlayRound(Board board)
   return Uncover(board, RequestPlayerMove());
 }
 
-void minesweeper::EndRound(Board board)
+void minesweeper::EvaluationRound(Board board)
 {
   Print(UncoverAllMines(board));
 

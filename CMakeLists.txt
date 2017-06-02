@@ -28,6 +28,8 @@ add_executable (
   position.h
   positions.cpp
   positions.h
+  preparation.cpp
+  preparation.h
   print.cpp
   print.h
   rectangle.cpp

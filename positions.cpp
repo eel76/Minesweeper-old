@@ -15,9 +15,8 @@ Positions minesweeper::AllPositions(Board const& board)
   return positions;
 }
 
-Positions minesweeper::RandomPositions(Board const& board, unsigned position_count)
+Positions minesweeper::RandomPositions(Positions positions, unsigned position_count)
 {
-  auto positions = AllPositions(board);
   shuffle(begin(positions), end(positions), ranlux48{ random_device{}() });
 
   auto const count = min<size_t>(position_count, positions.size());

@@ -36,6 +36,7 @@ PenaltyBreakFirstLessLess: 0
 PenaltyBreakString: 80
 PenaltyExcessCharacter: 1
 PenaltyReturnTypeOnItsOwnLine: 20
+SortIncludes: false
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeParens: ControlStatements
 SpaceInEmptyParentheses: false
