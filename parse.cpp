@@ -4,7 +4,7 @@
 using namespace minesweeper;
 using namespace std;
 
-Position minesweeper::ParsePosition(std::string const& input)
+Position minesweeper::ParsePosition(std::string input)
 {
   auto match = smatch{};
   if (regex_match(input, match, regex{ " *([1-9]*[0-9]) *, *([1-9]*[0-9]) *" }))

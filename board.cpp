@@ -2,7 +2,7 @@
 
 using namespace minesweeper;
 
-bool minesweeper::Contains(Board const& board, Position const& position)
+bool minesweeper::Contains(Board board, Position position)
 {
   return board.count(position);
 }

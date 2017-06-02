@@ -6,7 +6,7 @@
 using namespace minesweeper;
 using namespace std;
 
-Positions minesweeper::AllPositions(Board const& board)
+Positions minesweeper::AllPositions(Board board)
 {
   auto positions = Positions{};
   transform(begin(board), end(board), back_inserter(positions),

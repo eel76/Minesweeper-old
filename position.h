@@ -4,6 +4,6 @@
 namespace minesweeper
 {
   using Position = std::pair<int, int>;
-  Position operator+(Position const& first, Position const& second);
-  bool operator<(Position const& first, Position const& second);
+  Position operator+(Position first, Position second);
+  bool operator<(Position first, Position second);
 }

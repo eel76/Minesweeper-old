@@ -7,11 +7,11 @@ using namespace std;
 
 namespace
 {
-  auto Row(Board::const_iterator iterator)
+  auto Row(Board::iterator iterator)
   {
     return get<0>(get<Position const>(*iterator));
   }
-  auto PrintRow(Board::const_iterator begin, Board::const_iterator end)
+  auto PrintRow(Board::iterator begin, Board::iterator end)
   {
     auto last = begin;
     while (begin != end && Row(last) == Row(begin))
@@ -22,14 +22,14 @@ namespace
   }
 }
 
-void minesweeper::Print(Board const& board)
+void minesweeper::Print(Board board)
 {
   auto row_end = begin(board);
   while (row_end != end(board))
     row_end = PrintRow(row_end, end(board));
 }
 
-void minesweeper::Print(State const& state)
+void minesweeper::Print(State state)
 {
   char constexpr kStateChar[2][19] = { "##################",
                                        "XXXXXXXXX.12345678" };
@@ -37,7 +37,7 @@ void minesweeper::Print(State const& state)
   Print({ kStateChar[get<Uncovered>(state)][get<Mines>(state) + 9] });
 }
 
-void minesweeper::Print(std::string const& str)
+void minesweeper::Print(std::string s)
 {
-  cout << str;
+  cout << s;
 }

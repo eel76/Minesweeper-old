@@ -4,7 +4,7 @@
 
 namespace minesweeper
 {
-  void Print(Board const& board);
-  void Print(State const& state);
-  void Print(std::string const& str);
+  void Print(Board board);
+  void Print(State state);
+  void Print(std::string s);
 }

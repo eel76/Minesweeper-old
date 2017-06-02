@@ -1,6 +1,6 @@
 #include "mines.h"
-#include <algorithm>
 #include "neighbors.h"
+#include <algorithm>
 
 using namespace minesweeper;
 using namespace std;
@@ -13,18 +13,16 @@ Board minesweeper::UncoverAllMines(Board board)
   return board;
 }
 
-bool minesweeper::AnyMineUncovered(Board const& board)
+bool minesweeper::AnyMineUncovered(Board board)
 {
-  return any_of(begin(board), end(board), [](auto const& cell) {
-    auto const& state = get<State>(cell);
-    return get<Uncovered>(state) && IsMine(state);
+  return any_of(begin(board), end(board), [](auto cell) {
+    return get<Uncovered>(get<State>(cell)) && IsMine(get<State>(cell));
   });
 }
 
-bool minesweeper::AllSafeUncovered(Board const& board)
+bool minesweeper::AllSafeUncovered(Board board)
 {
-  return all_of(begin(board), end(board), [](auto const& cell) {
-    auto const& state = get<State>(cell);
-    return get<Uncovered>(state) || IsMine(state);
+  return all_of(begin(board), end(board), [](auto cell) {
+    return get<Uncovered>(get<State>(cell)) || IsMine(get<State>(cell));
   });
 }

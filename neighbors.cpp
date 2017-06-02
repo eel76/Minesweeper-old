@@ -12,7 +12,7 @@ Positions minesweeper::NeighborOffsets()
   };
 }
 
-Positions minesweeper::Neighbors(Position const& position)
+Positions minesweeper::Neighbors(Position position)
 {
   auto neighbors = NeighborOffsets();
   for_each(begin(neighbors), end(neighbors),
@@ -21,7 +21,7 @@ Positions minesweeper::Neighbors(Position const& position)
   return neighbors;
 }
 
-Positions minesweeper::Neighbors(Board const& board, Position const& position)
+Positions minesweeper::Neighbors(Board board, Position position)
 {
   auto neighbors = Neighbors(position);
 
