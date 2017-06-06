@@ -5,6 +5,6 @@
 
 namespace minesweeper
 {
-  Board MakeBoard(Size size);
-  Board LayMines(Board board, MineCount mineCount);
+  Board makeBoard(Size size);
+  Board layMines(Board board, MineCount mineCount);
 }

@@ -15,29 +15,29 @@ namespace
   {
     auto last = begin;
     while (begin != end && Row(last) == Row(begin))
-      Print(get<State>(*(last = begin++)));
+      print(get<State>(*(last = begin++)));
 
-    Print("\n");
+    print("\n");
     return begin;
   }
 }
 
-void minesweeper::Print(Board board)
+void minesweeper::print(Board board)
 {
   auto row_end = begin(board);
   while (row_end != end(board))
     row_end = PrintRow(row_end, end(board));
 }
 
-void minesweeper::Print(State state)
+void minesweeper::print(State state)
 {
   char constexpr kStateChar[2][19] = { "##################",
                                        "XXXXXXXXX.12345678" };
 
-  Print({ kStateChar[get<Uncovered>(state)][get<Mines>(state) + 9] });
+  print({ kStateChar[get<Uncovered>(state)][get<Mines>(state) + 9] });
 }
 
-void minesweeper::Print(std::string s)
+void minesweeper::print(std::string s)
 {
   cout << s;
 }

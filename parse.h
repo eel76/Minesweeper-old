@@ -4,5 +4,5 @@
 
 namespace minesweeper
 {
-  Position ParsePosition(std::string input);
+  Position parsePosition(std::string input);
 }

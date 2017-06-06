@@ -4,7 +4,7 @@
 using namespace minesweeper;
 using namespace std;
 
-string minesweeper::InputLine()
+string minesweeper::inputLine()
 {
   auto line = string{};
   getline(cin, line);

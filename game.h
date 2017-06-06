@@ -4,5 +4,5 @@
 
 namespace minesweeper
 {
-  void PlayGame(Size size, MineCount mineCount);
+  void playGame(Size size, MineCount mineCount);
 }

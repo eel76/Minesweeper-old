@@ -6,7 +6,7 @@
 using namespace minesweeper;
 using namespace std;
 
-Positions minesweeper::AllPositions(Board board)
+Positions minesweeper::allPositions(Board board)
 {
   auto positions = Positions{};
   transform(begin(board), end(board), back_inserter(positions),
@@ -15,7 +15,7 @@ Positions minesweeper::AllPositions(Board board)
   return positions;
 }
 
-Positions minesweeper::RandomPositions(Positions positions, unsigned position_count)
+Positions minesweeper::randomPositions(Positions positions, unsigned position_count)
 {
   shuffle(begin(positions), end(positions), ranlux48{ random_device{}() });
 

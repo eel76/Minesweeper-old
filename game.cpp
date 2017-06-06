@@ -4,12 +4,12 @@
 
 using namespace minesweeper;
 
-void minesweeper::PlayGame(Size size, MineCount mineCount)
+void minesweeper::playGame(Size size, MineCount mineCount)
 {
-  auto board = LayMines(MakeBoard(size), mineCount);
+  auto board = layMines(makeBoard(size), mineCount);
 
-  while (RoundPossible(board))
-    board = PlayRound(board);
+  while (roundPossible(board))
+    board = playRound(board);
 
-  EvaluationRound(board);
+  evaluationRound(board);
 }

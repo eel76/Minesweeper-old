@@ -4,7 +4,7 @@
 using namespace minesweeper;
 using namespace std;
 
-bool minesweeper::IsMine(State state)
+bool minesweeper::isMine(State state)
 {
   return get<Mines>(state) < 0;
 }

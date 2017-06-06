@@ -5,24 +5,24 @@
 using namespace minesweeper;
 using namespace std;
 
-Board minesweeper::UncoverMines(Board board)
+Board minesweeper::uncoverMines(Board board)
 {
   for (auto& cell : board)
-    get<Uncovered>(get<State>(cell)) |= IsMine(get<State>(cell));
+    get<Uncovered>(get<State>(cell)) |= isMine(get<State>(cell));
 
   return board;
 }
 
-bool minesweeper::AnyMineUncovered(Board board)
+bool minesweeper::anyMineUncovered(Board board)
 {
   return any_of(begin(board), end(board), [](auto cell) {
-    return get<Uncovered>(get<State>(cell)) && IsMine(get<State>(cell));
+    return get<Uncovered>(get<State>(cell)) && isMine(get<State>(cell));
   });
 }
 
-bool minesweeper::AllSafeUncovered(Board board)
+bool minesweeper::allSafeUncovered(Board board)
 {
   return all_of(begin(board), end(board), [](auto cell) {
-    return get<Uncovered>(get<State>(cell)) || IsMine(get<State>(cell));
+    return get<Uncovered>(get<State>(cell)) || isMine(get<State>(cell));
   });
 }

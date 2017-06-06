@@ -5,6 +5,6 @@
 namespace minesweeper
 {
   using Rectangle = std::pair<Position, Position>;
-  Rectangle WithoutFirstRow(Rectangle rectangle);
-  Rectangle FirstRowWithoutFirstColumn(Rectangle rectangle);
+  Rectangle withoutFirstRow(Rectangle rectangle);
+  Rectangle firstRowWithoutFirstColumn(Rectangle rectangle);
 }

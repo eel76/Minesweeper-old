@@ -3,6 +3,6 @@
 
 namespace minesweeper
 {
-  Board Uncover(Board board, Positions positions);
-  Board Uncover(Board board, Position position);
+  Board uncoverCells(Board board, Positions positions);
+  Board uncoverCell(Board board, Position position);
 }

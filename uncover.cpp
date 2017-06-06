@@ -22,13 +22,13 @@ namespace
   Positions Branch(Board const& board, Position const& position)
   {
     if (get<Mines>(board.at(position)) == 0)
-      return Neighbors(board, position);
+      return cellNeighbors(board, position);
 
     return {};
   }
 }
 
-Board minesweeper::Uncover(Board board, Positions positions)
+Board minesweeper::uncoverCells(Board board, Positions positions)
 {
   while (!positions.empty())
   {
@@ -41,10 +41,10 @@ Board minesweeper::Uncover(Board board, Positions positions)
   return board;
 }
 
-Board minesweeper::Uncover(Board board, Position position)
+Board minesweeper::uncoverCell(Board board, Position position)
 {
-  if (Contains(board, position))
-    return Uncover(board, Positions{ position });
+  if (contains(board, position))
+    return uncoverCells(board, Positions{ position });
 
   return board;
 }

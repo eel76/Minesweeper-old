@@ -3,7 +3,7 @@
 
 namespace minesweeper
 {
-  bool RoundPossible(Board board);
-  Board PlayRound(Board board);
-  void EvaluationRound(Board board);
+  bool roundPossible(Board board);
+  Board playRound(Board board);
+  void evaluationRound(Board board);
 }

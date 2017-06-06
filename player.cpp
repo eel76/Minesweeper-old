@@ -4,7 +4,7 @@
 
 using namespace minesweeper;
 
-Position minesweeper::RequestPlayerMove()
+Position minesweeper::playerMove()
 {
-  return ParsePosition(InputLine());
+  return parsePosition(inputLine());
 }

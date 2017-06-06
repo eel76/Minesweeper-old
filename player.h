@@ -3,5 +3,5 @@
 
 namespace minesweeper
 {
-  Position RequestPlayerMove();
+  Position playerMove();
 }

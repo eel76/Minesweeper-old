@@ -8,31 +8,31 @@
 using namespace minesweeper;
 using namespace std;
 
-Board minesweeper::MakeBoard(Size size)
+Board minesweeper::makeBoard(Size size)
 {
   auto board = Board{};
 
   auto rectangles =
   Rectangles{ Rectangle{ { 0, 0 }, { get<RowCount>(size), get<ColumnCount>(size) } } };
-  while (MoveNonEmptyToFront(begin(rectangles), end(rectangles)))
+  while (moveNonEmptyToFront(begin(rectangles), end(rectangles)))
   {
     board.insert({ get<0>(rectangles[0]), {} });
-    rectangles[2] = WithoutFirstRow(rectangles[0]);
-    rectangles[0] = FirstRowWithoutFirstColumn(rectangles[0]);
+    rectangles[2] = withoutFirstRow(rectangles[0]);
+    rectangles[0] = firstRowWithoutFirstColumn(rectangles[0]);
   }
 
   return board;
 }
 
-Board minesweeper::LayMines(Board board, MineCount mineCount)
+Board minesweeper::layMines(Board board, MineCount mineCount)
 {
   auto adjust_mine_count = [&](auto position, auto value) {
     get<Mines>(board.at(position)) += value;
   };
 
-  for (auto position : RandomPositions(AllPositions(board), mineCount))
+  for (auto position : randomPositions(allPositions(board), mineCount))
   {
-    auto neighbors = Neighbors(board, position);
+    auto neighbors = cellNeighbors(board, position);
     for_each(begin(neighbors), end(neighbors),
              bind(adjust_mine_count, placeholders::_1, +1));
     adjust_mine_count(position, -9);

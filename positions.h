@@ -5,6 +5,6 @@
 namespace minesweeper
 {
   using Positions = std::vector<Position>;
-  Positions AllPositions(Board board);
-  Positions RandomPositions(Positions positions, unsigned position_count);
+  Positions allPositions(Board board);
+  Positions randomPositions(Positions positions, unsigned position_count);
 }

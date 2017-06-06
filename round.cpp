@@ -6,26 +6,26 @@
 
 using namespace minesweeper;
 
-bool minesweeper::RoundPossible(Board board)
+bool minesweeper::roundPossible(Board board)
 {
-  return !AnyMineUncovered(board) && !AllSafeUncovered(board);
+  return !anyMineUncovered(board) && !allSafeUncovered(board);
 }
 
-Board minesweeper::PlayRound(Board board)
+Board minesweeper::playRound(Board board)
 {
-  Print(board);
-  Print("Your move (row, column): ");
+  print(board);
+  print("Your move (row, column): ");
 
-  return Uncover(board, RequestPlayerMove());
+  return uncoverCell(board, playerMove());
 }
 
-void minesweeper::EvaluationRound(Board board)
+void minesweeper::evaluationRound(Board board)
 {
-  Print(UncoverMines(board));
+  print(uncoverMines(board));
 
-  if (AnyMineUncovered(board))
-    return Print("You loose :-(\n");
+  if (anyMineUncovered(board))
+    return print("You loose :-(\n");
 
-  if (AllSafeUncovered(board))
-    return Print("You win :-)\n");
+  if (allSafeUncovered(board))
+    return print("You win :-)\n");
 }
