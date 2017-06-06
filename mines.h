@@ -3,7 +3,7 @@
 
 namespace minesweeper
 {
-  Board UncoverAllMines(Board board);
+  Board UncoverMines(Board board);
   bool AnyMineUncovered(Board board);
   bool AllSafeUncovered(Board board);
 }

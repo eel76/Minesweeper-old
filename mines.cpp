@@ -5,7 +5,7 @@
 using namespace minesweeper;
 using namespace std;
 
-Board minesweeper::UncoverAllMines(Board board)
+Board minesweeper::UncoverMines(Board board)
 {
   for (auto& cell : board)
     get<Uncovered>(get<State>(cell)) |= IsMine(get<State>(cell));

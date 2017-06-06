@@ -6,12 +6,12 @@
 
 using namespace minesweeper;
 
-bool minesweeper::NextRoundPossible(Board board)
+bool minesweeper::RoundPossible(Board board)
 {
   return !AnyMineUncovered(board) && !AllSafeUncovered(board);
 }
 
-Board minesweeper::NextRound(Board board)
+Board minesweeper::PlayRound(Board board)
 {
   Print(board);
   Print("Your move (row, column): ");
@@ -21,7 +21,7 @@ Board minesweeper::NextRound(Board board)
 
 void minesweeper::EvaluationRound(Board board)
 {
-  Print(UncoverAllMines(board));
+  Print(UncoverMines(board));
 
   if (AnyMineUncovered(board))
     return Print("You loose :-(\n");

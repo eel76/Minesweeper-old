@@ -4,6 +4,6 @@ using namespace minesweeper;
 
 int main()
 {
-  PlayGame({ 16_columns, 9_rows }, 20_mines);
+  PlayGame({ 10_columns, 10_rows }, 10_mines);
   return 0;
 }
