@@ -1,5 +1,4 @@
 #include "rectangle.h"
-#include <utility>
 
 using namespace minesweeper;
 using namespace std;

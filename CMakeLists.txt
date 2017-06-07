@@ -34,8 +34,6 @@ add_executable (
   print.h
   rectangle.cpp
   rectangle.h
-  rectangles.cpp
-  rectangles.h
   round.cpp
   round.h
   row.cpp

@@ -1,26 +1,33 @@
 #include "preparation.h"
 #include "neighbor.h"
-#include "rectangles.h"
+#include "rectangle.h"
 #include <algorithm>
 #include <functional>
 
 using namespace minesweeper;
 using namespace std;
 
-Board minesweeper::makeBoard(Size size)
+bool isEmpty(Rectangle rectangle)
 {
-  auto board = Board{};
+  return !(get<0>(rectangle) < get<1>(rectangle));
+}
 
-  auto rectangles =
-  Rectangles{ Rectangle{ { 0, 0 }, { get<RowCount>(size), get<ColumnCount>(size) } } };
-  while (moveNonEmptyToFront(begin(rectangles), end(rectangles)))
-  {
-    board.insert({ get<0>(rectangles[0]), {} });
-    rectangles[2] = withoutFirstRow(rectangles[0]);
-    rectangles[0] = firstRowWithoutFirstColumn(rectangles[0]);
-  }
+Board initialize(Board board, Rectangle rectangle)
+{
+  if (isEmpty(rectangle))
+    return board;
+
+  board.insert({ get<0>(rectangle), {} });
+  board = initialize(board, withoutFirstRow(rectangle));
+  board = initialize(board, firstRowWithoutFirstColumn(rectangle));
 
   return board;
+}
+
+Board minesweeper::makeBoard(Size size)
+{
+  return initialize(Board{},
+                    Rectangle{ { 0, 0 }, { get<RowCount>(size), get<ColumnCount>(size) } });
 }
 
 Board layMine(Board board, Position position)

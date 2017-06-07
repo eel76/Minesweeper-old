@@ -14,6 +14,11 @@ Board minesweeper::playRound(Board board)
   return uncoverCell(board, playerMove());
 }
 
+bool minesweeper::roundPossible(Board board)
+{
+  return !gameLost(board) && !gameWon(board);
+}
+
 void minesweeper::evaluationRound(Board board)
 {
   print(uncoverMines(board));
