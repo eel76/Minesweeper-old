@@ -2,7 +2,7 @@
 
 namespace minesweeper
 {
-  enum MineCount : unsigned
+  enum MineCount : size_t
   {
   };
   MineCount operator""_mines(unsigned long long mineCount);

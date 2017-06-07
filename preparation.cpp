@@ -1,6 +1,5 @@
 #include "preparation.h"
-#include "neighbors.h"
-#include "positions.h"
+#include "neighbor.h"
 #include "rectangles.h"
 #include <algorithm>
 #include <functional>
@@ -24,19 +23,25 @@ Board minesweeper::makeBoard(Size size)
   return board;
 }
 
-Board minesweeper::layMines(Board board, MineCount mineCount)
+Board layMine(Board board, Position position)
 {
-  auto adjust_mine_count = [&](auto position, auto value) {
+  auto adjustMineCount = [&](auto position, auto value) {
     get<Mines>(board.at(position)) += value;
   };
 
-  for (auto position : randomPositions(allPositions(board), mineCount))
-  {
-    auto neighbors = neighborPositions(board, position);
-    for_each(begin(neighbors), end(neighbors),
-             bind(adjust_mine_count, placeholders::_1, +1));
-    adjust_mine_count(position, -9);
-  }
+  auto neighbors = neighborPositions(board, position);
+  for_each(begin(neighbors), end(neighbors), bind(adjustMineCount, placeholders::_1, +1));
+  adjustMineCount(position, -9);
+  return board;
+}
+
+Board minesweeper::layMines(Board board, MineCount mineCount)
+{
+  auto positions = shuffle(allPositions(board));
+  auto count     = min<size_t>({ mineCount, positions.size() });
+
+  for (auto position : Positions{ begin(positions), next(begin(positions), count) })
+    board = layMine(board, position);
 
   return board;
 }

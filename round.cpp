@@ -1,15 +1,10 @@
 #include "round.h"
-#include "mines.h"
+#include "evaluation.h"
 #include "player.h"
 #include "print.h"
 #include "uncover.h"
 
 using namespace minesweeper;
-
-bool minesweeper::roundPossible(Board board)
-{
-  return !anyMineUncovered(board) && !allSafeUncovered(board);
-}
 
 Board minesweeper::playRound(Board board)
 {
@@ -23,9 +18,9 @@ void minesweeper::evaluationRound(Board board)
 {
   print(uncoverMines(board));
 
-  if (anyMineUncovered(board))
+  if (gameLost(board))
     return print("You loose :-(\n");
 
-  if (allSafeUncovered(board))
+  if (gameWon(board))
     return print("You win :-)\n");
 }

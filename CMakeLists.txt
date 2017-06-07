@@ -9,6 +9,8 @@ add_executable (
   board.h
   column.cpp
   column.h
+  evaluation.cpp
+  evaluation.h
   game.cpp
   game.h
   input.cpp
@@ -16,10 +18,8 @@ add_executable (
   main.cpp
   mine.cpp
   mine.h
-  mines.cpp
-  mines.h
-  neighbors.cpp
-  neighbors.h
+  neighbor.cpp
+  neighbor.h
   parse.cpp
   parse.h
   player.cpp
