@@ -5,6 +5,6 @@
 namespace minesweeper
 {
   Positions neighborOffsets();
-  Positions cellNeighbors(Position position);
-  Positions cellNeighbors(Board board, Position position);
+  Positions neighborPositions(Position position);
+  Positions neighborPositions(Board board, Position position);
 }

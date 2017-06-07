@@ -13,7 +13,7 @@ Positions minesweeper::neighborOffsets()
   };
 }
 
-Positions minesweeper::cellNeighbors(Position position)
+Positions minesweeper::neighborPositions(Position position)
 {
   auto neighbors = neighborOffsets();
   for_each(begin(neighbors), end(neighbors),
@@ -22,9 +22,9 @@ Positions minesweeper::cellNeighbors(Position position)
   return neighbors;
 }
 
-Positions minesweeper::cellNeighbors(Board board, Position position)
+Positions minesweeper::neighborPositions(Board board, Position position)
 {
-  auto neighbors = cellNeighbors(position);
+  auto neighbors = neighborPositions(position);
 
   auto on_board =
   remove_if(begin(neighbors), end(neighbors),

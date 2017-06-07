@@ -1,50 +1,30 @@
 #include "uncover.h"
-#include <algorithm>
-#include <iterator>
 #include "neighbors.h"
 
 using namespace minesweeper;
 using namespace std;
 
-namespace
-{
-  auto SelectCovered(Board const& board)
-  {
-    auto not_covered = [&](auto position) {
-      return get<Uncovered>(board.at(position));
-    };
-
-    return [=](auto begin, auto end) {
-      return distance(begin, remove_if(begin, end, not_covered));
-    };
-  }
-
-  Positions Branch(Board const& board, Position const& position)
-  {
-    if (get<Mines>(board.at(position)) == 0)
-      return cellNeighbors(board, position);
-
-    return {};
-  }
-}
-
 Board minesweeper::uncoverCells(Board board, Positions positions)
 {
-  while (!positions.empty())
-  {
-    auto neighbors                          = Branch(board, positions.back());
-    get<Uncovered>(board[positions.back()]) = true;
-    positions.insert(end(positions), begin(neighbors), end(neighbors));
-    positions.resize(SelectCovered(board)(begin(positions), end(positions)));
-  }
+  for (auto position : positions)
+    board = uncoverCell(board, position);
 
   return board;
+}
+
+bool isCovered (Board board, Position position)
+{
+  return ! get<Uncovered>(board[position]);
 }
 
 Board minesweeper::uncoverCell(Board board, Position position)
 {
-  if (contains(board, position))
-    return uncoverCells(board, Positions{ position });
+  if (!contains(board, position) || !isCovered (board, position))
+    return board;
 
-  return board;
+  get<Uncovered>(board[position]) = true;
+  if (get<Mines>(board.at(position)) != 0)
+    return board;
+
+  return uncoverCells(board, neighborPositions(board, position));
 }

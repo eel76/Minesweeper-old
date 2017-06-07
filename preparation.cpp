@@ -32,7 +32,7 @@ Board minesweeper::layMines(Board board, MineCount mineCount)
 
   for (auto position : randomPositions(allPositions(board), mineCount))
   {
-    auto neighbors = cellNeighbors(board, position);
+    auto neighbors = neighborPositions(board, position);
     for_each(begin(neighbors), end(neighbors),
              bind(adjust_mine_count, placeholders::_1, +1));
     adjust_mine_count(position, -9);
