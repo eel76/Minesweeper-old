@@ -15,13 +15,18 @@ Positions minesweeper::neighborOffsets()
   // clang-format on
 }
 
-Positions minesweeper::neighborPositions(Board board, Position position)
+Positions minesweeper::validNeighbors(Board board, Position position)
 {
-  auto neighbors = neighborOffsets();
-  transform(begin(neighbors), end(neighbors), begin(neighbors),
-            [=](auto offset) { return position + offset; });
-
+  auto neighbors = allNeighbors(position);
   return { begin(neighbors), remove_if(begin(neighbors), end(neighbors), [=](auto position) {
              return !contains(board, position);
            }) };
+}
+
+Positions minesweeper::allNeighbors(Position position)
+{
+  auto neighbors = neighborOffsets();
+  return { begin(neighbors),
+           transform(begin(neighbors), end(neighbors), begin(neighbors),
+                     [=](auto offset) { return position + offset; }) };
 }

@@ -24,31 +24,33 @@ Board initialize(Board board, Rectangle rectangle)
   return board;
 }
 
-Board minesweeper::makeBoard(Size size)
+Positions selectFirst(Positions positions, size_t count)
 {
-  return initialize(Board{},
-                    Rectangle{ { 0, 0 }, { get<RowCount>(size), get<ColumnCount>(size) } });
+  return { begin(positions), next(begin(positions), min({ positions.size(), count })) };
 }
 
 Board layMine(Board board, Position position)
 {
-  auto adjustMineCount = [&](auto position, auto value) {
-    get<Mines>(board.at(position)) += value;
-  };
+  for (auto neighbor : validNeighbors(board, position))
+    get<Mines>(board.at(neighbor)) += 1;
 
-  auto neighbors = neighborPositions(board, position);
-  for_each(begin(neighbors), end(neighbors), bind(adjustMineCount, placeholders::_1, +1));
-  adjustMineCount(position, -9);
+  get<Mines>(board.at(position)) -= 9;
   return board;
 }
 
-Board minesweeper::layMines(Board board, MineCount mineCount)
+Board layMines(Board board, MineCount mineCount)
 {
-  auto positions = shuffle(allPositions(board));
-  auto count     = min<size_t>({ mineCount, positions.size() });
-
-  for (auto position : Positions{ begin(positions), next(begin(positions), count) })
+  for (auto position : selectFirst(shuffle(allCells(board)), mineCount))
     board = layMine(board, position);
 
   return board;
+}
+
+Board minesweeper::prepareBoard(Size size, MineCount mineCount)
+{
+  auto board =
+  initialize(Board{},
+             Rectangle{ { 0, 0 }, { get<RowCount>(size), get<ColumnCount>(size) } });
+
+  return layMines(board, mineCount);
 }

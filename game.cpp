@@ -4,7 +4,7 @@
 
 void minesweeper::playGame(Size size, MineCount mineCount)
 {
-  auto board = layMines(makeBoard(size), mineCount);
+  auto board = prepareBoard(size, mineCount);
 
   while (roundPossible(board))
     board = playRound(board);

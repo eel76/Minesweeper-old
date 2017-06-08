@@ -1,9 +1,9 @@
 #pragma once
-#include "board.h"
 #include "positions.h"
 
 namespace minesweeper
 {
   Positions neighborOffsets();
-  Positions neighborPositions(Board board, Position position);
+  Positions validNeighbors(Board board, Position position);
+  Positions allNeighbors(Position position);
 }

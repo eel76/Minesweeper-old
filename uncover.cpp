@@ -4,7 +4,7 @@
 using namespace minesweeper;
 using namespace std;
 
-bool isCovered(Board board, Position position)
+bool minesweeper::isCovered(Board board, Position position)
 {
   return !get<Uncovered>(board[position]);
 }
@@ -18,21 +18,13 @@ Board minesweeper::uncoverCell(Board board, Position position)
   if (get<Mines>(board.at(position)) != 0)
     return board;
 
-  return uncoverCells(board, neighborPositions(board, position));
+  return uncoverCells(board, allNeighbors(position));
 }
 
 Board minesweeper::uncoverCells(Board board, Positions positions)
 {
   for (auto position : positions)
     board = uncoverCell(board, position);
-
-  return board;
-}
-
-Board minesweeper::uncoverMines(Board board)
-{
-  for (auto& cell : board)
-    get<Uncovered>(get<State>(cell)) |= isMine(get<State>(cell));
 
   return board;
 }
