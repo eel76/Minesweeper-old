@@ -21,7 +21,7 @@ bool minesweeper::roundPossible(Board board)
 
 void minesweeper::evaluationRound(Board board)
 {
-  print(uncoverCells(board, allMines(board)));
+  print(uncoverCells(board, onlyMines(board, allCells (board))));
 
   if (gameLost(board))
     return print("You loose :-(\n");

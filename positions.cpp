@@ -15,16 +15,12 @@ Positions minesweeper::allCells(Board board)
   return positions;
 }
 
-Positions minesweeper::allMines(Board board)
+Positions minesweeper::onlyMines(Board board, Positions positions)
 {
-  auto positions = allCells(board);
-  positions.erase(remove_if(begin(positions), end(positions),
+  return{ begin(positions), remove_if(begin(positions), end(positions),
                             [=](auto position) {
                               return !isMine(board.at(position));
-                            }),
-                  end(positions));
-
-  return positions;
+                            }) };
 }
 
 Positions minesweeper::shuffle(Positions positions)

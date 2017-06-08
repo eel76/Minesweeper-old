@@ -7,8 +7,8 @@ using namespace std;
 Position minesweeper::printCell(Board board, Position position)
 {
   char kStateChar[2][19] = { "##################", "XXXXXXXXX.12345678" };
-  print({ kStateChar[get<Uncovered>(board[position])][get<Mines>(board[position]) + 9] });
 
+  print({ kStateChar[get<Uncovered>(board[position])][get<Mines>(board[position]) + 9] });
   return position + Position{ 0, 1 };
 }
 
