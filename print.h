@@ -4,7 +4,8 @@
 
 namespace minesweeper
 {
+  Position printCell(Board board, Position position);
+  Position printRow(Board board, Position position);
   void print(Board board);
-  void print(State state);
   void print(std::string s);
 }

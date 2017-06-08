@@ -1,40 +1,32 @@
 #include "print.h"
-#include <algorithm>
 #include <iostream>
 
 using namespace minesweeper;
 using namespace std;
 
-namespace
+Position minesweeper::printCell(Board board, Position position)
 {
-  auto Row(Board::iterator iterator)
-  {
-    return get<0>(get<Position const>(*iterator));
-  }
-  auto PrintRow(Board::iterator begin, Board::iterator end)
-  {
-    auto last = begin;
-    while (begin != end && Row(last) == Row(begin))
-      print(get<State>(*(last = begin++)));
+  char kStateChar[2][19] = { "##################", "XXXXXXXXX.12345678" };
+  print({ kStateChar[get<Uncovered>(board[position])][get<Mines>(board[position]) + 9] });
 
-    print("\n");
-    return begin;
-  }
+  return position + Position{ 0, 1 };
+}
+
+Position minesweeper::printRow(Board board, Position position)
+{
+  auto current = position;
+  while (contains(board, current))
+    current = printCell(board, current);
+
+  print("\n");
+  return position + Position{ 1, 0 };
 }
 
 void minesweeper::print(Board board)
 {
-  auto row_end = begin(board);
-  while (row_end != end(board))
-    row_end = PrintRow(row_end, end(board));
-}
-
-void minesweeper::print(State state)
-{
-  char constexpr kStateChar[2][19] = { "##################",
-                                       "XXXXXXXXX.12345678" };
-
-  print({ kStateChar[get<Uncovered>(state)][get<Mines>(state) + 9] });
+  auto begin = Position{ 0, 0 };
+  while (contains(board, begin))
+    begin = printRow(board, begin);
 }
 
 void minesweeper::print(std::string s)
