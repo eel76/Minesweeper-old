@@ -24,6 +24,8 @@ Board minesweeper::uncover(Board board, Positions positions)
   return board;
 }
 
+// board = board | uncover(positions);
+
 // Board uncover(Board board, Positions positions)
 // {
 //   positions = positions | Inside {board} | covered(board);
