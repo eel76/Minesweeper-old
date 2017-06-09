@@ -1,13 +1,43 @@
 #include "game.h"
-#include "preparation.h"
-#include "round.h"
+#include "filter.h"
+#include "cells.h"
+#include "player.h"
+#include "print.h"
+#include "uncover.h"
+#include <algorithm>
 
-void minesweeper::playGame(Size size, MineCount mineCount)
+using namespace minesweeper;
+using namespace std;
+
+bool minesweeper::gameLost(Board board)
 {
-  auto board = prepareBoard(size, mineCount);
+  return any_of(begin(board), end(board), [](auto cell) {
+    return get<Uncovered>(get<State>(cell)) & isMine(get<State>(cell));
+  });
+}
 
-  while (roundPossible(board))
-    board = playRound(board);
+bool minesweeper::gameWon(Board board)
+{
+  return all_of(begin(board), end(board), [](auto cell) {
+    return get<Uncovered>(get<State>(cell)) ^ isMine(get<State>(cell));
+  });
+}
 
-  evaluationRound(board);
+Board minesweeper::gameRound(Board board)
+{
+  print(board);
+  print("Your move (row, column): ");
+
+  return uncover(board, playerMove());
+}
+
+void minesweeper::evaluateGame(Board board)
+{
+  print(uncover(board, onlyMines(board, allCells(board))));
+
+  if (gameLost(board))
+    return print("You loose :-(\n");
+
+  if (gameWon(board))
+    return print("You win :-)\n");
 }

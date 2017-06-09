@@ -1,9 +1,8 @@
 #include "preparation.h"
+#include "cells.h"
 #include "filter.h"
 #include "neighbors.h"
 #include "rectangle.h"
-#include <algorithm>
-#include <functional>
 
 using namespace minesweeper;
 using namespace std;
@@ -21,13 +20,26 @@ Rectangle firstRowWithoutFirstColumn(Rectangle rectangle)
   return rectangle;
 }
 
+Board reset(Board board, Positions positions)
+{
+  for (auto position : positions)
+    board[position] = {};
+
+  return board;
+}
+
+Board reset(Board board, Rectangle rectangle)
+{
+  return board;
+}
+
 Board resetRegion(Board board, Rectangle rectangle)
 {
   if (isEmpty(rectangle))
     return board;
 
-  board.insert({ get<0>(rectangle), {} });
-  board = resetRegion(board, withoutFirstRow(rectangle));
+  board[get<0>(rectangle)] = {};
+  board                    = resetRegion(board, withoutFirstRow(rectangle));
   board = resetRegion(board, firstRowWithoutFirstColumn(rectangle));
 
   return board;
@@ -36,9 +48,9 @@ Board resetRegion(Board board, Rectangle rectangle)
 Board layMine(Board board, Position position)
 {
   for (auto neighbor : onlyInside(board, add(neighbors(), position)))
-    get<Mines>(board.at(neighbor)) += 1;
+    get<Mines>(board[neighbor]) += 1;
 
-  get<Mines>(board.at(position)) -= 9;
+  get<Mines>(board[position]) -= 9;
   return board;
 }
 

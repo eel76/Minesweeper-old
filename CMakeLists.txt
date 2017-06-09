@@ -7,10 +7,10 @@ add_executable (
   ${PROJECT_NAME}
   board.cpp
   board.h
+  cells.cpp
+  cells.h
   columns.cpp
   columns.h
-  evaluation.cpp
-  evaluation.h
   filter.cpp
   filter.h
   game.cpp
@@ -36,8 +36,6 @@ add_executable (
   print.h
   rectangle.cpp
   rectangle.h
-  round.cpp
-  round.h
   rows.cpp
   rows.h
   size.h

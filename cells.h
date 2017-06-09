@@ -1,8 +1,8 @@
 #pragma once
 #include "board.h"
+#include "positions.h"
 
 namespace minesweeper
 {
-  bool gameLost(Board board);
-  bool gameWon(Board board);
+  Positions allCells(Board board);
 }

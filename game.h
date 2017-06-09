@@ -1,8 +1,10 @@
 #pragma once
-#include "mine.h"
-#include "size.h"
+#include "board.h"
 
 namespace minesweeper
 {
-  void playGame(Size size, MineCount mineCount);
+  bool gameLost(Board board);
+  bool gameWon(Board board);
+  Board gameRound(Board board);
+  void evaluateGame(Board board);
 }

@@ -10,7 +10,7 @@ Board minesweeper::uncover(Board board, Position position)
     return board;
 
   get<Uncovered>(board[position]) = true;
-  if (get<Mines>(board.at(position)) != 0)
+  if (get<Mines>(board[position]) != 0)
     return board;
 
   return uncover(board, add(neighbors(), position));
@@ -23,3 +23,13 @@ Board minesweeper::uncover(Board board, Positions positions)
 
   return board;
 }
+
+// Board uncover(Board board, Positions positions)
+// {
+//   positions = positions | Inside {board} | covered(board);
+
+//   for (auto position : positions)
+//     get<Uncovered>(board[position]) = true;
+
+//   return uncover (board, positions | zeroMines(board) | neighbors());
+// }
