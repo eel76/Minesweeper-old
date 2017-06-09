@@ -1,5 +1,6 @@
 #include "round.h"
 #include "evaluation.h"
+#include "filter.h"
 #include "player.h"
 #include "print.h"
 #include "uncover.h"
@@ -11,7 +12,7 @@ Board minesweeper::playRound(Board board)
   print(board);
   print("Your move (row, column): ");
 
-  return uncoverCell(board, playerMove());
+  return uncover(board, playerMove());
 }
 
 bool minesweeper::roundPossible(Board board)
@@ -21,7 +22,7 @@ bool minesweeper::roundPossible(Board board)
 
 void minesweeper::evaluationRound(Board board)
 {
-  print(uncoverCells(board, onlyMines(board, allCells (board))));
+  print(uncover(board, onlyMines(board, allCells(board))));
 
   if (gameLost(board))
     return print("You loose :-(\n");

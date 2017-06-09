@@ -1,5 +1,6 @@
 #include "preparation.h"
-#include "neighbor.h"
+#include "filter.h"
+#include "neighbors.h"
 #include "rectangle.h"
 #include <algorithm>
 #include <functional>
@@ -24,14 +25,14 @@ Board initialize(Board board, Rectangle rectangle)
   return board;
 }
 
-Positions selectFirst(Positions positions, size_t count)
+Positions selectFirst(size_t count, Positions positions)
 {
   return { begin(positions), next(begin(positions), min({ positions.size(), count })) };
 }
 
 Board layMine(Board board, Position position)
 {
-  for (auto neighbor : validNeighbors(board, position))
+  for (auto neighbor : onlyInside(board, add(neighbors(), position)))
     get<Mines>(board.at(neighbor)) += 1;
 
   get<Mines>(board.at(position)) -= 9;
@@ -40,7 +41,7 @@ Board layMine(Board board, Position position)
 
 Board layMines(Board board, MineCount mineCount)
 {
-  for (auto position : selectFirst(shuffle(allCells(board)), mineCount))
+  for (auto position : selectFirst(mineCount, shuffle(allCells(board))))
     board = layMine(board, position);
 
   return board;

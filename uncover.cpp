@@ -1,5 +1,5 @@
 #include "uncover.h"
-#include "neighbor.h"
+#include "neighbors.h"
 
 using namespace minesweeper;
 using namespace std;
@@ -9,7 +9,7 @@ bool minesweeper::isCovered(Board board, Position position)
   return !get<Uncovered>(board[position]);
 }
 
-Board minesweeper::uncoverCell(Board board, Position position)
+Board minesweeper::uncover(Board board, Position position)
 {
   if (!contains(board, position) || !isCovered(board, position))
     return board;
@@ -18,13 +18,13 @@ Board minesweeper::uncoverCell(Board board, Position position)
   if (get<Mines>(board.at(position)) != 0)
     return board;
 
-  return uncoverCells(board, allNeighbors(position));
+  return uncover(board, add(neighbors(), position));
 }
 
-Board minesweeper::uncoverCells(Board board, Positions positions)
+Board minesweeper::uncover(Board board, Positions positions)
 {
   for (auto position : positions)
-    board = uncoverCell(board, position);
+    board = uncover(board, position);
 
   return board;
 }

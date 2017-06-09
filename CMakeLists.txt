@@ -11,6 +11,8 @@ add_executable (
   column.h
   evaluation.cpp
   evaluation.h
+  filter.cpp
+  filter.h
   game.cpp
   game.h
   input.cpp
@@ -18,8 +20,8 @@ add_executable (
   main.cpp
   mine.cpp
   mine.h
-  neighbor.cpp
-  neighbor.h
+  neighbors.cpp
+  neighbors.h
   parse.cpp
   parse.h
   player.cpp
