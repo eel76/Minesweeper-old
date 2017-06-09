@@ -1,10 +1,11 @@
 #pragma once
 #include <utility>
 #include "position.h"
+#include "size.h"
 
 namespace minesweeper
 {
   using Rectangle = std::pair<Position, Position>;
-  Rectangle withoutFirstRow(Rectangle rectangle);
-  Rectangle firstRowWithoutFirstColumn(Rectangle rectangle);
+  Rectangle makeRectangle(Size size);
+  bool isEmpty(Rectangle rectangle);
 }

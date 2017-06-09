@@ -1,4 +1,4 @@
-#include "row.h"
+#include "rows.h"
 
 using namespace minesweeper;
 

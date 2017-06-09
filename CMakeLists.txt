@@ -7,8 +7,8 @@ add_executable (
   ${PROJECT_NAME}
   board.cpp
   board.h
-  column.cpp
-  column.h
+  columns.cpp
+  columns.h
   evaluation.cpp
   evaluation.h
   filter.cpp
@@ -38,8 +38,8 @@ add_executable (
   rectangle.h
   round.cpp
   round.h
-  row.cpp
-  row.h
+  rows.cpp
+  rows.h
   size.h
   state.cpp
   state.h

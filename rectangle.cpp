@@ -3,15 +3,12 @@
 using namespace minesweeper;
 using namespace std;
 
-Rectangle minesweeper::withoutFirstRow(Rectangle rectangle)
+Rectangle minesweeper::makeRectangle(Size size)
 {
-  get<0>(get<0>(rectangle)) += 1;
-  return rectangle;
+  return { { 0, 0 }, { get<RowCount>(size), get<ColumnCount>(size) } };
 }
 
-Rectangle minesweeper::firstRowWithoutFirstColumn(Rectangle rectangle)
+bool minesweeper::isEmpty(Rectangle rectangle)
 {
-  get<0>(get<1>(rectangle)) = get<0>(get<0>(rectangle)) + 1;
-  get<1>(get<0>(rectangle)) += 1;
-  return rectangle;
+  return !(get<0>(rectangle) < get<1>(rectangle));
 }

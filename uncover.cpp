@@ -4,14 +4,9 @@
 using namespace minesweeper;
 using namespace std;
 
-bool minesweeper::isCovered(Board board, Position position)
-{
-  return !get<Uncovered>(board[position]);
-}
-
 Board minesweeper::uncover(Board board, Position position)
 {
-  if (!contains(board, position) || !isCovered(board, position))
+  if (!contains(board, position) || get<Uncovered>(board[position]))
     return board;
 
   get<Uncovered>(board[position]) = true;

@@ -1,4 +1,4 @@
-#include "column.h"
+#include "columns.h"
 
 using namespace minesweeper;
 

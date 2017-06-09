@@ -1,7 +1,7 @@
 #pragma once
 #include <utility>
-#include "column.h"
-#include "row.h"
+#include "columns.h"
+#include "rows.h"
 
 namespace minesweeper
 {

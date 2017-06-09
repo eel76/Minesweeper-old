@@ -26,3 +26,8 @@ Positions minesweeper::onlyMines(Board board, Positions positions)
              return !isMine(board.at(position));
            }) };
 }
+
+Positions minesweeper::onlyFirst(size_t count, Positions positions)
+{
+  return { begin(positions), next(begin(positions), min({ positions.size(), count })) };
+}
