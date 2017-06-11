@@ -28,7 +28,7 @@ Board minesweeper::gameRound(Board board)
   print(board);
   print("Your move (row, column): ");
 
-  return uncover(board, playerMove());
+  return uncover(board, Positions{ playerMove() } );
 }
 
 void minesweeper::evaluateGame(Board board)

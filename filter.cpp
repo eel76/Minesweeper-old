@@ -4,11 +4,25 @@
 using namespace minesweeper;
 using namespace std;
 
-Positions minesweeper::onlyInside(Board board, Positions positions)
+Positions minesweeper::withinBounds(Positions positions, Board board)
 {
   return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
              return !contains(board, position);
            }) };
+}
+
+Positions minesweeper::coveredCells(Positions positions, Board board)
+{
+  return{ begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
+    return get<Uncovered>(board.at(position));
+  }) };
+}
+
+Positions minesweeper::withoutMines(Positions positions, Board board)
+{
+  return{ begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
+    return get<Mines>(board.at(position)) != 0;
+  }) };
 }
 
 Positions minesweeper::onlyMines(Board board, Positions positions)

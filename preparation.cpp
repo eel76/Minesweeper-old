@@ -23,7 +23,7 @@ Rectangle firstRowWithoutFirstColumn(Rectangle rectangle)
 Board reset(Board board, Positions positions)
 {
   for (auto position : positions)
-    board[position] = {};
+    board[position] = State();
 
   return board;
 }
@@ -47,7 +47,7 @@ Board resetRegion(Board board, Rectangle rectangle)
 
 Board layMine(Board board, Position position)
 {
-  for (auto neighbor : onlyInside(board, add(neighbors(), position)))
+  for (auto neighbor : withinBounds(add(neighbors(), position), board))
     get<Mines>(board[neighbor]) += 1;
 
   get<Mines>(board[position]) -= 9;

@@ -1,37 +1,19 @@
 #include "uncover.h"
+#include "filter.h"
 #include "neighbors.h"
 
 using namespace minesweeper;
 using namespace std;
 
-Board minesweeper::uncover(Board board, Position position)
-{
-  if (!contains(board, position) || get<Uncovered>(board[position]))
-    return board;
+ Board minesweeper::uncover(Board board, Positions positions)
+ {
+   positions = coveredCells(withinBounds(positions, board), board);
 
-  get<Uncovered>(board[position]) = true;
-  if (get<Mines>(board[position]) != 0)
-    return board;
+   for (auto position : positions)
+     get<Uncovered>(board[position]) = true;
 
-  return uncover(board, add(neighbors(), position));
-}
+   for (auto position : withoutMines(positions, board))
+     board = uncover(board, add(neighbors(), position));
 
-Board minesweeper::uncover(Board board, Positions positions)
-{
-  for (auto position : positions)
-    board = uncover(board, position);
-
-  return board;
-}
-
-// board = board | uncover(positions);
-
-// Board uncover(Board board, Positions positions)
-// {
-//   positions = positions | Inside {board} | covered(board);
-
-//   for (auto position : positions)
-//     get<Uncovered>(board[position]) = true;
-
-//   return uncover (board, positions | zeroMines(board) | neighbors());
-// }
+   return board;
+ }
