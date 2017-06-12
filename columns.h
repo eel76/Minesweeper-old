@@ -2,9 +2,6 @@
 
 namespace minesweeper
 {
-  using Column = signed;
-  enum ColumnCount : unsigned
-  {
-  };
+  enum ColumnCount : unsigned {};
   ColumnCount operator""_columns(unsigned long long columnCount);
 }

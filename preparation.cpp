@@ -58,7 +58,7 @@ Board minesweeper::prepareBoard(Size size, MineCount mineCount)
 {
   auto board = resetRegion(Board{}, makeRectangle(size));
 
-  for (auto position : onlyFirst(mineCount, shuffle(allCells(board))))
+  for (auto position : first(mineCount, shuffle(allCells(board))))
     board = layMine(board, position);
 
   return board;
