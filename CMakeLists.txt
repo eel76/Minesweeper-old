@@ -34,8 +34,6 @@ add_executable (
   preparation.h
   print.cpp
   print.h
-  rectangle.cpp
-  rectangle.h
   rows.cpp
   rows.h
   size.h

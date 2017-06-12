@@ -5,15 +5,15 @@
 using namespace minesweeper;
 using namespace std;
 
- Board minesweeper::uncover(Board board, Positions positions)
- {
-   positions = coveredCells(withinBounds(positions, board), board);
+Board minesweeper::uncover(Board board, Positions positions)
+{
+  positions = coveredCells(withinBounds(positions, board), board);
 
-   for (auto position : positions)
-     get<Uncovered>(board[position]) = true;
+  for (auto position : positions)
+    get<Uncovered>(board[position]) = true;
 
-   for (auto position : withoutMines(positions, board))
-     board = uncover(board, add(neighbors(), position));
+  for (auto position : withoutMines(positions, board))
+    board = uncover(board, neighbors(position));
 
-   return board;
- }
+  return board;
+}

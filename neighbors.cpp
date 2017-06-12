@@ -1,14 +1,16 @@
 #include "neighbors.h"
+#include <algorithm>
 
 using namespace minesweeper;
+using namespace std;
 
-Positions minesweeper::neighbors()
+Positions minesweeper::neighbors(Position position)
 {
-  // clang-format off
-  return {
-    { { -1, -1 }, { -1, 0 }, { -1, +1 },
-      {  0, -1 },            {  0, +1 },
-      { +1, -1 }, { +1, 0 }, { +1, +1 } }
+  auto offsets = Positions{
+    { { -1, -1 }, { -1, 0 }, { -1, +1 }, { 0, -1 }, { 0, +1 }, { +1, -1 }, { +1, 0 }, { +1, +1 } }
   };
-  // clang-format on
+  transform(begin(offsets), end(offsets), begin(offsets),
+            [=](auto offset) { return position + offset; });
+
+  return offsets;
 }

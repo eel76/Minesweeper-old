@@ -2,52 +2,58 @@
 #include "cells.h"
 #include "filter.h"
 #include "neighbors.h"
-#include "rectangle.h"
+
+#include <algorithm>
+#include <numeric>
 
 using namespace minesweeper;
 using namespace std;
 
-Rectangle withoutFirstRow(Rectangle rectangle)
+namespace minesweeper
 {
-  get<0>(get<0>(rectangle)) += 1;
-  return rectangle;
-}
+  std::vector<int> ints(size_t count)
+  {
+    auto ints = std::vector<int>(count);
+    iota(begin(ints), end(ints), 0);
 
-Rectangle firstRowWithoutFirstColumn(Rectangle rectangle)
-{
-  get<0>(get<1>(rectangle)) = get<0>(get<0>(rectangle)) + 1;
-  get<1>(get<0>(rectangle)) += 1;
-  return rectangle;
-}
+    return ints;
+  }
 
-Board reset(Board board, Positions positions)
-{
-  for (auto position : positions)
-    board[position] = State();
+  std::vector<std::pair<int, int>> zipWith(std::vector<int> rows, int column)
+  {
+    auto positions = Positions{};
 
-  return board;
-}
+    for (auto row : rows)
+      positions.push_back({ row, column });
 
-Board reset(Board board, Rectangle rectangle)
-{
-  return board;
-}
+    return positions;
+  }
 
-Board resetRegion(Board board, Rectangle rectangle)
-{
-  if (isEmpty(rectangle))
-    return board;
+  Positions join(std::vector<Positions> positionRanges)
+  {
+    auto joined = Positions{};
 
-  board[get<0>(rectangle)] = {};
-  board                    = resetRegion(board, withoutFirstRow(rectangle));
-  board = resetRegion(board, firstRowWithoutFirstColumn(rectangle));
+    for (auto positions : positionRanges)
+      joined.insert(end(joined), begin(positions), end(positions));
 
-  return board;
+    return joined;
+  }
+
+  std::vector<std::pair<int, int>>
+  cartesianProduct(std::vector<int> rows, std::vector<int> columns)
+  {
+    auto positionRanges = std::vector<Positions>{};
+
+    for (auto column : columns)
+      positionRanges.push_back(zipWith(rows, column));
+
+    return join(positionRanges);
+  }
 }
 
 Board layMine(Board board, Position position)
 {
-  for (auto neighbor : withinBounds(add(neighbors(), position), board))
+  for (auto neighbor : withinBounds(neighbors(position), board))
     get<Mines>(board[neighbor]) += 1;
 
   get<Mines>(board[position]) -= 9;
@@ -56,7 +62,11 @@ Board layMine(Board board, Position position)
 
 Board minesweeper::prepareBoard(Size size, MineCount mineCount)
 {
-  auto board = resetRegion(Board{}, makeRectangle(size));
+  auto board = Board{};
+
+  for (auto position :
+       cartesianProduct(ints(get<RowCount>(size)), ints(get<ColumnCount>(size))))
+    board[position] = {};
 
   for (auto position : first(mineCount, shuffle(allCells(board))))
     board = layMine(board, position);
