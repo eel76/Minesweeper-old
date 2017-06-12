@@ -6,11 +6,11 @@ using namespace std;
 
 Positions minesweeper::neighbors(Position position)
 {
-  auto offsets = Positions{
+  auto neighbors = Positions{
     { { -1, -1 }, { -1, 0 }, { -1, +1 }, { 0, -1 }, { 0, +1 }, { +1, -1 }, { +1, 0 }, { +1, +1 } }
   };
-  transform(begin(offsets), end(offsets), begin(offsets),
+  transform(begin(neighbors), end(neighbors), begin(neighbors),
             [=](auto offset) { return position + offset; });
 
-  return offsets;
+  return neighbors;
 }

@@ -15,6 +15,8 @@ add_executable (
   filter.h
   game.cpp
   game.h
+  group.cpp
+  group.h
   input.cpp
   input.h
   main.cpp

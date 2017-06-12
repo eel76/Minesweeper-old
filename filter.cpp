@@ -7,7 +7,7 @@ using namespace std;
 Positions minesweeper::withinBounds(Positions positions, Board board)
 {
   return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return !contains(board, position);
+             return board.count(position) == 0;
            }) };
 }
 

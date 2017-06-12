@@ -6,5 +6,4 @@
 namespace minesweeper
 {
   using Board = std::map<Position, State>;
-  bool contains(Board board, Position position);
 }
