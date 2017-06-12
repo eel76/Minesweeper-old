@@ -8,5 +8,4 @@ namespace minesweeper
   Positions coveredCells(Positions positions, Board board);
   Positions withoutMines(Positions positions, Board board);
   Positions onlyMines(Board board, Positions positions);
-  Positions first(size_t count, Positions positions);
 }

@@ -68,7 +68,7 @@ Board minesweeper::prepareBoard(Size size, MineCount mineCount)
        cartesianProduct(ints(get<RowCount>(size)), ints(get<ColumnCount>(size))))
     board[position] = {};
 
-  for (auto position : first(mineCount, shuffle(allCells(board))))
+  for (auto position : sample(allCells(board), mineCount))
     board = layMine(board, position);
 
   return board;

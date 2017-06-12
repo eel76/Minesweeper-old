@@ -5,8 +5,8 @@
 using namespace minesweeper;
 using namespace std;
 
-Positions minesweeper::shuffle(Positions positions)
+Positions minesweeper::sample(Positions positions, size_t count)
 {
   shuffle(begin(positions), end(positions), ranlux48{ random_device{}() });
-  return positions;
+  return { begin(positions), next(begin(positions), min({ positions.size(), count })) };
 }
