@@ -4,7 +4,7 @@
 using namespace minesweeper;
 using namespace std;
 
-Positions minesweeper::allCells(Board board)
+Positions minesweeper::allPositions(Board board)
 {
   auto positions = Positions{};
 
@@ -16,7 +16,7 @@ Positions minesweeper::allCells(Board board)
 
 Positions minesweeper::allMines(Board board)
 {
-  auto positions = allCells(board);
+  auto positions = allPositions(board);
   return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
              return !isMine(board.at(position));
            }) };

@@ -14,8 +14,8 @@ void minesweeper::print(std::string s)
 #include <vector>
 
 #include "cells.h"
-#include "positions.h"
 #include "group.h"
+#include "positions.h"
 
 namespace minesweeper
 {
@@ -48,6 +48,6 @@ namespace minesweeper
 
 void minesweeper::print(Board board)
 {
-  for (auto row : groupRows(allCells(board)))
+  for (auto row : groupRows(allPositions(board)))
     print(join(stringsFrom(cellsFrom(get<Positions>(row), board))) + "\n");
 }
