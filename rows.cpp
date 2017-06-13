@@ -1,12 +1,12 @@
 #include "rows.h"
-#include <numeric>
+#include <algorithm>
 
 using namespace minesweeper;
 
-Rows minesweeper::rows(size_t count)
+Rows minesweeper::rows(unsigned count)
 {
   auto rows = Rows(count);
-  iota(begin(rows), end(rows), 0);
+  generate(begin(rows), end(rows), [=]() mutable { return Row(--count); });
 
   return rows;
 }

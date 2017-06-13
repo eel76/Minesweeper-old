@@ -3,6 +3,7 @@
 
 namespace minesweeper
 {
-  using Columns = std::vector<int>;
-  Columns columns(size_t count);
+  enum Column : unsigned {};
+  using Columns = std::vector<Column>;
+  Columns columns(unsigned count);
 }

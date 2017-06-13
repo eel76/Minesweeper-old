@@ -5,7 +5,7 @@
 using namespace minesweeper;
 using namespace std;
 
-Positions minesweeper::zipWith(Rows rows, int column)
+Positions minesweeper::zipWith(Rows rows, Column column)
 {
   auto positions = Positions{};
 

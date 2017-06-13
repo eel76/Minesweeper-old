@@ -1,12 +1,13 @@
 #include "columns.h"
-#include <numeric>
+#include <algorithm>
 
 using namespace minesweeper;
 
-Columns minesweeper::columns(size_t count)
+Columns minesweeper::columns(unsigned count)
 {
   auto columns = Columns(count);
-  iota(begin(columns), end(columns), 0);
+  generate(begin(columns), end(columns),
+           [=]() mutable { return Column(--count); });
 
   return columns;
 }

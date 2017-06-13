@@ -3,6 +3,7 @@
 
 namespace minesweeper
 {
-  using Rows = std::vector<int>;
-  Rows rows(size_t count);
+  enum Row : unsigned {};
+  using Rows = std::vector<Row>;
+  Rows rows(unsigned count);
 }
