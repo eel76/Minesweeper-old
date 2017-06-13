@@ -1,8 +1,12 @@
 #include "rows.h"
+#include <numeric>
 
 using namespace minesweeper;
 
-RowCount minesweeper::operator""_rows(unsigned long long rowCount)
+Rows minesweeper::rows(size_t count)
 {
-  return static_cast<RowCount>(rowCount);
+  auto rows = Rows(count);
+  iota(begin(rows), end(rows), 0);
+
+  return rows;
 }

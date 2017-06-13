@@ -5,7 +5,7 @@ using namespace minesweeper;
 
 int main()
 {
-  auto board = prepareBoard(Size{ 10_columns, 10_rows }, 10_mines);
+  auto board = prepareBoard(Size{ columns(10), rows(10) }, 10_mines);
 
   while (!gameLost(board) && !gameWon(board))
     board = gameRound(board);

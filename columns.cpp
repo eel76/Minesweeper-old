@@ -1,8 +1,12 @@
 #include "columns.h"
+#include <numeric>
 
 using namespace minesweeper;
 
-ColumnCount minesweeper::operator""_columns(unsigned long long columnCount)
+Columns minesweeper::columns(size_t count)
 {
-  return static_cast<ColumnCount>(columnCount);
+  auto columns = Columns(count);
+  iota(begin(columns), end(columns), 0);
+
+  return columns;
 }

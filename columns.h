@@ -1,7 +1,8 @@
 #pragma once
+#include <vector>
 
 namespace minesweeper
 {
-  enum ColumnCount : unsigned {};
-  ColumnCount operator""_columns(unsigned long long columnCount);
+  using Columns = std::vector<int>;
+  Columns columns(size_t count);
 }

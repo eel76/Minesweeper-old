@@ -1,7 +1,8 @@
 #pragma once
+#include <vector>
 
 namespace minesweeper
 {
-  enum RowCount : unsigned {};
-  RowCount operator""_rows(unsigned long long rowCount);
+  using Rows = std::vector<int>;
+  Rows rows(size_t count);
 }

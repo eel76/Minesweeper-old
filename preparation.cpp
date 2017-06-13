@@ -19,7 +19,7 @@ namespace minesweeper
     return ints;
   }
 
-  std::vector<std::pair<int, int>> zipWith(std::vector<int> rows, int column)
+  std::vector<std::pair<int, int>> zipWith(Rows rows, int column)
   {
     auto positions = Positions{};
 
@@ -39,8 +39,7 @@ namespace minesweeper
     return joined;
   }
 
-  std::vector<std::pair<int, int>>
-  cartesianProduct(std::vector<int> rows, std::vector<int> columns)
+  std::vector<std::pair<int, int>> cartesianProduct(Rows rows, Columns columns)
   {
     auto positionRanges = std::vector<Positions>{};
 
@@ -64,8 +63,7 @@ Board minesweeper::prepareBoard(Size size, MineCount mineCount)
 {
   auto board = Board{};
 
-  for (auto position :
-       cartesianProduct(ints(get<RowCount>(size)), ints(get<ColumnCount>(size))))
+  for (auto position : cartesianProduct(get<0>(size), get<1>(size)))
     board[position] = {};
 
   for (auto position : sample(allCells(board), mineCount))
