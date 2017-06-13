@@ -4,5 +4,5 @@
 
 namespace minesweeper
 {
-  std::map<int, Positions> groupRows(Positions positions);
+  std::map<Row, Positions> groupRows(Positions positions);
 }

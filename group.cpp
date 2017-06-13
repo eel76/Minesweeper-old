@@ -3,12 +3,12 @@
 using namespace minesweeper;
 using namespace std;
 
-map<int, Positions> minesweeper::groupRows(Positions positions)
+map<Row, Positions> minesweeper::groupRows(Positions positions)
 {
-  auto rows = map<int, Positions>{};
+  auto rows = map<Row, Positions>{};
 
   for (auto position : positions)
-    rows[get<0>(position)].push_back(position);
+    rows[get<Row>(position)].push_back(position);
 
   return rows;
 }

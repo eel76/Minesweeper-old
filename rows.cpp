@@ -3,6 +3,11 @@
 
 using namespace minesweeper;
 
+Row minesweeper::operator+(Row first, Row second)
+{
+  return Row(int(first) + int(second));
+}
+
 Rows minesweeper::rows(unsigned count)
 {
   auto rows = Rows(count);

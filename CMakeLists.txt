@@ -12,6 +12,7 @@ add_executable (
   cells.h
   columns.cpp
   columns.h
+  dimensions.h
   filter.cpp
   filter.h
   game.cpp
@@ -39,7 +40,6 @@ add_executable (
   print.h
   rows.cpp
   rows.h
-  size.h
   state.h
   uncover.cpp
   uncover.h

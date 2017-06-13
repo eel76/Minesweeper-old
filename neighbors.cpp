@@ -7,9 +7,9 @@ using namespace std;
 Positions minesweeper::neighborOffsets()
 {
   // clang-format off
-    return { { { -1, -1 }, { -1, 0 }, { -1, +1 },
-               {  0, -1 },            {  0, +1 },
-               { +1, -1 }, { +1, 0 }, { +1, +1 } } };
+    return { { { Row::Prev, Column::Prev }, { Row::Prev, Column::Curr }, { Row::Prev, Column::Next },
+               { Row::Curr, Column::Prev },                              { Row::Curr, Column::Next },
+               { Row::Next, Column::Prev }, { Row::Next, Column::Curr }, { Row::Next, Column::Next } } };
   // clang-format on
 }
 

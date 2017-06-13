@@ -5,5 +5,5 @@
 
 namespace minesweeper
 {
-  using Size = std::pair<Columns, Rows>;
+  using Dimensions = std::pair<Columns, Rows>;
 }

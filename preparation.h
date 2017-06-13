@@ -1,9 +1,9 @@
 #pragma once
 #include "board.h"
+#include "dimensions.h"
 #include "mine.h"
-#include "size.h"
 
 namespace minesweeper
 {
-  Board prepareBoard(Size size, MineCount mineCount);
+  Board prepareBoard(Dimensions dimensions, MineCount mineCount);
 }

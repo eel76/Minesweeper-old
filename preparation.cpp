@@ -28,11 +28,11 @@ Board layMines(Board board, Positions positions)
   return board;
 }
 
-Board minesweeper::prepareBoard(Size size, MineCount mineCount)
+Board minesweeper::prepareBoard(Dimensions dimensions, MineCount mineCount)
 {
   auto board = Board{};
 
-  for (auto position : cartesianProduct(get<Rows>(size), get<Columns>(size)))
+  for (auto position : cartesianProduct(get<Rows>(dimensions), get<Columns>(dimensions)))
     board[position] = Cell(State::Covered, 0);
 
   return layMines(board, sample(allPositions(board), mineCount));
