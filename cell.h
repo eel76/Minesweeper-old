@@ -1,10 +1,10 @@
 #pragma once
 #include <utility>
+#include "state.h"
 
 namespace minesweeper
 {
-  enum State { Covered, Uncovered };
-  using Mines     = int;
-  using Cell     = std::pair<State, Mines>;
+  using Mines = int;
+  using Cell  = std::pair<State, Mines>;
   bool isMine(Cell cell);
 }

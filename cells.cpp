@@ -14,7 +14,7 @@ Positions minesweeper::allPositions(Board board)
   return positions;
 }
 
-Positions minesweeper::allMines(Board board)
+Positions minesweeper::minePositions(Board board)
 {
   auto positions = allPositions(board);
   return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {

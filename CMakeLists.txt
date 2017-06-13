@@ -40,6 +40,7 @@ add_executable (
   rows.cpp
   rows.h
   size.h
+  state.h
   uncover.cpp
   uncover.h
   Readme.md
