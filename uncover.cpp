@@ -10,10 +10,15 @@ Board minesweeper::uncover(Board board, Positions positions)
   positions = coveredCells(withinBounds(positions, board), board);
 
   for (auto position : positions)
-    get<Uncovered>(board[position]) = true;
+    board[position] = uncover(board[position]);
 
-  for (auto position : withoutMines(positions, board))
+  for (auto position : safeCells(positions, board))
     board = uncover(board, neighbors(position));
 
   return board;
+}
+
+State minesweeper::uncover(State state)
+{
+  return State{ true, get<Mines>(state) };
 }

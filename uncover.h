@@ -5,4 +5,5 @@
 namespace minesweeper
 {
   Board uncover(Board board, Positions positions);
+  State uncover(State state);
 }
