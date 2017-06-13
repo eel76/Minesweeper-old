@@ -20,5 +20,5 @@ Board minesweeper::uncover(Board board, Positions positions)
 
 Cell minesweeper::uncover(Cell cell)
 {
-  return Cell{ true, get<Mines>(cell) };
+  return Cell{ State::Uncovered, get<Mines>(cell) };
 }

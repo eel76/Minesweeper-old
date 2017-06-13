@@ -12,14 +12,14 @@ using namespace std;
 bool minesweeper::gameLost(Board board)
 {
   return any_of(begin(board), end(board), [](auto cell) {
-    return get<Uncovered>(get<Cell>(cell)) & isMine(get<Cell>(cell));
+    return (get<State>(get<Cell>(cell)) == State::Uncovered) & isMine(get<Cell>(cell));
   });
 }
 
 bool minesweeper::gameWon(Board board)
 {
   return all_of(begin(board), end(board), [](auto cell) {
-    return get<Uncovered>(get<Cell>(cell)) ^ isMine(get<Cell>(cell));
+    return (get<State>(get<Cell>(cell)) == State::Uncovered) ^ isMine(get<Cell>(cell));
   });
 }
 

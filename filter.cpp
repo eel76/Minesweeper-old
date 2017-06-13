@@ -14,7 +14,7 @@ Positions minesweeper::withinBounds(Positions positions, Board board)
 Positions minesweeper::coveredCells(Positions positions, Board board)
 {
   return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return get<Uncovered>(board.at(position));
+             return get<State>(board.at(position)) == State::Uncovered;
            }) };
 }
 
