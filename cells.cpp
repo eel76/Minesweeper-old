@@ -13,3 +13,11 @@ Positions minesweeper::allCells(Board board)
 
   return positions;
 }
+
+Positions minesweeper::allMines(Board board)
+{
+  auto positions = allCells(board);
+  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
+             return !isMine(board.at(position));
+           }) };
+}

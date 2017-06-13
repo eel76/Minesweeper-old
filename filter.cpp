@@ -24,10 +24,3 @@ Positions minesweeper::withoutMines(Positions positions, Board board)
              return get<Mines>(board.at(position)) != 0;
            }) };
 }
-
-Positions minesweeper::onlyMines(Board board, Positions positions)
-{
-  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return !isMine(board.at(position));
-           }) };
-}

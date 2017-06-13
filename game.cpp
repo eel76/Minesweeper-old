@@ -28,12 +28,12 @@ Board minesweeper::gameRound(Board board)
   print(board);
   print("Your move (row, column): ");
 
-  return uncover(board, Positions{ playerMove() } );
+  return uncover(board, Positions{ playerMove() });
 }
 
 void minesweeper::evaluateGame(Board board)
 {
-  print(uncover(board, onlyMines(board, allCells(board))));
+  print(uncover(board, allMines(board)));
 
   if (gameLost(board))
     return print("You loose :-(\n");

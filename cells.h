@@ -5,4 +5,5 @@
 namespace minesweeper
 {
   Positions allCells(Board board);
+  Positions allMines(Board board);
 }
