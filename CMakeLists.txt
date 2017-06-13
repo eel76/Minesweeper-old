@@ -6,6 +6,8 @@ set (CMAKE_CXX_STANDARD 14)
 add_executable (
   ${PROJECT_NAME}
   board.h
+  cell.cpp
+  cell.h
   cells.cpp
   cells.h
   columns.cpp
@@ -38,8 +40,6 @@ add_executable (
   rows.cpp
   rows.h
   size.h
-  state.cpp
-  state.h
   uncover.cpp
   uncover.h
   Readme.md

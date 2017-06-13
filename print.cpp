@@ -19,22 +19,22 @@ void minesweeper::print(std::string s)
 
 namespace minesweeper
 {
-  std::vector<State> toState(Positions positions, Board board)
+  std::vector<Cell> cellsFrom(Positions positions, Board board)
   {
-    auto states = std::vector<State>{};
+    auto cells = std::vector<Cell>{};
 
     for (auto position : positions)
-      states.push_back(board[position]);
+      cells.push_back(board[position]);
 
-    return states;
+    return cells;
   }
 
-  std::vector<std::string> toString(std::vector<State> states)
+  std::vector<std::string> stringsFrom(std::vector<Cell> cells)
   {
-    auto strings = std::vector<std::string>{ states.size() };
-    transform(begin(states), end(states), begin(strings), [](auto state) {
-      char stateChars[2][19] = { "##################", "XXXXXXXXX.12345678" };
-      return string{ stateChars[get<Uncovered>(state)][get<Mines>(state) + 9] };
+    auto strings = std::vector<std::string>{ cells.size() };
+    transform(begin(cells), end(cells), begin(strings), [](auto cell) {
+      char cellCode[2][19] = { "##################", "XXXXXXXXX.12345678" };
+      return string{ cellCode[get<Uncovered>(cell)][get<Mines>(cell) + 9] };
     });
 
     return strings;
@@ -49,5 +49,5 @@ namespace minesweeper
 void minesweeper::print(Board board)
 {
   for (auto row : groupRows(allCells(board)))
-    print(join(toString(toState(get<Positions>(row), board))) + "\n");
+    print(join(stringsFrom(cellsFrom(get<Positions>(row), board))) + "\n");
 }

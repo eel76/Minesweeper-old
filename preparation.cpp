@@ -6,9 +6,9 @@
 using namespace minesweeper;
 using namespace std;
 
-State incrementMines(State state, int increment)
+Cell incrementMines(Cell cell, int increment)
 {
-  return State{ get<Uncovered>(state), get<Mines>(state) + increment };
+  return Cell{ get<Uncovered>(cell), get<Mines>(cell) + increment };
 }
 
 Board layMine(Board board, Position position)
@@ -25,7 +25,7 @@ Board minesweeper::prepareBoard(Size size, MineCount mineCount)
   auto board = Board{};
 
   for (auto position : cartesianProduct(get<0>(size), get<1>(size)))
-    board[position] = {};
+    board[position] = Cell();
 
   for (auto position : sample(allCells(board), mineCount))
     board = layMine(board, position);
