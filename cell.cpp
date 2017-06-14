@@ -14,9 +14,9 @@ Cell minesweeper::uncover(Cell cell)
   return Cell{ State::Uncovered, get<MineCount>(cell) };
 }
 
-Cell minesweeper::incrementMines(Cell cell, int increment)
+Cell minesweeper::layMines(Cell cell, MineCount mineCount)
 {
-  return Cell{ get<State>(cell), get<MineCount>(cell) + increment };
+  return Cell{ get<State>(cell), MineCount(get<MineCount>(cell) + mineCount) };
 }
 
 bool minesweeper::isUncovered(Cell cell)
@@ -26,5 +26,5 @@ bool minesweeper::isUncovered(Cell cell)
 
 bool minesweeper::containsMine(Cell cell)
 {
-  return get<MineCount>(cell) > 8;
+  return get<MineCount>(cell) >= MineCount::Mine;
 }

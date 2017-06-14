@@ -8,9 +8,9 @@ using namespace std;
 Board minesweeper::layMine(Board board, Position position)
 {
   for (auto neighbor : withinBounds(neighbors(position), board))
-    board[neighbor] = incrementMines(board[neighbor], +1);
+    board[neighbor] = layMines(board[neighbor], MineCount::NeighborMine);
 
-  board[position] = incrementMines(board[position], +9);
+  board[position] = layMines(board[position], MineCount::Mine);
   return board;
 }
 

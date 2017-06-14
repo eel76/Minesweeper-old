@@ -18,7 +18,7 @@ Positions minesweeper::coveredCells(Positions positions, Board board)
            }) };
 }
 
-Positions minesweeper::safeCells(Positions positions, Board board)
+Positions minesweeper::clearCells(Positions positions, Board board)
 {
   return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
              return get<MineCount>(board.at(position)) != 0;
