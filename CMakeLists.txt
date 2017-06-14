@@ -21,6 +21,8 @@ add_executable (
   group.h
   input.cpp
   input.h
+  join.cpp
+  join.h
   main.cpp
   mine.cpp
   mine.h
@@ -41,6 +43,8 @@ add_executable (
   rows.cpp
   rows.h
   state.h
+  transform.cpp
+  transform.h
   uncover.cpp
   uncover.h
   Readme.md

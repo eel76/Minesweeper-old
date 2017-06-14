@@ -1,4 +1,5 @@
 #include "positions.h"
+#include "join.h"
 #include <algorithm>
 #include <random>
 
@@ -15,24 +16,14 @@ Positions minesweeper::zipWith(Rows rows, Column column)
   return positions;
 }
 
-Positions minesweeper::join(std::vector<Positions> positionRanges)
-{
-  auto joined = Positions{};
-
-  for (auto positions : positionRanges)
-    joined.insert(end(joined), begin(positions), end(positions));
-
-  return joined;
-}
-
 Positions minesweeper::cartesianProduct(Rows rows, Columns columns)
 {
-  auto positionRanges = std::vector<Positions>{};
+  auto positionLists = std::vector<Positions>{};
 
   for (auto column : columns)
-    positionRanges.push_back(zipWith(rows, column));
+    positionLists.push_back(zipWith(rows, column));
 
-  return join(positionRanges);
+  return join(positionLists);
 }
 
 Positions minesweeper::sample(Positions positions, size_t count)
