@@ -9,11 +9,6 @@
 using namespace minesweeper;
 using namespace std;
 
-bool isUncovered(Cell cell)
-{
-  return get<State>(cell) == State::Uncovered;
-}
-
 bool minesweeper::gameLost(Board board)
 {
   return any_of(begin(board), end(board), [](auto cell) {
