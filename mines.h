@@ -2,5 +2,5 @@
 
 namespace minesweeper
 {
-  enum MineCount : unsigned { Clear = 0, NeighborMine = 1, Mine = 9 };
+  enum Threat : unsigned { None = 0, AdjacentMine = 1, SubjacentMine = 9 };
 }

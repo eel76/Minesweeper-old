@@ -11,7 +11,7 @@ Board minesweeper::makeBoard(Dimensions dimensions, unsigned mineCount)
   auto board = Board{};
 
   for (auto position : cartesianProduct(get<Rows>(dimensions), get<Columns>(dimensions)))
-    board[position] = Cell{ State::Covered, MineCount::Clear };
+    board[position] = Cell(State::Covered, Threat::None);
 
   return layMines(board, sample(allPositions(board), mineCount));
 }

@@ -6,17 +6,17 @@ using namespace std;
 std::string minesweeper::toString(Cell cell)
 {
   char constexpr toChar[2][19] = { "##################", ".12345678XXXXXXXXX" };
-  return string{ toChar[get<State>(cell)][get<MineCount>(cell)] };
+  return string{ toChar[get<State>(cell)][get<Threat>(cell)] };
 }
 
 Cell minesweeper::uncover(Cell cell)
 {
-  return Cell{ State::Uncovered, get<MineCount>(cell) };
+  return Cell{ State::Uncovered, get<Threat>(cell) };
 }
 
-Cell minesweeper::layMines(Cell cell, MineCount mineCount)
+Cell minesweeper::threaten(Cell cell, Threat threat)
 {
-  return Cell{ get<State>(cell), MineCount(get<MineCount>(cell) + mineCount) };
+  return Cell{ get<State>(cell), Threat(get<Threat>(cell) + threat) };
 }
 
 bool minesweeper::isUncovered(Cell cell)
@@ -26,5 +26,5 @@ bool minesweeper::isUncovered(Cell cell)
 
 bool minesweeper::containsMine(Cell cell)
 {
-  return get<MineCount>(cell) >= MineCount::Mine;
+  return get<Threat>(cell) >= Threat::SubjacentMine;
 }

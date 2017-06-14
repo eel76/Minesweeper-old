@@ -5,9 +5,9 @@
 
 namespace minesweeper
 {
-  using Cell = std::pair<State, MineCount>;
+  using Cell = std::pair<State, Threat>;
   Cell uncover(Cell cell);
-  Cell layMines(Cell cell, MineCount mineCount);
+  Cell threaten(Cell cell, Threat threat);
   bool isUncovered(Cell cell);
   bool containsMine(Cell cell);
 }

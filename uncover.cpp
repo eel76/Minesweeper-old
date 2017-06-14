@@ -12,8 +12,8 @@ Board minesweeper::uncover(Board board, Positions positions)
   for (auto position : positions)
     board[position] = uncover(board[position]);
 
-  for (auto position : clearCells(positions, board))
-    board = uncover(board, neighbors(position));
+  for (auto safeCell : safeCells(positions, board))
+    board = uncover(board, neighbors(safeCell));
 
   return board;
 }
