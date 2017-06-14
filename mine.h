@@ -1,7 +1,9 @@
 #pragma once
+#include "board.h"
+#include "positions.h"
 
 namespace minesweeper
 {
-  enum MineCount : size_t {};
-  MineCount operator""_mines(unsigned long long mineCount);
+  Board layMine(Board board, Position position);
+  Board layMines(Board board, Positions positions);
 }
