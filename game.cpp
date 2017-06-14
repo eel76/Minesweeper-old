@@ -17,14 +17,14 @@ bool isUncovered(Cell cell)
 bool minesweeper::gameLost(Board board)
 {
   return any_of(begin(board), end(board), [](auto cell) {
-    return isUncovered(get<Cell>(cell)) & isMine(get<Cell>(cell));
+    return isUncovered(get<Cell>(cell)) & containsMine(get<Cell>(cell));
   });
 }
 
 bool minesweeper::gameWon(Board board)
 {
   return all_of(begin(board), end(board), [](auto cell) {
-    return isUncovered(get<Cell>(cell)) ^ isMine(get<Cell>(cell));
+    return isUncovered(get<Cell>(cell)) ^ containsMine(get<Cell>(cell));
   });
 }
 

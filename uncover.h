@@ -5,5 +5,4 @@
 namespace minesweeper
 {
   Board uncover(Board board, Positions positions);
-  Cell uncover(Cell cell);
 }

@@ -1,13 +1,19 @@
 #pragma once
-#include <string>
 #include <utility>
+#include "mines.h"
 #include "state.h"
 
 namespace minesweeper
 {
-  using Mines = int;
-  using Cell  = std::pair<State, Mines>;
-  std::string toString(Cell cell);
+  using Cell = std::pair<State, MineCount>;
+  Cell uncover(Cell cell);
   Cell incrementMines(Cell cell, int increment);
-  bool isMine(Cell cell);
+  bool containsMine(Cell cell);
+}
+
+#include <string>
+
+namespace minesweeper
+{
+  std::string toString(Cell cell);
 }

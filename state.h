@@ -2,5 +2,5 @@
 
 namespace minesweeper
 {
-  enum State { Covered, Uncovered };
+  enum State : unsigned { Covered, Uncovered };
 }

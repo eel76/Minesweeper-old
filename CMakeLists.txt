@@ -26,6 +26,8 @@ add_executable (
   main.cpp
   mine.cpp
   mine.h
+  mines.cpp
+  mines.h
   neighbors.cpp
   neighbors.h
   parse.cpp

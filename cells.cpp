@@ -18,6 +18,6 @@ Positions minesweeper::minePositions(Board board)
 {
   auto positions = allPositions(board);
   return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return !isMine(board.at(position));
+             return !containsMine(board.at(position));
            }) };
 }
