@@ -2,7 +2,7 @@
 #include <algorithm>
 #include "cells.h"
 #include "filter.h"
-#include "player.h"
+#include "move.h"
 #include "print.h"
 #include "uncover.h"
 
@@ -28,7 +28,7 @@ Board minesweeper::gameRound(Board board)
   print(board);
   print("Your move (row, column): ");
 
-  return uncover(board, Positions{ playerMove() });
+  return uncover(board, Positions{ get<Position>(playerMove()) });
 }
 
 void minesweeper::evaluateGame(Board board)

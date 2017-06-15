@@ -5,6 +5,7 @@ set (CMAKE_CXX_STANDARD 14)
 
 add_executable (
   ${PROJECT_NAME}
+  action.h
   board.h
   cell.cpp
   cell.h
@@ -28,12 +29,12 @@ add_executable (
   mine.h
   mines.cpp
   mines.h
+  move.cpp
+  move.h
   neighbors.cpp
   neighbors.h
   parse.cpp
   parse.h
-  player.cpp
-  player.h
   position.cpp
   position.h
   positions.cpp
