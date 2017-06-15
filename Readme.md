@@ -10,3 +10,7 @@ Calisthenics rules:
  * No output parameters
  * No traditional for-loops
  * Max. 2 struct members (no methods, allowed)
+
+ Additional guidelines:
+  * Every method is available through a header file
+  * No ref (&) at all (lambda captures, local variables, ...)

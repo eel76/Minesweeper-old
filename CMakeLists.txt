@@ -44,6 +44,7 @@ add_executable (
   print.h
   rows.cpp
   rows.h
+  state.cpp
   state.h
   transform.cpp
   transform.h

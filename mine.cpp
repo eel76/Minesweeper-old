@@ -10,7 +10,7 @@ Board minesweeper::layMine(Board board, Position position)
   for (auto neighbor : withinBounds(neighbors(position), board))
     board[neighbor] = threaten(board[neighbor], Threat::AdjacentMine);
 
-  board[position] = threaten(board[position], Threat::SubjacentMine);
+  board[position] = threaten(board[position], Threat::Mine);
   return board;
 }
 
