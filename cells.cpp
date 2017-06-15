@@ -21,3 +21,11 @@ Positions minesweeper::minePositions(Board board)
              return !containsMine(board.at(position));
            }) };
 }
+
+Positions minesweeper::flaggedPositions(Board board)
+{
+  auto positions = allPositions(board);
+  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
+             return !isFlagged(board.at(position));
+           }) };
+}

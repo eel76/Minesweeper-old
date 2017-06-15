@@ -9,6 +9,7 @@ namespace minesweeper
   Cell uncover(Cell cell);
   Cell threaten(Cell cell, Threat threat);
   bool isUncovered(Cell cell);
+  bool isFlagged(Cell cell);
   bool containsMine(Cell cell);
 }
 

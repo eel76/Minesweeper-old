@@ -26,6 +26,11 @@ bool minesweeper::isUncovered(Cell cell)
   return get<State>(cell) == State::Uncovered;
 }
 
+bool minesweeper::isFlagged(Cell cell)
+{
+  return get<State>(cell) == State::Flagged;
+}
+
 bool minesweeper::containsMine(Cell cell)
 {
   return get<Threat>(cell) >= Threat::Mine;
