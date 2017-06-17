@@ -11,6 +11,11 @@ std::string minesweeper::toString(Cell cell)
   return string{ toChar[get<State>(cell)][get<Threat>(cell)] };
 }
 
+Cell minesweeper::toggleFlag(Cell cell)
+{
+  return Cell{ toggleFlag(get<State>(cell)), get<Threat>(cell) };
+}
+
 Cell minesweeper::uncover(Cell cell)
 {
   return Cell{ uncover(get<State>(cell)), get<Threat>(cell) };

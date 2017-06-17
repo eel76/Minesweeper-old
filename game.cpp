@@ -28,7 +28,11 @@ Board minesweeper::gameRound(Board board)
   print(board);
   print("Your move (row, column): ");
 
-  return uncover(board, Positions{ get<Position>(playerMove()) });
+  auto move = playerMove();
+  if (get<Action>(move) == Action::ToggleFlag)
+    return toggleFlag(board, get<Position>(move));
+
+  return uncover(board, Positions{ get<Position>(move) });
 }
 
 void minesweeper::evaluateGame(Board board)

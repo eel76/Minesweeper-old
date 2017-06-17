@@ -12,7 +12,7 @@ State minesweeper::uncover(State state)
   return uncovered[state];
 }
 
-State toggleFlag(State state)
+State minesweeper::toggleFlag(State state)
 {
   auto toggledFlag = map<State, State>{ { State::Covered, State::Flagged },
                                         { State::Flagged, State::Covered },

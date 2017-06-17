@@ -5,6 +5,12 @@
 using namespace minesweeper;
 using namespace std;
 
+Board minesweeper::toggleFlag(Board board, Position position)
+{
+  board[position] = toggleFlag(board[position]);
+  return board;
+}
+
 Board minesweeper::uncover(Board board, Positions positions)
 {
   positions = coveredCells(withinBounds(positions, board), board);

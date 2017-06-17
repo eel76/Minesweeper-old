@@ -6,6 +6,7 @@
 namespace minesweeper
 {
   using Cell = std::pair<State, Threat>;
+  Cell toggleFlag(Cell cell);
   Cell uncover(Cell cell);
   Cell threaten(Cell cell, Threat threat);
   bool isUncovered(Cell cell);
