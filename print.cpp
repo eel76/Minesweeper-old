@@ -18,7 +18,10 @@ void minesweeper::print(Board board)
 {
   for (auto row : groupRows(allPositions(board)))
     print(join(toStrings(toCells(get<Positions>(row), board))) + "\n");
+}
 
+void minesweeper::printCounter(Board board)
+{
   auto minesLeft = size(minePositions(board)) - size(flaggedPositions(board));
   print("Mines left: " + to_string(minesLeft) + "\n");
 }

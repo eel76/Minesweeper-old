@@ -9,35 +9,53 @@
 using namespace minesweeper;
 using namespace std;
 
+bool flagsGood(Board board)
+{
+  auto mines = minePositions(board);
+  auto flags = flaggedPositions(board);
+
+  return mines == flags;
+}
+
+bool flagsBad(Board board)
+{
+  auto mines = minePositions(board);
+  auto flags = flaggedPositions(board);
+
+  return size(flags) >= size(mines) && mines != flags;
+}
+
 bool minesweeper::gameLost(Board board)
 {
-  return any_of(begin(board), end(board), [](auto cell) {
-    return isUncovered(get<Cell>(cell)) & containsMine(get<Cell>(cell));
-  });
+  return flagsBad(board) || any_of(begin(board), end(board), [](auto iterator) {
+           return isUncovered(get<Cell>(iterator)) & containsMine(get<Cell>(iterator));
+         });
 }
 
 bool minesweeper::gameWon(Board board)
 {
-  return all_of(begin(board), end(board), [](auto cell) {
-    return isUncovered(get<Cell>(cell)) ^ containsMine(get<Cell>(cell));
-  });
+  return flagsGood(board) || all_of(begin(board), end(board), [](auto iterator) {
+           return isUncovered(get<Cell>(iterator)) ^ containsMine(get<Cell>(iterator));
+         });
 }
 
 Board minesweeper::gameRound(Board board)
 {
   print(board);
+  printCounter(board);
   print("Your move (row, column): ");
 
   auto move = playerMove();
   if (get<Action>(move) == Action::ToggleFlag)
-    return toggleFlag(board, get<Position>(move));
+    return toggleFlag(board, Positions{ get<Position>(move) });
 
   return uncover(board, Positions{ get<Position>(move) });
 }
 
 void minesweeper::evaluateGame(Board board)
 {
-  print(uncover(board, minePositions(board)));
+  auto correctedBoard = toggleFlag(board, withMine(flaggedPositions(board), board));
+  print(uncover(correctedBoard, minePositions(board)));
 
   if (gameLost(board))
     return print("You loose :-(\n");

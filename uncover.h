@@ -4,6 +4,6 @@
 
 namespace minesweeper
 {
-  Board toggleFlag(Board board, Position position);
+  Board toggleFlag(Board board, Positions positions);
   Board uncover(Board board, Positions positions);
 }

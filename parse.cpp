@@ -9,7 +9,7 @@ Move minesweeper::parseMove(std::string input)
 {
   auto match = smatch{};
 
-  if (!regex_match(input, match, regex{ " *(f?) *([1-9]*[0-9]) *, *([1-9]*[0-9]) *" }))
+  if (!regex_match(input, match, regex{ " *(f?) *([1-9]*[0-9]) *[,; ] *([1-9]*[0-9]) *" }))
     return Move{ Action::Uncover, { Row::Invalid, Column::Invalid } };
 
   auto action =
