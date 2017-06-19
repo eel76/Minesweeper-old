@@ -7,15 +7,15 @@ using namespace std;
 State minesweeper::uncover(State state)
 {
   auto uncovered = map<State, State>{ { State::Covered, State::Uncovered },
-                                      { State::Flagged, State::Flagged },
+                                      { State::Marked, State::Marked },
                                       { State::Uncovered, State::Uncovered } };
   return uncovered[state];
 }
 
-State minesweeper::toggleFlag(State state)
+State minesweeper::toggleMark(State state)
 {
-  auto toggledFlag = map<State, State>{ { State::Covered, State::Flagged },
-                                        { State::Flagged, State::Covered },
+  auto toggledFlag = map<State, State>{ { State::Covered, State::Marked },
+                                        { State::Marked, State::Covered },
                                         { State::Uncovered, State::Uncovered } };
   return toggledFlag[state];
 }

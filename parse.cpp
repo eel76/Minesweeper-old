@@ -9,11 +9,12 @@ Move minesweeper::parseMove(std::string input)
 {
   auto match = smatch{};
 
-  if (!regex_match(input, match, regex{ " *(f?) *([1-9]*[0-9]) *[,; ] *([1-9]*[0-9]) *" }))
+  if (!regex_match(input, match, regex{ " *(m?|mark) *([1-9]*[0-9]) *[,; ] *([1-9]*[0-9]) *" }))
     return Move{ Action::Uncover, { Row::Invalid, Column::Invalid } };
 
-  auto action =
-  map<string, Action>{ { "", Action::Uncover }, { "f", Action::ToggleFlag } };
+  auto action = map<string, Action>{ { "", Action::Uncover },
+                                     { "m", Action::ToggleMark },
+                                     { "mark", Action::ToggleMark } };
 
   return Move{ action[match[1]], { Row(stoi(match[2])), Column(stoi(match[3])) } };
 }

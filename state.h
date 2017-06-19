@@ -2,7 +2,7 @@
 
 namespace minesweeper
 {
-  enum State : unsigned { Covered, Flagged, Uncovered };
+  enum State : unsigned { Covered, Marked, Uncovered };
   State uncover(State state);
-  State toggleFlag(State state);
+  State toggleMark(State state);
 }

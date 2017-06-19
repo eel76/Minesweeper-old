@@ -12,7 +12,7 @@ using namespace std;
 bool flagsGood(Board board)
 {
   auto mines = minePositions(board);
-  auto flags = flaggedPositions(board);
+  auto flags = markedPositions(board);
 
   return mines == flags;
 }
@@ -20,7 +20,7 @@ bool flagsGood(Board board)
 bool flagsBad(Board board)
 {
   auto mines = minePositions(board);
-  auto flags = flaggedPositions(board);
+  auto flags = markedPositions(board);
 
   return size(flags) >= size(mines) && mines != flags;
 }
@@ -42,19 +42,19 @@ bool minesweeper::gameWon(Board board)
 Board minesweeper::gameRound(Board board)
 {
   print(board);
-  printCounter(board);
-  print("Your move (row, column): ");
+  printCountdown(board);
+  print("Your move ([m|mark] row column): ");
 
   auto move = playerMove();
-  if (get<Action>(move) == Action::ToggleFlag)
-    return toggleFlag(board, Positions{ get<Position>(move) });
+  if (get<Action>(move) == Action::ToggleMark)
+    return toggleMark(board, Positions{ get<Position>(move) });
 
   return uncover(board, Positions{ get<Position>(move) });
 }
 
 void minesweeper::evaluateGame(Board board)
 {
-  auto correctedBoard = toggleFlag(board, withMine(flaggedPositions(board), board));
+  auto correctedBoard = toggleMark(board, withMine(markedPositions(board), board));
   print(uncover(correctedBoard, minePositions(board)));
 
   if (gameLost(board))

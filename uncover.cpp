@@ -5,10 +5,10 @@
 using namespace minesweeper;
 using namespace std;
 
-Board minesweeper::toggleFlag(Board board, Positions positions)
+Board minesweeper::toggleMark(Board board, Positions positions)
 {
   for (auto position : positions)
-    board[position] = toggleFlag(board[position]);
+    board[position] = toggleMark(board[position]);
 
   return board;
 }

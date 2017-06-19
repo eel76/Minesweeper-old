@@ -20,8 +20,8 @@ void minesweeper::print(Board board)
     print(join(toStrings(toCells(get<Positions>(row), board))) + "\n");
 }
 
-void minesweeper::printCounter(Board board)
+void minesweeper::printCountdown(Board board)
 {
-  auto minesLeft = size(minePositions(board)) - size(flaggedPositions(board));
+  auto minesLeft = size(minePositions(board)) - size(markedPositions(board));
   print("Mines left: " + to_string(minesLeft) + "\n");
 }

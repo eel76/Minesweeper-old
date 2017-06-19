@@ -22,10 +22,10 @@ Positions minesweeper::minePositions(Board board)
            }) };
 }
 
-Positions minesweeper::flaggedPositions(Board board)
+Positions minesweeper::markedPositions(Board board)
 {
   auto positions = allPositions(board);
   return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return !isFlagged(board.at(position));
+             return !isMarked(board.at(position));
            }) };
 }

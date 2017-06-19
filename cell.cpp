@@ -11,9 +11,9 @@ std::string minesweeper::toString(Cell cell)
   return string{ toChar[get<State>(cell)][get<Threat>(cell)] };
 }
 
-Cell minesweeper::toggleFlag(Cell cell)
+Cell minesweeper::toggleMark(Cell cell)
 {
-  return Cell{ toggleFlag(get<State>(cell)), get<Threat>(cell) };
+  return Cell{ toggleMark(get<State>(cell)), get<Threat>(cell) };
 }
 
 Cell minesweeper::uncover(Cell cell)
@@ -31,9 +31,9 @@ bool minesweeper::isUncovered(Cell cell)
   return get<State>(cell) == State::Uncovered;
 }
 
-bool minesweeper::isFlagged(Cell cell)
+bool minesweeper::isMarked(Cell cell)
 {
-  return get<State>(cell) == State::Flagged;
+  return get<State>(cell) == State::Marked;
 }
 
 bool minesweeper::containsMine(Cell cell)
