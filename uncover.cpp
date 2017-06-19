@@ -7,7 +7,7 @@ using namespace std;
 
 Board minesweeper::toggleMark(Board board, Positions positions)
 {
-  for (auto position : positions)
+  for (auto position : withinBounds(positions, board))
     board[position] = toggleMark(board[position]);
 
   return board;
@@ -20,8 +20,8 @@ Board minesweeper::uncover(Board board, Positions positions)
   for (auto position : positions)
     board[position] = uncover(board[position]);
 
-  for (auto safeCell : safeCells(positions, board))
-    board = uncover(board, neighbors(safeCell));
+  for (auto safeArea : safeAreas(positions, board))
+    board = uncover(board, neighbors(safeArea));
 
   return board;
 }

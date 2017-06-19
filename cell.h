@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include <utility>
 #include "mines.h"
 #include "state.h"
@@ -9,14 +10,8 @@ namespace minesweeper
   Cell toggleMark(Cell cell);
   Cell uncover(Cell cell);
   Cell threaten(Cell cell, Threat threat);
+  std::string toString (Cell cell);
   bool isUncovered(Cell cell);
   bool isMarked(Cell cell);
   bool containsMine(Cell cell);
-}
-
-#include <string>
-
-namespace minesweeper
-{
-  std::string toString(Cell cell);
 }

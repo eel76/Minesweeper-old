@@ -6,9 +6,11 @@ using namespace std;
 
 std::string minesweeper::toString(Cell cell)
 {
-  char constexpr toChar[3][19] = { "##################", "******************",
-                                   ".12345678XXXXXXXXX" };
-  return string{ toChar[get<State>(cell)][get<Threat>(cell)] };
+  auto codes = map<State, string>{ { State::Covered, "##################" },
+                                   { State::Marked, "******************" },
+                                   { State::Uncovered, ".12345678XXXXXXXXX" } };
+
+  return string{ codes[get<State>(cell)][get<Threat>(cell)] };
 }
 
 Cell minesweeper::toggleMark(Cell cell)
