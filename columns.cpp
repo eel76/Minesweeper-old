@@ -2,11 +2,7 @@
 #include <algorithm>
 
 using namespace minesweeper;
-
-Column minesweeper::shift(Column column, int steps)
-{
-  return Column(unsigned(column) + steps);
-}
+using namespace std;
 
 Columns minesweeper::columns(unsigned count)
 {

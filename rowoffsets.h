@@ -4,6 +4,6 @@
 
 namespace minesweeper
 {
-  using Rows = std::vector<Row>;
-  Rows rows(unsigned count);
+  using RowOffsets = std::vector<RowOffset>;
+  RowOffsets rowOffsets();
 }

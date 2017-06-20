@@ -1,39 +1,15 @@
 #include "neighbors.h"
-#include <algorithm>
+#include "offsets.h"
 
-using namespace minesweeper;
-using namespace std;
-
-using RowOffsets    = std::vector<RowOffset>;
-using ColumnOffsets = std::vector<ColumnOffset>;
-
-RowOffsets rowOffsets()
+namespace minesweeper
 {
-  return { PreviousRow, CurrentRow, NextRow };
-}
+  Positions neighborPositions(Position position)
+  {
+    auto neighbors = Positions{};
 
-ColumnOffsets columnOffsets()
-{
-  return { PreviousColumn, CurrentColumn, NextColumn };
-}
+    for (auto offset : neighborOffsets())
+      neighbors.push_back(shift(position, offset));
 
-using Offset  = std::pair<RowOffset, ColumnOffset>;
-using Offsets = std::vector<Offset>;
-
-Offsets cartesianProduct(RowOffsets rowOffsets, ColumnOffsets columnOffsets);
-Offsets withoutCenter(Offsets offsets);
-
-Offsets minesweeper::neighborOffsets()
-{
-  return withoutCenter(cartesianProduct(rowOffsets(), columnOffsets()));
-}
-
-Positions minesweeper::neighbors(Position position)
-{
-  auto neighbors = Positions{};
-
-  for (auto offset : neighborOffsets())
-    neighbors.push_back(shift(position, offset));
-
-  return neighbors;
+    return neighbors;
+  }
 }

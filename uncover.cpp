@@ -21,7 +21,7 @@ Board minesweeper::uncover(Board board, Positions positions)
     board[position] = uncover(board[position]);
 
   for (auto safeArea : safeAreas(positions, board))
-    board = uncover(board, neighbors(safeArea));
+    board = uncover(board, neighborPositions(safeArea));
 
   return board;
 }

@@ -1,10 +1,8 @@
 #pragma once
-#include <utility>
-#include "columns.h"
-#include "rows.h"
+#include "offset.h"
 
 namespace minesweeper
 {
   using Position = std::pair<Row, Column>;
-  Position shift(Position first, std::pair<int, int> steps);
+  Position shift(Position position, Offset offset);
 }

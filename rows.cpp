@@ -2,11 +2,7 @@
 #include <algorithm>
 
 using namespace minesweeper;
-
-Row minesweeper::shift(Row row, RowOffset offset)
-{
-  return Row(int(row) + offset);
-}
+using namespace std;
 
 Rows minesweeper::rows(unsigned count)
 {

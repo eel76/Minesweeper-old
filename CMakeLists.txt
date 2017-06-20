@@ -11,6 +11,8 @@ add_executable (
   cell.h
   cells.cpp
   cells.h
+  column.cpp
+  column.h
   columns.cpp
   columns.h
   dimensions.h
@@ -33,6 +35,10 @@ add_executable (
   move.h
   neighbors.cpp
   neighbors.h
+  offset.cpp
+  offset.h
+  offsets.cpp
+  offsets.h
   parse.cpp
   parse.h
   position.cpp
@@ -43,6 +49,8 @@ add_executable (
   preparation.h
   print.cpp
   print.h
+  row.cpp
+  row.h
   rows.cpp
   rows.h
   state.cpp
