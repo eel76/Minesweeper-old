@@ -3,9 +3,9 @@
 
 using namespace minesweeper;
 
-Column minesweeper::operator+(Column first, Column second)
+Column minesweeper::shift(Column column, int steps)
 {
-  return Column(int(first) + int(second));
+  return Column(unsigned(column) + steps);
 }
 
 Columns minesweeper::columns(unsigned count)

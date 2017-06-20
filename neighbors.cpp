@@ -4,20 +4,36 @@
 using namespace minesweeper;
 using namespace std;
 
-Positions minesweeper::neighborOffsets()
+using RowOffsets    = std::vector<RowOffset>;
+using ColumnOffsets = std::vector<ColumnOffset>;
+
+RowOffsets rowOffsets()
 {
-  // clang-format off
-    return { { { Row::Prev, Column::Prev }, { Row::Prev, Column::Curr }, { Row::Prev, Column::Next },
-               { Row::Curr, Column::Prev },                              { Row::Curr, Column::Next },
-               { Row::Next, Column::Prev }, { Row::Next, Column::Curr }, { Row::Next, Column::Next } } };
-  // clang-format on
+  return { PreviousRow, CurrentRow, NextRow };
+}
+
+ColumnOffsets columnOffsets()
+{
+  return { PreviousColumn, CurrentColumn, NextColumn };
+}
+
+using Offset  = std::pair<RowOffset, ColumnOffset>;
+using Offsets = std::vector<Offset>;
+
+Offsets cartesianProduct(RowOffsets rowOffsets, ColumnOffsets columnOffsets);
+Offsets withoutCenter(Offsets offsets);
+
+Offsets minesweeper::neighborOffsets()
+{
+  return withoutCenter(cartesianProduct(rowOffsets(), columnOffsets()));
 }
 
 Positions minesweeper::neighbors(Position position)
 {
-  auto offsets = neighborOffsets();
-  transform(begin(offsets), end(offsets), begin(offsets),
-            [=](auto offset) { return position + offset; });
+  auto neighbors = Positions{};
 
-  return offsets;
+  for (auto offset : neighborOffsets())
+    neighbors.push_back(shift(position, offset));
+
+  return neighbors;
 }

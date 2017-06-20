@@ -6,5 +6,5 @@
 namespace minesweeper
 {
   using Position = std::pair<Row, Column>;
-  Position operator+(Position first, Position second);
+  Position shift(Position first, std::pair<int, int> steps);
 }

@@ -3,9 +3,9 @@
 
 using namespace minesweeper;
 
-Row minesweeper::operator+(Row first, Row second)
+Row minesweeper::shift(Row row, RowOffset offset)
 {
-  return Row(int(first) + int(second));
+  return Row(int(row) + offset);
 }
 
 Rows minesweeper::rows(unsigned count)

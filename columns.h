@@ -9,7 +9,7 @@ namespace minesweeper
     Next    = 1u,
     Invalid = ~0u
   };
-  Column operator+(Column first, Column second);
   using Columns = std::vector<Column>;
+  Column shift(Column column, int steps);
   Columns columns(unsigned count);
 }

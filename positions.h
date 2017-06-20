@@ -6,6 +6,7 @@
 
 namespace minesweeper
 {
+  // index
   using Positions = std::vector<Position>;
   Positions zipWith(Rows rows, Column column);
   Positions cartesianProduct(Rows rows, Columns columns);

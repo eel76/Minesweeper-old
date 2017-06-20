@@ -3,7 +3,8 @@
 using namespace minesweeper;
 using namespace std;
 
-Position minesweeper::operator+(Position first, Position second)
+Position minesweeper::shift(Position first, std::pair<int, int> steps)
 {
-  return { get<Row>(first) + get<Row>(second), get<Column>(first) + get<Column>(second) };
+  return { shift(get<Row>(first), get<0>(steps)),
+           shift(get<Column>(first), get<1>(steps)) };
 }

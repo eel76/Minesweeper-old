@@ -3,13 +3,17 @@
 
 namespace minesweeper
 {
-  enum struct Row : unsigned {
-    Curr    = 0u,
-    Prev    = 0u - 1u,
-    Next    = 1u,
-    Invalid = ~0u
+  enum RowIndex { InvalidRow = -1 };
+
+  enum RowOffset {
+    Current = 0,
+    PrevRow = -1,
+    NextRow = +1,
   };
-  Row operator+(Row first, Row second);
+
+  using Row = RowIndex;
+
   using Rows = std::vector<Row>;
+  Row shift(Row row, RowOffset offset);
   Rows rows(unsigned count);
 }
