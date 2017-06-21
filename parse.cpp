@@ -5,17 +5,24 @@
 using namespace minesweeper;
 using namespace std;
 
+Position parsePosition(std::string input)
+{
+  auto match = smatch{};
+  regex_match(input, match, regex{ " *([1-9]*[0-9]) *[,; ] *([1-9]*[0-9]) *" });
+
+  auto positions =
+  map<size_t, Position>{ { 0, Position{ Row::Invalid, Column::Invalid } },
+                         { 3, Position{ Row(stoi(match[1])), Column(stoi(match[2])) } } };
+  return positions[match.size()];
+}
+
 Move minesweeper::parseMove(std::string input)
 {
   auto match = smatch{};
+  regex_match(input, match, regex{ " *(m?|mark) *(.+)" });
 
-  if (!regex_match(input, match, regex{ " *(m?|mark) *([1-9]*[0-9]) *[,; ] "
-                                        "*([1-9]*[0-9]) *" }))
-    return Move{ Action::Uncover, Position{ Row::Invalid, Column::Invalid } };
-
-  auto action = map<string, Action>{ { "", Action::Uncover },
-                                     { "m", Action::ToggleMark },
-                                     { "mark", Action::ToggleMark } };
-
-  return Move{ action[match[1]], Position{ Row(stoi(match[2])), Column(stoi(match[3])) } };
+  auto actions = map<string, Action>{ { "", Action::Uncover },
+                                      { "m", Action::ToggleMark },
+                                      { "mark", Action::ToggleMark } };
+  return Move{ actions[match[1]], parsePosition(match[2]) };
 }

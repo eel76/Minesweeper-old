@@ -54,14 +54,16 @@ Board minesweeper::gameRound(Board board)
   }[get<Action>(move)];
 }
 
-#include <functional>
-using Op = std::function<void()>;
+void printIf(std::string text, bool condition)
+{
+  print(map<bool, string>{ { false, ""s }, { true, text } }[condition]);
+}
 
 void minesweeper::evaluateGame(Board board)
 {
   auto correctedBoard = toggleMark(board, withMine(markedPositions(board), board));
-  print(uncover(correctedBoard, deadlyPositions(board)));
 
-  print(map<bool, string>{ { true, "You loose :-(\n"s } }[gameLost(board)]);
-  print(map<bool, string>{ { true, "You win :-)\n"s } }[gameWon(board)]);
+  print(uncover(correctedBoard, deadlyPositions(board)));
+  printIf("You loose :-(\n"s, gameLost(board));
+  printIf("You win :-)\n"s, gameWon(board));
 }

@@ -9,9 +9,9 @@
 using namespace minesweeper;
 using namespace std;
 
-void minesweeper::print(std::string s)
+void minesweeper::print(std::string text)
 {
-  cout << s;
+  cout << text;
 }
 
 void minesweeper::print(Board board)
