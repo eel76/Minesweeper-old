@@ -29,8 +29,6 @@ add_executable (
   main.cpp
   mine.cpp
   mine.h
-  mines.cpp
-  mines.h
   move.cpp
   move.h
   neighbors.cpp
@@ -55,6 +53,8 @@ add_executable (
   rows.h
   state.cpp
   state.h
+  threat.cpp
+  threat.h
   transform.cpp
   transform.h
   uncover.cpp

@@ -5,17 +5,12 @@
 using namespace minesweeper;
 using namespace std;
 
-std::string toString(Threat threat)
-{
-  return { ".12345678XXXXXXXXX"[threat] };
-}
-
 std::string minesweeper::toString(Cell cell)
 {
   auto threatToString = map<State, function<string(Threat)>>{
     { State::Covered, [](auto) { return string{ "#" }; } },
     { State::Marked, [](auto) { return string{ "*" }; } },
-    { State::Uncovered, [](auto threat) { return ::toString(threat); } }
+    { State::Uncovered, [](auto threat) { return toString(threat); } }
   };
 
   return threatToString[get<State>(cell)](get<Threat>(cell));
