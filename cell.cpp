@@ -1,16 +1,24 @@
 #include "cell.h"
+#include <functional>
 #include <map>
 
 using namespace minesweeper;
 using namespace std;
 
+std::string toString(Threat threat)
+{
+  return { ".12345678XXXXXXXXX"[threat] };
+}
+
 std::string minesweeper::toString(Cell cell)
 {
-  auto codes = map<State, string>{ { State::Covered, "##################" },
-                                   { State::Marked, "******************" },
-                                   { State::Uncovered, ".12345678XXXXXXXXX" } };
+  auto threatToString = map<State, function<string(Threat)>>{
+    { State::Covered, [](auto) { return string{ "#" }; } },
+    { State::Marked, [](auto) { return string{ "*" }; } },
+    { State::Uncovered, [](auto threat) { return ::toString(threat); } }
+  };
 
-  return string{ codes[get<State>(cell)][get<Threat>(cell)] };
+  return threatToString[get<State>(cell)](get<Threat>(cell));
 }
 
 Cell minesweeper::toggleMark(Cell cell)
