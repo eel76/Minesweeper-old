@@ -1,5 +1,4 @@
 #include "cell.h"
-#include <functional>
 #include <map>
 
 using namespace minesweeper;
@@ -7,13 +6,11 @@ using namespace std;
 
 std::string minesweeper::toString(Cell cell)
 {
-  auto threatToString = map<State, function<string(ThreatLevel)>>{
-    { State::Covered, [](auto) { return string{ "#" }; } },
-    { State::Marked, [](auto) { return string{ "*" }; } },
-    { State::Uncovered, [](auto threatLevel) { return toString(threatLevel); } }
-  };
-
-  return threatToString[get<State>(cell)](get<ThreatLevel>(cell));
+  auto strings =
+  map<State, string>{ { State::Covered, "#"s },
+                      { State::Marked, "*"s },
+                      { State::Uncovered, toString(get<ThreatLevel>(cell)) } };
+  return strings[get<State>(cell)];
 }
 
 Cell minesweeper::toggleMark(Cell cell)
