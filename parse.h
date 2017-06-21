@@ -1,8 +1,9 @@
 #pragma once
-#include <string>
 #include "move.h"
+#include <string>
 
 namespace minesweeper
 {
-  Move parseMove(std::string input);
+  Position parsePosition(std::string text);
+  Move parseMove(std::string text);
 }
