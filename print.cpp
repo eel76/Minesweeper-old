@@ -1,10 +1,10 @@
 #include "print.h"
-#include <iostream>
-#include <string>
 #include "cells.h"
 #include "group.h"
 #include "join.h"
 #include "transform.h"
+#include <iostream>
+#include <string>
 
 using namespace minesweeper;
 using namespace std;
@@ -22,6 +22,6 @@ void minesweeper::print(Board board)
 
 void minesweeper::printCountdown(Board board)
 {
-  auto minesLeft = size(minePositions(board)) - size(markedPositions(board));
-  print("Mines left: " + to_string(minesLeft) + "\n");
+  auto countdown = size(deadlyPositions(board)) - size(markedPositions(board));
+  print("Mines left: " + to_string(countdown) + "\n");
 }

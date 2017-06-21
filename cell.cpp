@@ -38,7 +38,7 @@ bool minesweeper::isMarked(Cell cell)
   return get<State>(cell) == State::Marked;
 }
 
-bool minesweeper::containsMine(Cell cell)
+bool minesweeper::isDeadly(Cell cell)
 {
-  return get<ThreatLevel>(cell) >= ThreatLevel::Mine;
+  return get<ThreatLevel>(cell) >= ThreatLevel::Deadly;
 }

@@ -14,11 +14,11 @@ Positions minesweeper::allPositions(Board board)
   return positions;
 }
 
-Positions minesweeper::minePositions(Board board)
+Positions minesweeper::deadlyPositions(Board board)
 {
   auto positions = allPositions(board);
   return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return !containsMine(board.at(position));
+             return !isDeadly(board.at(position));
            }) };
 }
 

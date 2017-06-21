@@ -13,5 +13,5 @@ namespace minesweeper
   std::string toString(Cell cell);
   bool isUncovered(Cell cell);
   bool isMarked(Cell cell);
-  bool containsMine(Cell cell);
+  bool isDeadly(Cell cell);
 }

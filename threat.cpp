@@ -1,4 +1,5 @@
 #include "threat.h"
+#include <cassert>
 
 using namespace minesweeper;
 using namespace std;

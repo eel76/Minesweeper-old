@@ -14,7 +14,7 @@ Positions minesweeper::withinBounds(Positions positions, Board board)
 Positions minesweeper::withMine(Positions positions, Board board)
 {
   return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return !containsMine(board.at(position));
+             return !isDeadly(board.at(position));
            }) };
 }
 
