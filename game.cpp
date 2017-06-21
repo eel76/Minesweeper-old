@@ -25,6 +25,8 @@ bool flagsBad(Board board)
   return size(marked) >= size(deadly) && deadly != marked;
 }
 
+// enum struct GameState { Undecided, PlayerWon, PlayerLost };
+
 bool minesweeper::gameLost(Board board)
 {
   return flagsBad(board) || any_of(begin(board), end(board), [](auto iterator) {
@@ -43,23 +45,23 @@ Board minesweeper::gameRound(Board board)
 {
   print(board);
   printCountdown(board);
-  print("Your move ([m|mark] row column): ");
+  print("Your move ([m|mark] row column): "s);
 
   auto move = playerMove();
-  if (get<Action>(move) == Action::ToggleMark)
-    return toggleMark(board, Positions{ get<Position>(move) });
-
-  return uncover(board, Positions{ get<Position>(move) });
+  return map<Action, Board>{
+    { Action::ToggleMark, toggleMark(board, Positions{ get<Position>(move) }) },
+    { Action::Uncover, uncover(board, Positions{ get<Position>(move) }) }
+  }[get<Action>(move)];
 }
+
+#include <functional>
+using Op = std::function<void()>;
 
 void minesweeper::evaluateGame(Board board)
 {
   auto correctedBoard = toggleMark(board, withMine(markedPositions(board), board));
   print(uncover(correctedBoard, deadlyPositions(board)));
 
-  if (gameLost(board))
-    return print("You loose :-(\n");
-
-  if (gameWon(board))
-    return print("You win :-)\n");
+  print(map<bool, string>{ { true, "You loose :-(\n"s } }[gameLost(board)]);
+  print(map<bool, string>{ { true, "You win :-)\n"s } }[gameWon(board)]);
 }
