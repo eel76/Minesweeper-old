@@ -28,6 +28,6 @@ Positions minesweeper::coveredCells(Positions positions, Board board)
 Positions minesweeper::safeAreas(Positions positions, Board board)
 {
   return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return get<Threat>(board.at(position)) != Threat::None;
+             return get<ThreatLevel>(board.at(position)) != ThreatLevel::Minimum;
            }) };
 }

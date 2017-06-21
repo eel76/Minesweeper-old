@@ -3,6 +3,8 @@
 
 namespace minesweeper
 {
-  enum Threat { None = 0, AdjacentMine = 1, Mine = 9 };
-  std::string toString(Threat threat);
+  enum struct Threat { AdjacentMine = 1, Mine = 9 };
+  enum struct ThreatLevel { Minimum = 0, Mine = Threat::Mine };
+  std::string toString(ThreatLevel threatLevel);
+  ThreatLevel increase(ThreatLevel threatLevel, Threat threat);
 }

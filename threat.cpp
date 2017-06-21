@@ -3,7 +3,12 @@
 using namespace minesweeper;
 using namespace std;
 
-string minesweeper::toString(Threat threat)
+string minesweeper::toString(ThreatLevel threatLevel)
 {
-  return { ".12345678XXXXXXXXX"[threat] };
+  return { ".12345678XXXXXXXXX"[int(threatLevel)] };
+}
+
+ThreatLevel minesweeper::increase(ThreatLevel threatLevel, Threat threat)
+{
+  return ThreatLevel(int(threatLevel) + int(threat));
 }
