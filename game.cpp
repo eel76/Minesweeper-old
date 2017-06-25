@@ -41,13 +41,32 @@ bool minesweeper::gameWon(Board board)
          });
 }
 
+void print(Position position)
+{
+  print(to_string(int(get<Row>(position))));
+  print(", "s);
+  print(to_string(int(get<Column>(position))));
+}
+
+void print(Move move)
+{
+  auto text = map<Action, string>{ { Action::Uncover, "uncover"s },
+                                   { Action::ToggleMark, "mark"s } };
+
+  print("Your move: "s + text[get<Action>(move)] + " "s);
+  print(get<Position>(move));
+  print("\n"s);
+}
+
 Board minesweeper::gameRound(Board board)
 {
   print(board);
   printCountdown(board);
-  print("Your move ([m|mark] row column): "s);
+  // print("Your move ([m|mark] row column): "s);
 
-  auto move = playerMove();
+  auto move = computerMove(board);
+  ::print(move);
+
   return map<Action, Board>{
     { Action::ToggleMark, toggleMark(board, Positions{ get<Position>(move) }) },
     { Action::Uncover, uncover(board, Positions{ get<Position>(move) }) }

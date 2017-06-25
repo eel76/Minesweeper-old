@@ -1,4 +1,5 @@
 #include "parse.h"
+#include <functional>
 #include <map>
 #include <regex>
 
@@ -11,15 +12,20 @@ using Generator = std::function<Value()>;
 Position minesweeper::parsePosition(std::string text)
 {
   auto match = smatch{};
-  regex_match(text, match,
-              regex{ "^ *([1-9]*[0-9]) *[,; ] *([1-9]*[0-9]) *$" });
+  regex_match(text, match, regex{ "^ *([1-9]*[0-9]) *[,; ] *([1-9]*[0-9]) *$" });
 
-  auto positions =
-  map<bool, Generator<Position>>{ { false, [] { return Position{}; } } };
+  auto positions = map<bool, Generator<Position>>{
+    { false,
+      [=] {
+        return Position{ Row(stoi(match[1])), Column(stoi(match[2])) };
+      } },
+    { true,
+      [] {
+        return Position{ Row::Invalid, Column::Invalid };
+      } }
+  };
 
-  { { 0, Position{ Row::Invalid, Column::Invalid } },
-    { 3, Position{ Row(stoi(match[1])), Column(stoi(match[2])) } } };
-  return positions[match.size()];
+  return positions[match.empty()]();
 }
 
 Move minesweeper::parseMove(std::string text)
