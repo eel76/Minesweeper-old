@@ -32,6 +32,13 @@ Positions minesweeper::uncoveredCells(Positions positions, Board board)
            }) };
 }
 
+Positions minesweeper::markedCells(Positions positions, Board board)
+{
+  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
+             return get<State>(board.at(position)) != State::Marked;
+           }) };
+}
+
 Positions minesweeper::unmarkedCells(Positions positions, Board board)
 {
   return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {

@@ -47,9 +47,25 @@ Positions missingMark(Board board)
            }) };
 }
 
-Positions sureCells(Board /* board */)
+bool sureCell(Board board, Position position)
 {
-  return {};
+  auto uncoveredNeighbors =
+  uncoveredCells(withinBounds(neighborPositions(position), board), board);
+
+  return any_of(begin(uncoveredNeighbors), end(uncoveredNeighbors), [=](auto uncoveredNeighbor) {
+    auto threatLevel = int(get<ThreatLevel>(board.at(uncoveredNeighbor)));
+    return threatLevel ==
+           markedCells(withinBounds(neighborPositions(uncoveredNeighbor), board), board)
+           .size();
+  });
+}
+
+Positions sureCell(Board board)
+{
+  auto candidates = unmarkedCells(allPositions(board), board);
+  return { begin(candidates),
+           remove_if(begin(candidates), end(candidates),
+                     [=](auto candidate) { return !sureCell(board, candidate); }) };
 }
 
 Move minesweeper::computerMove(Board board)
@@ -60,7 +76,7 @@ Move minesweeper::computerMove(Board board)
     moves.push_back(Move{ Action::ToggleMark, cell });
 
   for (auto cell :
-       join({ sureCells(board), sample(coveredCells(allPositions(board), board), 1) }))
+       join({ sureCell(board), sample(coveredCells(allPositions(board), board), 1) }))
     moves.push_back(Move{ Action::Uncover, cell });
 
   return moves[0];
