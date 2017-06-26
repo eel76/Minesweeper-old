@@ -2,7 +2,6 @@
 #include "board.h"
 #include <string>
 
-
 namespace minesweeper
 {
   void print(std::string text);

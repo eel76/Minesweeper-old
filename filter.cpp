@@ -21,7 +21,21 @@ Positions minesweeper::withMine(Positions positions, Board board)
 Positions minesweeper::coveredCells(Positions positions, Board board)
 {
   return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return isUncovered(board.at(position));
+             return get<State>(board.at(position)) == State::Uncovered;
+           }) };
+}
+
+Positions minesweeper::uncoveredCells(Positions positions, Board board)
+{
+  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
+             return get<State>(board.at(position)) != State::Uncovered;
+           }) };
+}
+
+Positions minesweeper::unmarkedCells(Positions positions, Board board)
+{
+  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
+             return get<State>(board.at(position)) != State::Covered;
            }) };
 }
 
