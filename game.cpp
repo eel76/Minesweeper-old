@@ -11,18 +11,18 @@ using namespace std;
 
 bool flagsGood(Board board)
 {
-  auto deadly = deadlyPositions(board);
-  auto marked = markedPositions(board);
+  auto deadlyPositions = allPositions(board) | deadly(board);
+  auto markedPositions = allPositions(board) | marked(board);
 
-  return deadly == marked;
+  return deadlyPositions == markedPositions;
 }
 
 bool flagsBad(Board board)
 {
-  auto deadly = deadlyPositions(board);
-  auto marked = markedPositions(board);
+  auto deadlyPositions = allPositions(board) | deadly(board);
+  auto markedPositions = allPositions(board) | marked(board);
 
-  return size(marked) >= size(deadly) && deadly != marked;
+  return size(markedPositions) >= size(deadlyPositions) && deadlyPositions != markedPositions;
 }
 
 // enum struct GameState { Undecided, PlayerWon, PlayerLost };
@@ -58,13 +58,12 @@ void print(Move move)
   print("\n"s);
 }
 
-Board minesweeper::gameRound(Board board)
+Board minesweeper::gameRound(Board board, Player player)
 {
   print(board);
   printCountdown(board);
-  // print("Your move ([m|mark] row column): "s);
 
-  auto move = computerMove(board);
+  auto move = player(board);
   ::print(move);
 
   return map<Action, Board>{
@@ -80,9 +79,10 @@ void printIf(std::string text, bool condition)
 
 void minesweeper::evaluateGame(Board board)
 {
-  auto correctedBoard = toggleMark(board, withMine(markedPositions(board), board));
+  auto correctedBoard =
+  toggleMark(board, allPositions(board) | marked(board) | deadly(board));
 
-  print(uncover(correctedBoard, deadlyPositions(board)));
+  print(uncover(correctedBoard, allPositions(board) | deadly(board)));
   printIf("You loose :-(\n"s, gameLost(board));
   printIf("You win :-)\n"s, gameWon(board));
 }

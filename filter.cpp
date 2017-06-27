@@ -4,51 +4,88 @@
 using namespace minesweeper;
 using namespace std;
 
-Positions minesweeper::withinBounds(Positions positions, Board board)
+Predicate minesweeper::operator!(Predicate predicate)
 {
-  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return board.count(position) == 0;
-           }) };
+  return [=](auto position) { return !predicate(position); };
 }
 
-Positions minesweeper::withMine(Positions positions, Board board)
+Predicate minesweeper::within(Board board)
 {
-  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return !isDeadly(board.at(position));
-           }) };
+  return [=](auto position) { return board.count(position) != 0; };
 }
 
-Positions minesweeper::coveredCells(Positions positions, Board board)
+Predicate minesweeper::deadly(Board board)
 {
-  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return get<State>(board.at(position)) == State::Uncovered;
-           }) };
+  return [=](auto position) { return isDeadly(board.at(position)); };
 }
 
-Positions minesweeper::uncoveredCells(Positions positions, Board board)
+Predicate minesweeper::uncovered(Board board)
 {
-  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return get<State>(board.at(position)) != State::Uncovered;
-           }) };
+  return [=](auto position) {
+    return get<State>(board.at(position)) == State::Uncovered;
+  };
 }
 
-Positions minesweeper::markedCells(Positions positions, Board board)
+Predicate minesweeper::covered(Board board)
 {
-  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return get<State>(board.at(position)) != State::Marked;
-           }) };
+  return
+  [=](auto position) { return get<State>(board.at(position)) == State::Covered; };
 }
 
-Positions minesweeper::unmarkedCells(Positions positions, Board board)
+Predicate minesweeper::marked(Board board)
 {
-  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return get<State>(board.at(position)) != State::Covered;
-           }) };
+  return
+  [=](auto position) { return get<State>(board.at(position)) == State::Marked; };
 }
 
-Positions minesweeper::safeAreas(Positions positions, Board board)
+Predicate minesweeper::minimumThreat(Board board)
 {
-  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return get<ThreatLevel>(board.at(position)) != ThreatLevel::Minimum;
-           }) };
+  return [=](auto position) {
+    return get<ThreatLevel>(board.at(position)) == ThreatLevel::Minimum;
+  };
 }
+
+Positions minesweeper::operator|(Positions positions, Predicate predicate)
+{
+  positions.erase(remove_if(begin(positions), end(positions),
+                            [=](auto position) { return !predicate(position); }),
+                  end(positions));
+  return positions;
+}
+
+// Positions minesweeper::withinBounds(Positions positions, Board board)
+//{
+//  return positions | within(board);
+//}
+//
+// Positions minesweeper::withMine(Positions positions, Board board)
+//{
+//  return positions | deadly(board);
+//}
+//
+// Positions minesweeper::coveredCells(Positions positions, Board board)
+//{
+//  return positions | !uncovered(board);
+//}
+//
+// Positions minesweeper::uncoveredCells(Positions positions, Board board)
+//{
+//  return positions | uncovered(board);
+//}
+//
+// Positions minesweeper::markedCells(Positions positions, Board board)
+//{
+//  return positions | marked(board);
+//}
+//
+// Positions minesweeper::unmarkedCells(Positions positions, Board board)
+//{
+//  return positions | covered(board);
+//}
+//
+// Positions minesweeper::minimumThreat(Positions positions, Board board)
+//{
+//  return positions | [=](auto position) {
+//    return get<ThreatLevel>(board.at(position)) == ThreatLevel::Minimum;
+//  };
+//}

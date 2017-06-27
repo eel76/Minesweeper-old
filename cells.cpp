@@ -14,18 +14,20 @@ Positions minesweeper::allPositions(Board board)
   return positions;
 }
 
-Positions minesweeper::deadlyPositions(Board board)
-{
-  auto positions = allPositions(board);
-  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return !isDeadly(board.at(position));
-           }) };
-}
-
-Positions minesweeper::markedPositions(Board board)
-{
-  auto positions = allPositions(board);
-  return { begin(positions), remove_if(begin(positions), end(positions), [=](auto position) {
-             return !isMarked(board.at(position));
-           }) };
-}
+// Positions minesweeper::deadlyPositions(Board board)
+//{
+//  auto positions = allPositions(board);
+//  return { begin(positions), remove_if(begin(positions), end(positions),
+//  [=](auto position) {
+//             return !isDeadly(board.at(position));
+//           }) };
+//}
+//
+// Positions minesweeper::markedPositions(Board board)
+//{
+//  auto positions = allPositions(board);
+//  return { begin(positions), remove_if(begin(positions), end(positions),
+//  [=](auto position) {
+//             return !isMarked(board.at(position));
+//           }) };
+//}

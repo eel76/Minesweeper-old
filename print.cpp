@@ -1,5 +1,6 @@
 #include "print.h"
 #include "cells.h"
+#include "filter.h"
 #include "group.h"
 #include "join.h"
 #include "transform.h"
@@ -22,6 +23,7 @@ void minesweeper::print(Board board)
 
 void minesweeper::printCountdown(Board board)
 {
-  auto countdown = size(deadlyPositions(board)) - size(markedPositions(board));
+  auto countdown = size(allPositions(board) | deadly(board)) -
+                   size(allPositions(board) | marked(board));
   print("Mines left: "s + to_string(countdown) + "\n"s);
 }

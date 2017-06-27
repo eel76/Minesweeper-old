@@ -39,6 +39,8 @@ add_executable (
   offsets.h
   parse.cpp
   parse.h
+  player.cpp
+  player.h
   position.cpp
   position.h
   positions.cpp
