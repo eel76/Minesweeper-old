@@ -11,16 +11,16 @@ using namespace std;
 
 bool flagsGood(Board board)
 {
-  auto deadlyPositions = allPositions(board) | deadly(board);
-  auto markedPositions = allPositions(board) | marked(board);
+  auto deadlyPositions = positions(board) | deadly(board);
+  auto markedPositions = positions(board) | marked(board);
 
   return deadlyPositions == markedPositions;
 }
 
 bool flagsBad(Board board)
 {
-  auto deadlyPositions = allPositions(board) | deadly(board);
-  auto markedPositions = allPositions(board) | marked(board);
+  auto deadlyPositions = positions(board) | deadly(board);
+  auto markedPositions = positions(board) | marked(board);
 
   return size(markedPositions) >= size(deadlyPositions) && deadlyPositions != markedPositions;
 }
@@ -80,9 +80,9 @@ void printIf(std::string text, bool condition)
 void minesweeper::evaluateGame(Board board)
 {
   auto correctedBoard =
-  toggleMark(board, allPositions(board) | marked(board) | deadly(board));
+  toggleMark(board, positions(board) | marked(board) | deadly(board));
 
-  print(uncover(correctedBoard, allPositions(board) | deadly(board)));
+  print(uncover(correctedBoard, positions(board) | deadly(board)));
   printIf("You loose :-(\n"s, gameLost(board));
   printIf("You win :-)\n"s, gameWon(board));
 }

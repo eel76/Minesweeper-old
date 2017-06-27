@@ -7,7 +7,7 @@ using namespace std;
 
 Board minesweeper::layMine(Board board, Position position)
 {
-  for (auto neighbor : neighborPositions(position) | within(board))
+  for (auto neighbor : neighbors(position) | within(board))
     board[neighbor] = threaten(board[neighbor], Threat::AdjacentMine);
 
   board[position] = threaten(board[position], Threat::Mine);

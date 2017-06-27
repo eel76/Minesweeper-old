@@ -3,5 +3,5 @@
 
 namespace minesweeper
 {
-  Positions neighborPositions(Position position);
+  Positions neighbors(Position position);
 }
