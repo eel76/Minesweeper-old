@@ -33,7 +33,6 @@ add_executable (
   move.h
   neighbors.cpp
   neighbors.h
-  offset.cpp
   offset.h
   offsets.cpp
   offsets.h

@@ -38,10 +38,10 @@ Predicate minesweeper::marked(Board board)
   [=](auto position) { return get<State>(board.at(position)) == State::Marked; };
 }
 
-Predicate minesweeper::minimumThreat(Board board)
+Predicate minesweeper::minimalThreat(Board board)
 {
   return [=](auto position) {
-    return get<ThreatLevel>(board.at(position)) == ThreatLevel::Minimum;
+    return get<ThreatLevel>(board.at(position)) == ThreatLevel::Minimal;
   };
 }
 

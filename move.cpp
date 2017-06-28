@@ -65,7 +65,7 @@ Move minesweeper::computerMove(Board board)
     moves.push_back(Move{ Action::ToggleMark, cell });
 
   for (auto cell : join({ sureCell(board), sample(positions(board) | covered(board), 1) }))
-    moves.push_back(Move{ Action::Uncover, cell });
+    moves.push_back(Move{ Action::Reveal, cell });
 
   return moves[0];
 }

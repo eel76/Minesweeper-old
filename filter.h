@@ -13,7 +13,7 @@ namespace minesweeper
   Predicate revealed(Board board);
   Predicate covered(Board board);
   Predicate marked(Board board);
-  Predicate minimumThreat(Board board);
+  Predicate minimalThreat(Board board);
 
   Positions operator|(Positions positions, Predicate predicate);
 }

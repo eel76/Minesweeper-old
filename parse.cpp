@@ -33,7 +33,7 @@ Move minesweeper::parseMove(std::string text)
   auto match = smatch{};
   regex_match(text, match, regex{ "^ *(m?|mark)(.+)$" });
 
-  auto action = map<string, Action>{ { "", Action::Uncover },
+  auto action = map<string, Action>{ { "", Action::Reveal },
                                      { "m", Action::ToggleMark },
                                      { "mark", Action::ToggleMark } };
   return Move{ action[match[1]], parsePosition(match[2]) };

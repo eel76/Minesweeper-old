@@ -1,9 +1,8 @@
 #pragma once
-#include <vector>
 #include "row.h"
+#include <vector>
 
 namespace minesweeper
 {
   using RowOffsets = std::vector<RowOffset>;
-  RowOffsets rowOffsets();
 }

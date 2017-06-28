@@ -50,7 +50,7 @@ void print(Position position)
 
 void print(Move move)
 {
-  auto text = map<Action, string>{ { Action::Uncover, "reveal"s },
+  auto text = map<Action, string>{ { Action::Reveal, "reveal"s },
                                    { Action::ToggleMark, "mark"s } };
 
   print("Your move: "s + text[get<Action>(move)] + " "s);
@@ -68,7 +68,7 @@ Board minesweeper::gameRound(Board board, Player player)
 
   return map<Action, Board>{
     { Action::ToggleMark, toggleMark(board, Positions{ get<Position>(move) }) },
-    { Action::Uncover, reveal(board, Positions{ get<Position>(move) }) }
+    { Action::Reveal, reveal(board, Positions{ get<Position>(move) }) }
   }[get<Action>(move)];
 }
 

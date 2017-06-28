@@ -5,5 +5,4 @@
 namespace minesweeper
 {
   using ColumnOffsets = std::vector<ColumnOffset>;
-  ColumnOffsets columnOffsets();
 }

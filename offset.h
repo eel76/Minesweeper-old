@@ -6,5 +6,4 @@
 namespace minesweeper
 {
   using Offset = std::pair<RowOffset, ColumnOffset>;
-  Offset currentOffset();
 }
