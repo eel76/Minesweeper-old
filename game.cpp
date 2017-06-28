@@ -51,7 +51,7 @@ void print(Position position)
 void print(Move move)
 {
   auto text = map<Action, string>{ { Action::Reveal, "reveal"s },
-                                   { Action::ToggleMark, "mark"s } };
+                                   { Action::ToggleMark, "toggle mark"s } };
 
   print("Your move: "s + text[get<Action>(move)] + " "s);
   print(get<Position>(move));
