@@ -2,7 +2,7 @@
 
 namespace minesweeper
 {
-  enum State { Covered, Marked, Revealed };
+  enum struct State { Covered, Marked, Revealed };
   State reveal(State state);
   State toggleMark(State state);
 }

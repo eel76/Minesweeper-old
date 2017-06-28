@@ -18,14 +18,23 @@ Move minesweeper::playerMove()
   return parseMove(inputLine());
 }
 
+bool anyOf(Positions positions, Predicate predicate)
+{
+  return any_of(begin(positions), end(positions), predicate);
+}
+
+Predicate threatHidden(Board board)
+{
+  return [=](auto hint) {
+    auto threatLevel = int(get<ThreatLevel>(board.at(hint)));
+    return threatLevel == size(neighbors(hint) | within(board) | !revealed(board));
+  };
+}
+
 bool wrongMark(Board board, Position position)
 {
   auto hints = neighbors(position) | within(board) | revealed(board);
-
-  return !any_of(begin(hints), end(hints), [=](auto hint) {
-    auto threatLevel = int(get<ThreatLevel>(board.at(hint)));
-    return threatLevel == size(neighbors(hint) | within(board) | !revealed(board));
-  });
+  return !anyOf(hints, threatHidden(board));
 }
 
 Positions wrongMark(Board board)
@@ -37,11 +46,7 @@ Positions wrongMark(Board board)
 bool missingMark(Board board, Position position)
 {
   auto hints = neighbors(position) | within(board) | revealed(board);
-
-  return any_of(begin(hints), end(hints), [=](auto hint) {
-    auto threatLevel = int(get<ThreatLevel>(board.at(hint)));
-    return threatLevel == size(neighbors(hint) | within(board) | !revealed(board));
-  });
+  return anyOf(hints, threatHidden(board));
 }
 
 Positions missingMark(Board board)
@@ -50,20 +55,25 @@ Positions missingMark(Board board)
          [=](auto position) { return missingMark(board, position); };
 }
 
-bool safeCells(Board board, Position position)
+Predicate threatMarked(Board board)
 {
-  auto hints = neighbors(position) | within(board) | revealed(board);
-
-  return any_of(begin(hints), end(hints), [=](auto hint) {
-    auto threatLevel = int(get<ThreatLevel>(board.at(hint)));
-    return threatLevel == size(neighbors(hint) | within(board) | marked(board));
-  });
+  return [=](auto position) {
+    auto threatLevel = int(get<ThreatLevel>(board.at(position)));
+    return threatLevel == size(neighbors(position) | within(board) | marked(board));
+  };
 }
 
-Positions safeCells(Board board)
+Predicate revealPossible(Board board)
 {
-  return positions(board) | covered(board) |
-         [=](auto position) { return safeCells(board, position); };
+  return [=](auto position) {
+    return anyOf(neighbors(position) | within(board) | revealed(board), threatMarked(board));
+  };
+}
+
+Positions revealPositions(Board board)
+{
+  return join({ positions(board) | covered(board) | revealPossible(board),
+                sample(positions(board) | covered(board), 1) });
 }
 
 Move minesweeper::computerMove(Board board)
@@ -73,8 +83,7 @@ Move minesweeper::computerMove(Board board)
   for (auto cell : join({ wrongMark(board), missingMark(board) }))
     moves.push_back({ Action::ToggleMark, cell });
 
-  for (auto cell :
-       join({ safeCells(board), sample(positions(board) | covered(board), 1) }))
+  for (auto cell : revealPositions(board))
     moves.push_back({ Action::Reveal, cell });
 
   return moves[0];

@@ -6,9 +6,9 @@ using namespace std;
 
 State minesweeper::reveal(State state)
 {
-  auto revealed = map<State, State>{ { State::Covered, State::Revealed },
-                                     { State::Marked, State::Marked },
-                                     { State::Revealed, State::Revealed } };
+  auto revealed = map<State, State>{ make_pair(State::Covered, State::Revealed),
+                                     make_pair(State::Marked, State::Marked),
+                                     make_pair(State::Revealed, State::Revealed) };
   return revealed[state];
 }
 

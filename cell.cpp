@@ -28,7 +28,7 @@ Cell minesweeper::threaten(Cell cell, Threat threat)
   return Cell{ get<State>(cell), increase(get<ThreatLevel>(cell), threat) };
 }
 
-bool minesweeper::isUncovered(Cell cell)
+bool minesweeper::isRevealed(Cell cell)
 {
   return get<State>(cell) == State::Revealed;
 }

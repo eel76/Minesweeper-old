@@ -6,7 +6,7 @@
 using namespace minesweeper;
 using namespace std;
 
-Positions minesweeper::zipWith(Rows rows, Column column)
+Positions minesweeper::allCombos(Rows rows, Column column)
 {
   auto positions = Positions{};
 
@@ -16,12 +16,12 @@ Positions minesweeper::zipWith(Rows rows, Column column)
   return positions;
 }
 
-Positions minesweeper::cartesianProduct(Rows rows, Columns columns)
+Positions minesweeper::allCombos(Rows rows, Columns columns)
 {
   auto positionLists = std::vector<Positions>{};
 
   for (auto column : columns)
-    positionLists.push_back(zipWith(rows, column));
+    positionLists.push_back(allCombos(rows, column));
 
   return join(positionLists);
 }

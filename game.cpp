@@ -30,14 +30,14 @@ bool flagsBad(Board board)
 bool minesweeper::gameLost(Board board)
 {
   return flagsBad(board) || any_of(begin(board), end(board), [](auto iterator) {
-           return isUncovered(get<Cell>(iterator)) & isDeadly(get<Cell>(iterator));
+           return isRevealed(get<Cell>(iterator)) & isDeadly(get<Cell>(iterator));
          });
 }
 
 bool minesweeper::gameWon(Board board)
 {
   return flagsGood(board) || all_of(begin(board), end(board), [](auto iterator) {
-           return isUncovered(get<Cell>(iterator)) ^ isDeadly(get<Cell>(iterator));
+           return isRevealed(get<Cell>(iterator)) ^ isDeadly(get<Cell>(iterator));
          });
 }
 

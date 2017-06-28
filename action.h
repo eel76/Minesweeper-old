@@ -2,5 +2,5 @@
 
 namespace minesweeper
 {
-  enum struct Action : unsigned { Reveal, ToggleMark };
+  enum struct Action { Reveal, ToggleMark };
 }
