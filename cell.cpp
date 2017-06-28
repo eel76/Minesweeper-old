@@ -6,11 +6,10 @@ using namespace std;
 
 std::string minesweeper::toString(Cell cell)
 {
-  auto strings =
-  map<State, string>{ { State::Covered, "#"s },
-                      { State::Marked, "*"s },
-                      { State::Revealed, toString(get<ThreatLevel>(cell)) } };
-  return strings[get<State>(cell)];
+  return map<State, string>{ { State::Covered, "#"s },
+                             { State::Marked, "*"s },
+                             { State::Revealed,
+                               toString(get<ThreatLevel>(cell)) } }[get<State>(cell)];
 }
 
 Cell minesweeper::toggleMark(Cell cell)
