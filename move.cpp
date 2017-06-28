@@ -25,11 +25,11 @@ Positions wrongMark(Board /* board */)
 
 bool missingMark(Board board, Position position)
 {
-  auto hints = neighbors(position) | within(board) | uncovered(board);
+  auto hints = neighbors(position) | within(board) | revealed(board);
 
   return any_of(begin(hints), end(hints), [=](auto hint) {
     auto threatLevel = int(get<ThreatLevel>(board.at(hint)));
-    return threatLevel == size(neighbors(hint) | within(board) | !uncovered(board));
+    return threatLevel == size(neighbors(hint) | within(board) | !revealed(board));
   });
 }
 
@@ -41,7 +41,7 @@ Positions missingMark(Board board)
 
 bool sureCell(Board board, Position position)
 {
-  auto hints = neighbors(position) | within(board) | uncovered(board);
+  auto hints = neighbors(position) | within(board) | revealed(board);
 
   return any_of(begin(hints), end(hints), [=](auto hint) {
     auto threatLevel = int(get<ThreatLevel>(board.at(hint)));

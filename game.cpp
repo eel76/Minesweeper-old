@@ -3,7 +3,7 @@
 #include "filter.h"
 #include "move.h"
 #include "print.h"
-#include "uncover.h"
+#include "reveal.h"
 #include <algorithm>
 
 using namespace minesweeper;
@@ -50,7 +50,7 @@ void print(Position position)
 
 void print(Move move)
 {
-  auto text = map<Action, string>{ { Action::Uncover, "uncover"s },
+  auto text = map<Action, string>{ { Action::Uncover, "reveal"s },
                                    { Action::ToggleMark, "mark"s } };
 
   print("Your move: "s + text[get<Action>(move)] + " "s);
@@ -68,7 +68,7 @@ Board minesweeper::gameRound(Board board, Player player)
 
   return map<Action, Board>{
     { Action::ToggleMark, toggleMark(board, Positions{ get<Position>(move) }) },
-    { Action::Uncover, uncover(board, Positions{ get<Position>(move) }) }
+    { Action::Uncover, reveal(board, Positions{ get<Position>(move) }) }
   }[get<Action>(move)];
 }
 
@@ -82,7 +82,7 @@ void minesweeper::evaluateGame(Board board)
   auto correctedBoard =
   toggleMark(board, positions(board) | marked(board) | deadly(board));
 
-  print(uncover(correctedBoard, positions(board) | deadly(board)));
-  printIf("You loose :-(\n"s, gameLost(board));
-  printIf("You win :-)\n"s, gameWon(board));
+  print(reveal(correctedBoard, positions(board) | deadly(board)));
+  printIf("Game lost :-(\n"s, gameLost(board));
+  printIf("Game won :-)\n"s, gameWon(board));
 }

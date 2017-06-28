@@ -49,6 +49,8 @@ add_executable (
   preparation.h
   print.cpp
   print.h
+  reveal.cpp
+  reveal.h
   row.cpp
   row.h
   rows.cpp
@@ -59,7 +61,5 @@ add_executable (
   threat.h
   transform.cpp
   transform.h
-  uncover.cpp
-  uncover.h
   Readme.md
   )

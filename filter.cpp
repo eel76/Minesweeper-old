@@ -19,10 +19,10 @@ Predicate minesweeper::deadly(Board board)
   return [=](auto position) { return isDeadly(board.at(position)); };
 }
 
-Predicate minesweeper::uncovered(Board board)
+Predicate minesweeper::revealed(Board board)
 {
   return [=](auto position) {
-    return get<State>(board.at(position)) == State::Uncovered;
+    return get<State>(board.at(position)) == State::Revealed;
   };
 }
 

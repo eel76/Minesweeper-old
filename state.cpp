@@ -4,18 +4,18 @@
 using namespace minesweeper;
 using namespace std;
 
-State minesweeper::uncover(State state)
+State minesweeper::reveal(State state)
 {
-  auto uncovered = map<State, State>{ { State::Covered, State::Uncovered },
-                                      { State::Marked, State::Marked },
-                                      { State::Uncovered, State::Uncovered } };
-  return uncovered[state];
+  auto revealed = map<State, State>{ { State::Covered, State::Revealed },
+                                     { State::Marked, State::Marked },
+                                     { State::Revealed, State::Revealed } };
+  return revealed[state];
 }
 
 State minesweeper::toggleMark(State state)
 {
-  auto toggledFlag = map<State, State>{ { State::Covered, State::Marked },
+  auto markToggled = map<State, State>{ { State::Covered, State::Marked },
                                         { State::Marked, State::Covered },
-                                        { State::Uncovered, State::Uncovered } };
-  return toggledFlag[state];
+                                        { State::Revealed, State::Revealed } };
+  return markToggled[state];
 }

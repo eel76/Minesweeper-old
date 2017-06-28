@@ -12,7 +12,7 @@ namespace minesweeper
 
   Predicate within(Board board);
   Predicate deadly();
-  Predicate uncovered();
+  Predicate revealed();
   Predicate covered();
   Predicate marked();
 

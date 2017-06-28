@@ -1,4 +1,4 @@
-#include "uncover.h"
+#include "reveal.h"
 #include "filter.h"
 #include "neighbors.h"
 
@@ -13,15 +13,15 @@ Board minesweeper::toggleMark(Board board, Positions positions)
   return board;
 }
 
-Board minesweeper::uncover(Board board, Positions positions)
+Board minesweeper::reveal(Board board, Positions positions)
 {
   positions = positions | within(board) | covered(board);
 
   for (auto position : positions)
-    board[position] = uncover(board[position]);
+    board[position] = reveal(board[position]);
 
   for (auto safeArea : positions | minimumThreat(board))
-    board = uncover(board, neighbors(safeArea));
+    board = reveal(board, neighbors(safeArea));
 
   return board;
 }

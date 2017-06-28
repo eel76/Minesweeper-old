@@ -9,7 +9,7 @@ std::string minesweeper::toString(Cell cell)
   auto strings =
   map<State, string>{ { State::Covered, "#"s },
                       { State::Marked, "*"s },
-                      { State::Uncovered, toString(get<ThreatLevel>(cell)) } };
+                      { State::Revealed, toString(get<ThreatLevel>(cell)) } };
   return strings[get<State>(cell)];
 }
 
@@ -18,9 +18,9 @@ Cell minesweeper::toggleMark(Cell cell)
   return Cell{ toggleMark(get<State>(cell)), get<ThreatLevel>(cell) };
 }
 
-Cell minesweeper::uncover(Cell cell)
+Cell minesweeper::reveal(Cell cell)
 {
-  return Cell{ uncover(get<State>(cell)), get<ThreatLevel>(cell) };
+  return Cell{ reveal(get<State>(cell)), get<ThreatLevel>(cell) };
 }
 
 Cell minesweeper::threaten(Cell cell, Threat threat)
@@ -30,7 +30,7 @@ Cell minesweeper::threaten(Cell cell, Threat threat)
 
 bool minesweeper::isUncovered(Cell cell)
 {
-  return get<State>(cell) == State::Uncovered;
+  return get<State>(cell) == State::Revealed;
 }
 
 bool minesweeper::isMarked(Cell cell)
