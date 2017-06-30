@@ -6,8 +6,8 @@ using namespace minesweeper;
 
 int main()
 {
+  auto player = choosePlayer();
   auto board  = makeBoard(Dimensions{ columns(40), rows(20) }, 100);
-  auto player = computerPlayer();
 
   while (gameUndecided(board))
     board = playRound(board, player);

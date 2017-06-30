@@ -5,6 +5,5 @@
 namespace minesweeper
 {
   using Player = std::function<Move(Board)>;
-  Player humanPlayer();
-  Player computerPlayer();
+  Player choosePlayer();
 }

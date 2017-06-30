@@ -6,13 +6,24 @@
 using namespace minesweeper;
 using namespace std;
 
-Player minesweeper::humanPlayer()
+Player human()
 {
   return
-  [](auto) { return parseMove(ask("Your move ([m|mark] row column): "s)); };
+  [](auto) { return parseMove(ask("Your move: [(m)ark] <row> <column>: "s)); };
 }
 
-Player minesweeper::computerPlayer()
+Player computer()
 {
   return [](auto board) { return computerMove(board); };
+}
+
+Player minesweeper::choosePlayer()
+{
+  auto players = map<string, Player>{ { "h"s, human() }, { "c"s, computer() } };
+  auto player  = Player{};
+
+  while (!player)
+    player = players[ask("Player: (h)uman or (c)omputer? "s)];
+
+  return player;
 }
