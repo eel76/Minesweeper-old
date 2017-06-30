@@ -72,17 +72,15 @@ Test revealPossible(Board board)
 
 #include <random>
 
-// Cells sample(Cells cells)
-//{
-//  shuffle(begin(cells), end(cells), ranlux48{ random_device{}() });
-//  return { begin(cells), next(begin(cells), min<size_t>({ size(cells), 1 }))
-//  };
-//}
+Cells shuffle(Cells cells)
+{
+  shuffle(begin(cells), end(cells), ranlux48{ random_device{}() });
+  return cells;
+}
 
 Cells revealPositions(Board board)
 {
-  auto concealedCells = cells(board) | is(Visibility::Concealed);
-  // FIXME: shuffle concealedCells
+  auto concealedCells = shuffle(cells(board) | is(Visibility::Concealed));
   return join({ concealedCells | revealPossible(board), concealedCells });
 }
 
