@@ -6,6 +6,8 @@ set (CMAKE_CXX_STANDARD 14)
 add_executable (
   ${PROJECT_NAME}
   action.h
+  ask.cpp
+  ask.h
   board.h
   cells.cpp
   cells.h
@@ -21,8 +23,6 @@ add_executable (
   group.cpp
   group.h
   hazard.h
-  input.cpp
-  input.h
   join.cpp
   join.h
   main.cpp

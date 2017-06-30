@@ -3,5 +3,5 @@
 
 namespace minesweeper
 {
-  std::string inputLine();
+  std::string ask(std::string question);
 }

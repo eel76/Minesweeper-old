@@ -1,5 +1,5 @@
 #include "player.h"
-#include "input.h"
+#include "ask.h"
 #include "parse.h"
 #include "print.h"
 
@@ -8,10 +8,8 @@ using namespace std;
 
 Player minesweeper::humanPlayer()
 {
-  return [](auto) {
-    print("Your move ([m|mark] row column): "s);
-    return parseMove(inputLine());
-  };
+  return
+  [](auto) { return parseMove(ask("Your move ([m|mark] row column): "s)); };
 }
 
 Player minesweeper::computerPlayer()

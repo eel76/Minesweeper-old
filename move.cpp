@@ -1,7 +1,6 @@
 #include "move.h"
 #include "cells.h"
 #include "filter.h"
-#include "input.h"
 #include "join.h"
 #include "neighbors.h"
 #include "parse.h"
