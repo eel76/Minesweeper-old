@@ -28,17 +28,19 @@ Predicate minesweeper::revealed(Board board)
 
 Predicate minesweeper::covered(Board board)
 {
-  return
-  [=](auto position) { return get<Visibility>(board.at(position)) == Visibility::Concealed; };
+  return [=](auto position) {
+    return get<Visibility>(board.at(position)) == Visibility::Concealed;
+  };
 }
 
-Predicate minesweeper::marked(Board board)
+Predicate minesweeper::recognized(Board board)
 {
-  return
-  [=](auto position) { return get<Visibility>(board.at(position)) == Visibility::Recognized; };
+  return [=](auto position) {
+    return get<Visibility>(board.at(position)) == Visibility::Recognized;
+  };
 }
 
-Predicate minesweeper::minimalThreat(Board board)
+Predicate minesweeper::safe(Board board)
 {
   return [=](auto position) {
     return get<Severity>(board.at(position)) == Severity::Negligible;

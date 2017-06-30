@@ -23,7 +23,7 @@ void minesweeper::print(Board board)
 
 void minesweeper::printCountdown(Board board)
 {
-  auto countdown =
-  size(positions(board) | deadly(board)) - size(positions(board) | marked(board));
+  auto countdown = size(positions(board) | deadly(board)) -
+                   size(positions(board) | recognized(board));
   print("Mines left: "s + to_string(countdown) + "\n"s);
 }

@@ -39,7 +39,7 @@ bool wrongMark(Board board, Position position)
 
 Positions wrongMark(Board board)
 {
-  return positions(board) | marked(board) |
+  return positions(board) | recognized(board) |
          [=](auto position) { return wrongMark(board, position); };
 }
 
@@ -59,7 +59,7 @@ Predicate threatMarked(Board board)
 {
   return [=](auto position) {
     auto threatLevel = int(get<Severity>(board.at(position)));
-    return threatLevel == size(neighbors(position) | within(board) | marked(board));
+    return threatLevel == size(neighbors(position) | within(board) | recognized(board));
   };
 }
 

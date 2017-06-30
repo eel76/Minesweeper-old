@@ -12,7 +12,7 @@ using namespace std;
 bool flagsGood(Board board)
 {
   auto deadlyPositions = positions(board) | deadly(board);
-  auto markedPositions = positions(board) | marked(board);
+  auto markedPositions = positions(board) | recognized(board);
 
   return deadlyPositions == markedPositions;
 }
@@ -20,7 +20,7 @@ bool flagsGood(Board board)
 bool flagsBad(Board board)
 {
   auto deadlyPositions = positions(board) | deadly(board);
-  auto markedPositions = positions(board) | marked(board);
+  auto markedPositions = positions(board) | recognized(board);
 
   return size(markedPositions) >= size(deadlyPositions) && deadlyPositions != markedPositions;
 }
@@ -34,15 +34,15 @@ bool minesweeper::gameUndecided(Board board)
 
 bool minesweeper::gameLost(Board board)
 {
-  return flagsBad(board) || any_of(begin(board), end(board), [](auto iterator) {
-           return isRevealed(get<Threat>(iterator)) & isDeadly(get<Threat>(iterator));
+  return flagsBad(board) || any_of(begin(board), end(board), [](auto cell) {
+           return isRevealed(get<Threat>(cell)) & isDeadly(get<Threat>(cell));
          });
 }
 
 bool minesweeper::gameWon(Board board)
 {
-  return flagsGood(board) || all_of(begin(board), end(board), [](auto iterator) {
-           return isRevealed(get<Threat>(iterator)) ^ isDeadly(get<Threat>(iterator));
+  return flagsGood(board) || all_of(begin(board), end(board), [](auto cell) {
+           return isRevealed(get<Threat>(cell)) ^ isDeadly(get<Threat>(cell));
          });
 }
 
@@ -85,7 +85,7 @@ void printIf(std::string text, bool condition)
 void minesweeper::evaluateGame(Board board)
 {
   auto correctedBoard =
-  changeGuess(board, positions(board) | marked(board) | deadly(board));
+  changeGuess(board, positions(board) | recognized(board) | deadly(board));
 
   print(reveal(correctedBoard, positions(board) | deadly(board)));
   printIf("Game lost :-(\n"s, gameLost(board));

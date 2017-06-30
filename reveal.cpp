@@ -20,7 +20,7 @@ Board minesweeper::reveal(Board board, Positions positions)
   for (auto position : positions)
     board[position] = reveal(board[position]);
 
-  for (auto safePosition : positions | minimalThreat(board))
+  for (auto safePosition : positions | safe(board))
     board = reveal(board, neighbors(safePosition));
 
   return board;
