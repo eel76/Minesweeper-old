@@ -1,15 +1,43 @@
 #include "threat.h"
-#include <cassert>
+#include <map>
 
 using namespace minesweeper;
 using namespace std;
 
-string minesweeper::toString(ThreatLevel threatLevel)
+std::string minesweeper::toString(Threat threat)
 {
-  return { ".12345678XXXXXXXXX"[int(threatLevel)] };
+  auto severity = toString(get<Severity>(threat));
+  return map<Visibility, string>{ { Visibility::Concealed, "#"s },
+                                  { Visibility::Recognized, "*"s },
+                                  { Visibility::Revealed, severity } }[get<Visibility>(threat)];
 }
 
-ThreatLevel minesweeper::increase(ThreatLevel threatLevel, Threat threat)
+Threat minesweeper::changeGuess(Threat threat)
 {
-  return ThreatLevel(int(threatLevel) + int(threat));
+  return Threat{ changeGuess(get<Visibility>(threat)), get<Severity>(threat) };
+}
+
+Threat minesweeper::reveal(Threat threat)
+{
+  return Threat{ reveal(get<Visibility>(threat)), get<Severity>(threat) };
+}
+
+Threat minesweeper::consider(Threat threat, Hazard hazard)
+{
+  return Threat{ get<Visibility>(threat), consider(get<Severity>(threat), hazard) };
+}
+
+bool minesweeper::isRevealed(Threat threat)
+{
+  return get<Visibility>(threat) == Visibility::Revealed;
+}
+
+bool minesweeper::isRecognized(Threat threat)
+{
+  return get<Visibility>(threat) == Visibility::Recognized;
+}
+
+bool minesweeper::isDeadly(Threat threat)
+{
+  return get<Severity>(threat) >= Severity::Deadly;
 }

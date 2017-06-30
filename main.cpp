@@ -10,7 +10,7 @@ int main()
   auto player = computerPlayer();
 
   while (!gameLost(board) && !gameWon(board))
-    board = gameRound(board, player);
+    board = playRound(board, player);
 
   evaluateGame(board);
   return 0;

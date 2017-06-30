@@ -22,26 +22,26 @@ Predicate minesweeper::deadly(Board board)
 Predicate minesweeper::revealed(Board board)
 {
   return [=](auto position) {
-    return get<State>(board.at(position)) == State::Revealed;
+    return get<Visibility>(board.at(position)) == Visibility::Revealed;
   };
 }
 
 Predicate minesweeper::covered(Board board)
 {
   return
-  [=](auto position) { return get<State>(board.at(position)) == State::Covered; };
+  [=](auto position) { return get<Visibility>(board.at(position)) == Visibility::Concealed; };
 }
 
 Predicate minesweeper::marked(Board board)
 {
   return
-  [=](auto position) { return get<State>(board.at(position)) == State::Marked; };
+  [=](auto position) { return get<Visibility>(board.at(position)) == Visibility::Recognized; };
 }
 
 Predicate minesweeper::minimalThreat(Board board)
 {
   return [=](auto position) {
-    return get<ThreatLevel>(board.at(position)) == ThreatLevel::Minimal;
+    return get<Severity>(board.at(position)) == Severity::Negligible;
   };
 }
 

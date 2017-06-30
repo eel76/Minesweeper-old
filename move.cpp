@@ -26,7 +26,7 @@ bool anyOf(Positions positions, Predicate predicate)
 Predicate threatHidden(Board board)
 {
   return [=](auto hint) {
-    auto threatLevel = int(get<ThreatLevel>(board.at(hint)));
+    auto threatLevel = int(get<Severity>(board.at(hint)));
     return threatLevel == size(neighbors(hint) | within(board) | !revealed(board));
   };
 }
@@ -58,7 +58,7 @@ Positions missingMark(Board board)
 Predicate threatMarked(Board board)
 {
   return [=](auto position) {
-    auto threatLevel = int(get<ThreatLevel>(board.at(position)));
+    auto threatLevel = int(get<Severity>(board.at(position)));
     return threatLevel == size(neighbors(position) | within(board) | marked(board));
   };
 }
@@ -81,7 +81,7 @@ Move minesweeper::computerMove(Board board)
   auto moves = vector<Move>{};
 
   for (auto cell : join({ wrongMark(board), missingMark(board) }))
-    moves.push_back({ Action::ToggleMark, cell });
+    moves.push_back({ Action::ChangeGuess, cell });
 
   for (auto cell : revealPositions(board))
     moves.push_back({ Action::Reveal, cell });

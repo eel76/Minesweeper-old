@@ -7,8 +7,6 @@ add_executable (
   ${PROJECT_NAME}
   action.h
   board.h
-  cell.cpp
-  cell.h
   cells.cpp
   cells.h
   column.cpp
@@ -22,6 +20,7 @@ add_executable (
   game.h
   group.cpp
   group.h
+  hazard.h
   input.cpp
   input.h
   join.cpp
@@ -54,11 +53,13 @@ add_executable (
   row.h
   rows.cpp
   rows.h
-  state.cpp
-  state.h
+  severity.cpp
+  severity.h
   threat.cpp
   threat.h
   transform.cpp
   transform.h
+  visibility.cpp
+  visibility.h
   Readme.md
   )

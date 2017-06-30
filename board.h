@@ -1,9 +1,9 @@
 #pragma once
-#include <map>
 #include "position.h"
-#include "cell.h"
+#include "threat.h"
+#include <map>
 
 namespace minesweeper
 {
-  using Board = std::map<Position, Cell>;
+  using Board = std::map<Position, Threat>;
 }

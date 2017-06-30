@@ -27,17 +27,22 @@ bool flagsBad(Board board)
 
 // enum struct GameState { Undecided, PlayerWon, PlayerLost };
 
+bool minesweeper::gameUndecided(Board board)
+{
+  return !gameLost(board) && !gameWon(board);
+}
+
 bool minesweeper::gameLost(Board board)
 {
   return flagsBad(board) || any_of(begin(board), end(board), [](auto iterator) {
-           return isRevealed(get<Cell>(iterator)) & isDeadly(get<Cell>(iterator));
+           return isRevealed(get<Threat>(iterator)) & isDeadly(get<Threat>(iterator));
          });
 }
 
 bool minesweeper::gameWon(Board board)
 {
   return flagsGood(board) || all_of(begin(board), end(board), [](auto iterator) {
-           return isRevealed(get<Cell>(iterator)) ^ isDeadly(get<Cell>(iterator));
+           return isRevealed(get<Threat>(iterator)) ^ isDeadly(get<Threat>(iterator));
          });
 }
 
@@ -51,14 +56,14 @@ void print(Position position)
 void print(Move move)
 {
   auto text = map<Action, string>{ { Action::Reveal, "reveal"s },
-                                   { Action::ToggleMark, "toggle mark"s } };
+                                   { Action::ChangeGuess, "toggle mark"s } };
 
   print("Your move: "s + text[get<Action>(move)] + " "s);
   print(get<Position>(move));
   print("\n"s);
 }
 
-Board minesweeper::gameRound(Board board, Player player)
+Board minesweeper::playRound(Board board, Player player)
 {
   print(board);
   printCountdown(board);
@@ -67,7 +72,7 @@ Board minesweeper::gameRound(Board board, Player player)
   ::print(move);
 
   return map<Action, Board>{
-    { Action::ToggleMark, toggleMark(board, Positions{ get<Position>(move) }) },
+    { Action::ChangeGuess, changeGuess(board, Positions{ get<Position>(move) }) },
     { Action::Reveal, reveal(board, Positions{ get<Position>(move) }) }
   }[get<Action>(move)];
 }
@@ -80,7 +85,7 @@ void printIf(std::string text, bool condition)
 void minesweeper::evaluateGame(Board board)
 {
   auto correctedBoard =
-  toggleMark(board, positions(board) | marked(board) | deadly(board));
+  changeGuess(board, positions(board) | marked(board) | deadly(board));
 
   print(reveal(correctedBoard, positions(board) | deadly(board)));
   printIf("Game lost :-(\n"s, gameLost(board));

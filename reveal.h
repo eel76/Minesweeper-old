@@ -4,6 +4,6 @@
 
 namespace minesweeper
 {
-  Board toggleMark(Board board, Positions positions);
+  Board changeGuess(Board board, Positions positions);
   Board reveal(Board board, Positions positions);
 }

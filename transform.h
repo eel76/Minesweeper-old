@@ -4,6 +4,6 @@
 
 namespace minesweeper
 {
-  std::vector<Cell> toCells(Positions positions, Board board);
-  std::vector<std::string> toStrings(std::vector<Cell> cells);
+  std::vector<Threat> toCells(Positions positions, Board board);
+  std::vector<std::string> toStrings(std::vector<Threat> cells);
 }

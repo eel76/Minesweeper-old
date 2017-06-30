@@ -8,9 +8,9 @@ using namespace std;
 Board minesweeper::layMine(Board board, Position position)
 {
   for (auto neighbor : neighbors(position) | within(board))
-    board[neighbor] = threaten(board[neighbor], Threat::AdjacentMine);
+    board[neighbor] = consider(board[neighbor], Hazard::AdjacentMine);
 
-  board[position] = threaten(board[position], Threat::Mine);
+  board[position] = consider(board[position], Hazard::Mine);
   return board;
 }
 

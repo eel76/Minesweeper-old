@@ -5,10 +5,10 @@
 using namespace minesweeper;
 using namespace std;
 
-Board minesweeper::toggleMark(Board board, Positions positions)
+Board minesweeper::changeGuess(Board board, Positions positions)
 {
   for (auto position : positions | within(board))
-    board[position] = toggleMark(board[position]);
+    board[position] = changeGuess(board[position]);
 
   return board;
 }
