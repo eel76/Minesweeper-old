@@ -1,9 +1,8 @@
 #pragma once
-#include "board.h"
-#include "positions.h"
+#include "cells.h"
+#include <string>
 
 namespace minesweeper
 {
-  std::vector<Threat> toCells(Positions positions, Board board);
-  std::vector<std::string> toStrings(std::vector<Threat> cells);
+  std::vector<std::string> toStrings(Cells cells);
 }

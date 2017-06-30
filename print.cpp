@@ -18,12 +18,12 @@ void minesweeper::print(std::string text)
 void minesweeper::print(Board board)
 {
   for (auto row : groupRows(positions(board)))
-    print(join(toStrings(toCells(get<Positions>(row), board))) + "\n"s);
+    print(join(toStrings(cells(board) | at(get<Positions>(row)))) + "\n"s);
 }
 
 void minesweeper::printCountdown(Board board)
 {
-  auto countdown = size(positions(board) | deadly(board)) -
-                   size(positions(board) | recognized(board));
+  auto countdown =
+  size(cells(board) | deadly()) - size(cells(board) | is(Visibility::Recognized));
   print("Mines left: "s + to_string(countdown) + "\n"s);
 }

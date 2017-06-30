@@ -11,18 +11,20 @@ using namespace std;
 
 bool flagsGood(Board board)
 {
-  auto deadlyPositions = positions(board) | deadly(board);
-  auto markedPositions = positions(board) | recognized(board);
+  auto deadlyCells     = cells(board) | deadly();
+  auto recognizedCells = cells(board) | is(Visibility::Recognized);
 
-  return deadlyPositions == markedPositions;
+  // FIXME: use equal()
+  return deadlyCells == recognizedCells;
 }
 
 bool flagsBad(Board board)
 {
-  auto deadlyPositions = positions(board) | deadly(board);
-  auto markedPositions = positions(board) | recognized(board);
+  auto deadlyCells     = cells(board) | deadly();
+  auto recognizedCells = cells(board) | is(Visibility::Recognized);
 
-  return size(markedPositions) >= size(deadlyPositions) && deadlyPositions != markedPositions;
+  // FIXME: use equal()
+  return size(recognizedCells) >= size(deadlyCells) && deadlyCells != recognizedCells;
 }
 
 // enum struct GameState { Undecided, PlayerWon, PlayerLost };
@@ -72,8 +74,8 @@ Board minesweeper::playRound(Board board, Player player)
   ::print(move);
 
   return map<Action, Board>{
-    { Action::ChangeGuess, changeGuess(board, Positions{ get<Position>(move) }) },
-    { Action::Reveal, reveal(board, Positions{ get<Position>(move) }) }
+    { Action::ChangeGuess, changeGuess(board, { get<Position>(move) }) },
+    { Action::Reveal, reveal(board, { get<Position>(move) }) }
   }[get<Action>(move)];
 }
 

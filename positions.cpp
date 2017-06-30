@@ -29,5 +29,5 @@ Positions minesweeper::allCombos(Rows rows, Columns columns)
 Positions minesweeper::sample(Positions positions, size_t count)
 {
   shuffle(begin(positions), end(positions), ranlux48{ random_device{}() });
-  return { begin(positions), next(begin(positions), min({ positions.size(), count })) };
+  return { begin(positions), next(begin(positions), min({ size(positions), count })) };
 }

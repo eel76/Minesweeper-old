@@ -4,6 +4,16 @@
 using namespace minesweeper;
 using namespace std;
 
+Cells minesweeper::join(std::initializer_list<Cells> cellLists)
+{
+  auto joined = Cells{};
+
+  for (auto cells : cellLists)
+    joined.insert(end(joined), begin(cells), end(cells));
+
+  return joined;
+}
+
 Positions minesweeper::join(std::vector<Positions> positionLists)
 {
   auto joined = Positions{};

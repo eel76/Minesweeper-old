@@ -6,6 +6,5 @@
 namespace minesweeper
 {
   using Move = std::pair<Action, Position>;
-  Move playerMove();
   Move computerMove(Board board);
 }
