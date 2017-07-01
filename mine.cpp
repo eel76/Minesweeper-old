@@ -1,5 +1,5 @@
 #include "mine.h"
-#include "filter.h"
+#include "cells.h"
 #include "neighbors.h"
 
 using namespace minesweeper;
@@ -7,8 +7,8 @@ using namespace std;
 
 Board minesweeper::layMine(Board board, Position position)
 {
-  for (auto neighbor : neighbors(position) | within(board))
-    board[neighbor] = consider(board[neighbor], Hazard::AdjacentMine);
+  for (auto neighbor : cells(board) | at(neighbors(position)))
+    board[get<Position>(neighbor)] = consider(get<Threat>(neighbor), Hazard::AdjacentMine);
 
   board[position] = consider(board[position], Hazard::Mine);
   return board;

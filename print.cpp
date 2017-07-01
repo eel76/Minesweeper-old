@@ -17,7 +17,7 @@ void minesweeper::print(std::string text)
 
 void minesweeper::print(Board board)
 {
-  for (auto row : groupRows(positions(board)))
+  for (auto row : byRow(toPositions(cells(board))))
     print(join(toStrings(cells(board) | at(get<Positions>(row)))) + "\n"s);
 }
 

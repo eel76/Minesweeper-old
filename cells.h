@@ -7,11 +7,6 @@
 
 namespace minesweeper
 {
-  Positions positions(Board board);
-}
-
-namespace minesweeper
-{
   using Cell = std::pair<Position, Threat>;
 }
 
@@ -33,6 +28,16 @@ namespace minesweeper
   {
     cells.erase(remove_if(begin(cells), end(cells), !test), end(cells));
     return cells;
+  }
+
+  inline Positions toPositions(Cells cells)
+  {
+    auto positions = Positions{};
+
+    for (auto cell : cells)
+      positions.push_back(get<Position>(cell));
+
+    return positions;
   }
 
   inline Cells cells(Board board)

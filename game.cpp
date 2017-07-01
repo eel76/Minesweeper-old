@@ -87,9 +87,9 @@ void printIf(std::string text, bool condition)
 void minesweeper::evaluateGame(Board board)
 {
   auto correctedBoard =
-  changeGuess(board, positions(board) | recognized(board) | deadly(board));
+  changeGuess(board, toPositions(cells(board) | is(Visibility::Recognized) | deadly()));
 
-  print(reveal(correctedBoard, positions(board) | deadly(board)));
+  print(reveal(correctedBoard, toPositions(cells(board) | deadly())));
   printIf("Game lost :-(\n"s, gameLost(board));
   printIf("Game won :-)\n"s, gameWon(board));
 }

@@ -1,8 +1,8 @@
 #pragma once
-#include <map>
 #include "positions.h"
+#include <map>
 
 namespace minesweeper
 {
-  std::map<Row, Positions> groupRows(Positions positions);
+  std::map<Row, Positions> byRow(Positions positions);
 }

@@ -13,5 +13,5 @@ Board minesweeper::makeBoard(Dimensions dimensions, unsigned mineCount)
   for (auto position : allCombos(get<Rows>(dimensions), get<Columns>(dimensions)))
     board[position] = Threat(Visibility::Concealed, Severity::Negligible);
 
-  return layMines(board, sample(positions(board), mineCount));
+  return layMines(board, sample(toPositions(cells(board)), mineCount));
 }

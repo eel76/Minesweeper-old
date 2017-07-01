@@ -1,4 +1,5 @@
 #include "reveal.h"
+#include "cells.h"
 #include "filter.h"
 #include "neighbors.h"
 
@@ -7,21 +8,21 @@ using namespace std;
 
 Board minesweeper::changeGuess(Board board, Positions positions)
 {
-  for (auto position : positions | within(board))
-    board[position] = changeGuess(board[position]);
+  for (auto cell : cells(board) | at(positions))
+    board[get<Position>(cell)] = changeGuess(get<Threat>(cell));
 
   return board;
 }
 
 Board minesweeper::reveal(Board board, Positions positions)
 {
-  positions = positions | within(board) | covered(board);
+  auto concealedCells = cells(board) | is(Visibility::Concealed) | at(positions);
 
-  for (auto position : positions)
-    board[position] = reveal(board[position]);
+  for (auto cell : concealedCells)
+    board[get<Position>(cell)] = reveal(get<Threat>(cell));
 
-  for (auto safePosition : positions | safe(board))
-    board = reveal(board, neighbors(safePosition));
+  for (auto cell : concealedCells | safe())
+    board = reveal(board, neighbors(get<Position>(cell)));
 
   return board;
 }

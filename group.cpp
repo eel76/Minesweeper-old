@@ -3,7 +3,7 @@
 using namespace minesweeper;
 using namespace std;
 
-map<Row, Positions> minesweeper::groupRows(Positions positions)
+map<Row, Positions> minesweeper::byRow(Positions positions)
 {
   auto rows = map<Row, Positions>{};
 
