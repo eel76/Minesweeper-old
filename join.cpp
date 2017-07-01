@@ -14,7 +14,7 @@ Cells minesweeper::join(std::initializer_list<Cells> cellLists)
   return joined;
 }
 
-Positions minesweeper::join(std::vector<Positions> positionLists)
+Positions minesweeper::join(std::initializer_list<Positions> positionLists)
 {
   auto joined = Positions{};
 

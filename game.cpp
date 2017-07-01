@@ -1,6 +1,5 @@
 #include "game.h"
 #include "cells.h"
-#include "filter.h"
 #include "move.h"
 #include "print.h"
 #include "reveal.h"

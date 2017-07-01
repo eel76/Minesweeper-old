@@ -7,6 +7,6 @@
 namespace minesweeper
 {
   Cells join(std::initializer_list<Cells> cellLists);
-  Positions join(std::vector<Positions> positionLists);
+  Positions join(std::initializer_list<Positions> positionLists);
   std::string join(std::vector<std::string> strings);
 }

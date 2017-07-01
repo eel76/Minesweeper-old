@@ -18,12 +18,12 @@ Positions minesweeper::allCombos(Rows rows, Column column)
 
 Positions minesweeper::allCombos(Rows rows, Columns columns)
 {
-  auto positionLists = std::vector<Positions>{};
+  auto positions = Positions{};
 
   for (auto column : columns)
-    positionLists.push_back(allCombos(rows, column));
+    positions = join({ positions, allCombos(rows, column) });
 
-  return join(positionLists);
+  return positions;
 }
 
 Positions minesweeper::sample(Positions positions, size_t count)

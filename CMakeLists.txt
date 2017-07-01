@@ -16,8 +16,6 @@ add_executable (
   columns.cpp
   columns.h
   dimensions.h
-  filter.cpp
-  filter.h
   game.cpp
   game.h
   group.cpp

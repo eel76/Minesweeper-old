@@ -1,6 +1,5 @@
 #include "reveal.h"
 #include "cells.h"
-#include "filter.h"
 #include "neighbors.h"
 
 using namespace minesweeper;
