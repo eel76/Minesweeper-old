@@ -20,14 +20,14 @@ Test threatHidden(Board board)
 {
   return [=](auto cell) {
     auto severity = int(get<Severity>(get<Threat>(cell)));
-    return severity == size(cells(board) | at(neighbors(get<Position>(cell))) |
-                            !is(Visibility::Revealed));
+    return severity ==
+           size(cells(board) | at(neighbors(get<Position>(cell))) | !revealed());
   };
 }
 
 bool wrongMark(Board board, Position position)
 {
-  auto hints = cells(board) | at(neighbors(position)) | is(Visibility::Revealed);
+  auto hints = cells(board) | at(neighbors(position)) | revealed();
 
   // FIXME: noneOf ?
   return !anyOf(hints, threatHidden(board));
@@ -35,19 +35,19 @@ bool wrongMark(Board board, Position position)
 
 Cells wrongMark(Board board)
 {
-  return cells(board) | is(Visibility::Recognized) |
+  return cells(board) | recognized() |
          [=](auto cell) { return wrongMark(board, get<Position>(cell)); };
 }
 
 bool missingMark(Board board, Position position)
 {
-  auto hints = cells(board) | at(neighbors(position)) | is(Visibility::Revealed);
+  auto hints = cells(board) | at(neighbors(position)) | revealed();
   return anyOf(hints, threatHidden(board));
 }
 
 Cells missingMark(Board board)
 {
-  return cells(board) | is(Visibility::Concealed) |
+  return cells(board) | concealed() |
          [=](auto cell) { return missingMark(board, get<Position>(cell)); };
 }
 
@@ -55,15 +55,15 @@ Test threatRecognized(Board board)
 {
   return [=](auto cell) {
     auto severity = int(get<Severity>(get<Threat>(cell)));
-    return severity == size(cells(board) | at(neighbors(get<Position>(cell))) |
-                            is(Visibility::Recognized));
+    return severity ==
+           size(cells(board) | at(neighbors(get<Position>(cell))) | recognized());
   };
 }
 
 Test revealPossible(Board board)
 {
   return [=](auto cell) {
-    return anyOf(cells(board) | at(neighbors(get<Position>(cell))) | is(Visibility::Revealed),
+    return anyOf(cells(board) | at(neighbors(get<Position>(cell))) | revealed(),
                  threatRecognized(board));
   };
 }
@@ -78,7 +78,7 @@ Cells shuffle(Cells cells)
 
 Cells revealPositions(Board board)
 {
-  auto concealedCells = shuffle(cells(board) | is(Visibility::Concealed));
+  auto concealedCells = shuffle(cells(board) | concealed());
   return join({ concealedCells | revealPossible(board), concealedCells });
 }
 

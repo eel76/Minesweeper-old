@@ -15,7 +15,7 @@ Board minesweeper::changeGuess(Board board, Positions positions)
 
 Board minesweeper::reveal(Board board, Positions positions)
 {
-  auto concealedCells = cells(board) | is(Visibility::Concealed) | at(positions);
+  auto concealedCells = cells(board) | concealed() | at(positions);
 
   for (auto cell : concealedCells)
     board[get<Position>(cell)] = reveal(get<Threat>(cell));

@@ -11,7 +11,7 @@ using namespace std;
 bool flagsGood(Board board)
 {
   auto deadlyCells     = cells(board) | deadly();
-  auto recognizedCells = cells(board) | is(Visibility::Recognized);
+  auto recognizedCells = cells(board) | recognized();
 
   // FIXME: use equal()
   return deadlyCells == recognizedCells;
@@ -20,7 +20,7 @@ bool flagsGood(Board board)
 bool flagsBad(Board board)
 {
   auto deadlyCells     = cells(board) | deadly();
-  auto recognizedCells = cells(board) | is(Visibility::Recognized);
+  auto recognizedCells = cells(board) | recognized();
 
   // FIXME: use equal()
   return size(recognizedCells) >= size(deadlyCells) && deadlyCells != recognizedCells;
@@ -86,7 +86,7 @@ void printIf(std::string text, bool condition)
 void minesweeper::evaluateGame(Board board)
 {
   auto correctedBoard =
-  changeGuess(board, toPositions(cells(board) | is(Visibility::Recognized) | deadly()));
+  changeGuess(board, toPositions(cells(board) | recognized() | deadly()));
 
   print(reveal(correctedBoard, toPositions(cells(board) | deadly())));
   printIf("Game lost :-(\n"s, gameLost(board));

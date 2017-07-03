@@ -50,6 +50,21 @@ namespace minesweeper
     [=](auto cell) { return get<Visibility>(get<Threat>(cell)) == visibility; };
   }
 
+  inline Test concealed()
+  {
+    return is(Visibility::Concealed);
+  }
+
+  inline Test recognized()
+  {
+    return is(Visibility::Recognized);
+  }
+
+  inline Test revealed()
+  {
+    return is(Visibility::Revealed);
+  }
+
   inline Test at(Positions positions)
   {
     return [=](auto cell) {
