@@ -5,5 +5,6 @@
 
 namespace minesweeper
 {
+  using Cell  = std::pair<Position, Threat>;
   using Board = std::map<Position, Threat>;
 }

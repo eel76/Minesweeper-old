@@ -1,34 +1,23 @@
 #pragma once
 #include "board.h"
-#include "positions.h"
-#include "test.h"
-#include <algorithm>
+#include <vector>
 
 namespace minesweeper
 {
-  using std::get;
-
   using Cells = std::vector<Cell>;
-  inline Cells operator|(Cells cells, Test test)
-  {
-    cells.erase(remove_if(begin(cells), end(cells), !test), end(cells));
-    return cells;
-  }
+  Cells cells(Board board);
+}
 
-  inline Positions toPositions(Cells cells)
-  {
-    auto positions = Positions{};
+#include "positions.h"
+#include "test.h"
 
-    for (auto cell : cells)
-      positions.push_back(get<Position>(cell));
+namespace minesweeper
+{
+  Cells operator|(Cells cells, Test test);
 
-    return positions;
-  }
+  Positions toPositions(Cells cells);
 
-  inline Cells cells(Board board)
-  {
-    return Cells{ begin(board), end(board) };
-  }
+  using std::get;
 
   inline Test deadly()
   {
