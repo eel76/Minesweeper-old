@@ -9,6 +9,7 @@ add_executable (
   ask.cpp
   ask.h
   board.h
+  cell.h
   cells.cpp
   cells.h
   column.cpp
@@ -53,6 +54,8 @@ add_executable (
   rows.h
   severity.cpp
   severity.h
+  test.cpp
+  test.h
   threat.cpp
   threat.h
   transform.cpp

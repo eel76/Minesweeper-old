@@ -1,23 +1,8 @@
 #pragma once
 #include "board.h"
 #include "positions.h"
-
+#include "test.h"
 #include <algorithm>
-#include <functional>
-
-namespace minesweeper
-{
-  using Cell = std::pair<Position, Threat>;
-}
-
-namespace minesweeper
-{
-  using Test = std::function<bool(Cell)>;
-  inline Test operator!(Test test)
-  {
-    return [=](auto cell) { return !test(cell); };
-  }
-}
 
 namespace minesweeper
 {
