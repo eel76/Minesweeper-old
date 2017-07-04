@@ -1,8 +1,10 @@
 #pragma once
-#include "offset.h"
+#include "column.h"
+#include "row.h"
+#include <utility>
 
 namespace minesweeper
 {
   using Position = std::pair<Row, Column>;
-  Position shift(Position position, Offset offset);
+  int maximumDistance(Position first, Position second);
 }

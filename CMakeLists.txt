@@ -29,11 +29,6 @@ add_executable (
   mine.h
   move.cpp
   move.h
-  neighbors.cpp
-  neighbors.h
-  offset.h
-  offsets.cpp
-  offsets.h
   parse.cpp
   parse.h
   player.cpp

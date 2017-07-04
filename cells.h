@@ -60,4 +60,11 @@ namespace minesweeper
       return find(begin(positions), end(positions), get<Position>(cell)) != end(positions);
     };
   }
+
+  inline Test neighborOf(Position position)
+  {
+    return [=](auto cell) {
+      return maximumDistance(get<Position>(cell), position) == 1;
+    };
+  }
 }

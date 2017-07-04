@@ -1,6 +1,5 @@
 #include "reveal.h"
 #include "cells.h"
-#include "neighbors.h"
 
 using namespace minesweeper;
 using namespace std;
@@ -21,7 +20,7 @@ Board minesweeper::reveal(Board board, Positions positions)
     board[get<Position>(cell)] = reveal(get<Threat>(cell));
 
   for (auto cell : concealedCells | safe())
-    board = reveal(board, neighbors(get<Position>(cell)));
+    board = reveal(board, toPositions(cells(board) | neighborOf(get<Position>(cell))));
 
   return board;
 }

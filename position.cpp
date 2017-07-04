@@ -1,10 +1,12 @@
 #include "position.h"
+#include <algorithm>
 
-using namespace minesweeper;
-using namespace std;
-
-Position minesweeper::shift(Position position, Offset offset)
+int minesweeper::maximumDistance(Position first, Position second)
 {
-  return Position{ shift(get<Row>(position), get<RowOffset>(offset)),
-                   shift(get<Column>(position), get<ColumnOffset>(offset)) };
+  auto rowDistance =
+  std::abs(index(std::get<Row>(first)) - index(std::get<Row>(second)));
+  auto columnDistance =
+  std::abs(index(std::get<Column>(first)) - index(std::get<Column>(second)));
+
+  return std::max(rowDistance, columnDistance);
 }

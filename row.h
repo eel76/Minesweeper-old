@@ -1,8 +1,9 @@
 #pragma once
+#include <string>
 
 namespace minesweeper
 {
   enum struct Row { Invalid = -1 };
-  enum struct RowOffset { Previous = -1, Current = 0, Next = +1 };
-  Row shift(Row row, RowOffset offset);
+  int         index(Row row);
+  std::string to_string(Row row);
 }

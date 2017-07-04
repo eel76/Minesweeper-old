@@ -1,7 +1,6 @@
 #include "move.h"
 #include "cells.h"
 #include "join.h"
-#include "neighbors.h"
 #include "parse.h"
 #include "positions.h"
 #include <algorithm>
@@ -20,14 +19,13 @@ Test threatHidden(Board board)
 {
   return [=](auto cell) {
     auto severity = int(get<Severity>(get<Threat>(cell)));
-    return severity ==
-           size(cells(board) | at(neighbors(get<Position>(cell))) | !revealed());
+    return severity == size(cells(board) | neighborOf(get<Position>(cell)) | !revealed());
   };
 }
 
 bool wrongMark(Board board, Position position)
 {
-  auto hints = cells(board) | at(neighbors(position)) | revealed();
+  auto hints = cells(board) | neighborOf(position) | revealed();
 
   // FIXME: noneOf ?
   return !anyOf(hints, threatHidden(board));
@@ -41,7 +39,7 @@ Cells wrongMark(Board board)
 
 bool missingMark(Board board, Position position)
 {
-  auto hints = cells(board) | at(neighbors(position)) | revealed();
+  auto hints = cells(board) | neighborOf(position) | revealed();
   return anyOf(hints, threatHidden(board));
 }
 
@@ -56,14 +54,14 @@ Test threatRecognized(Board board)
   return [=](auto cell) {
     auto severity = int(get<Severity>(get<Threat>(cell)));
     return severity ==
-           size(cells(board) | at(neighbors(get<Position>(cell))) | recognized());
+           size(cells(board) | neighborOf(get<Position>(cell)) | recognized());
   };
 }
 
 Test revealPossible(Board board)
 {
   return [=](auto cell) {
-    return anyOf(cells(board) | at(neighbors(get<Position>(cell))) | revealed(),
+    return anyOf(cells(board) | neighborOf(get<Position>(cell)) | revealed(),
                  threatRecognized(board));
   };
 }

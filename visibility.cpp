@@ -4,16 +4,29 @@
 using namespace minesweeper;
 using namespace std;
 
+using Action = map<Visibility, Visibility>;
+
+Visibility operator|(Visibility visibility, Action action)
+{
+  return action[visibility];
+}
+
+Action reveal()
+{
+  return { { Concealed, Revealed }, { Recognized, Concealed }, { Revealed, Revealed } };
+}
+
+Action changeGuess()
+{
+  return { { Concealed, Recognized }, { Recognized, Concealed }, { Revealed, Revealed } };
+}
+
 Visibility minesweeper::reveal(Visibility visibility)
 {
-  return map<Visibility, Visibility>{ { Visibility::Concealed, Visibility::Revealed },
-                                      { Visibility::Recognized, Visibility::Concealed },
-                                      { Visibility::Revealed, Visibility::Revealed } }[visibility];
+  return visibility | ::reveal();
 }
 
 Visibility minesweeper::changeGuess(Visibility visibility)
 {
-  return map<Visibility, Visibility>{ { Visibility::Concealed, Visibility::Recognized },
-                                      { Visibility::Recognized, Visibility::Concealed },
-                                      { Visibility::Revealed, Visibility::Revealed } }[visibility];
+  return visibility | ::changeGuess();
 }
