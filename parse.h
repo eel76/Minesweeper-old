@@ -5,5 +5,5 @@
 namespace minesweeper
 {
   Position parsePosition(std::string text);
-  Move parseMove(std::string text);
+  Move     parseMove(std::string text);
 }

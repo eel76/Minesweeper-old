@@ -1,10 +1,10 @@
 #pragma once
-#include "action.h"
 #include "board.h"
-#include "position.h"
+#include <functional>
 
 namespace minesweeper
 {
-  using Move = std::pair<Action, Position>;
-  Move computerMove(Board board);
+  using Move = std::function<Board(Board)>;
+  Move reveal(Position position);
+  Move toggle(Position position);
 }

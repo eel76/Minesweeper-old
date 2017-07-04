@@ -28,13 +28,14 @@ Position minesweeper::parsePosition(std::string text)
   return positions[match.empty()]();
 }
 
+using Parse = std::map<std::string, Move>;
+
 Move minesweeper::parseMove(std::string text)
 {
   auto match = smatch{};
-  regex_match(text, match, regex{ "^ *(m?|mark)(.+)$" });
+  regex_match(text, match, regex{ "^ *(m?)(.+)$" });
 
-  auto action = map<string, Action>{ { "", Action::Reveal },
-                                     { "m", Action::ChangeGuess },
-                                     { "mark", Action::ChangeGuess } };
-  return Move{ action[match[1]], parsePosition(match[2]) };
+  auto parse = Parse{ { ""s, reveal(parsePosition(match[2])) },
+                      { "m"s, toggle(parsePosition(match[2])) } };
+  return parse[match[1]];
 }

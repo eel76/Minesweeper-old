@@ -1,7 +1,7 @@
 #include "player.h"
 #include "ask.h"
+#include "computer.h"
 #include "parse.h"
-#include "print.h"
 
 using namespace minesweeper;
 using namespace std;

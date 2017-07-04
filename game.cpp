@@ -47,35 +47,13 @@ bool minesweeper::gameWon(Board board)
          });
 }
 
-void print(Position position)
-{
-  print(to_string(int(get<Row>(position))));
-  print(", "s);
-  print(to_string(int(get<Column>(position))));
-}
-
-void print(Move move)
-{
-  auto text = map<Action, string>{ { Action::Reveal, "reveal"s },
-                                   { Action::ChangeGuess, "toggle mark"s } };
-
-  print("Your move: "s + text[get<Action>(move)] + " "s);
-  print(get<Position>(move));
-  print("\n"s);
-}
-
 Board minesweeper::playRound(Board board, Player player)
 {
   print(board);
   printCountdown(board);
 
   auto move = player(board);
-  ::print(move);
-
-  return map<Action, Board>{
-    { Action::ChangeGuess, changeGuess(board, { get<Position>(move) }) },
-    { Action::Reveal, reveal(board, { get<Position>(move) }) }
-  }[get<Action>(move)];
+  return move(board);
 }
 
 void printIf(std::string text, bool condition)
