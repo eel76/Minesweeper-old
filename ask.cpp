@@ -2,15 +2,12 @@
 #include "print.h"
 #include <iostream>
 
-using namespace minesweeper;
-using namespace std;
-
-string minesweeper::ask(string question)
+std::string minesweeper::ask(std::string question)
 {
   print(question);
 
-  auto answer = string{};
-  getline(cin, answer);
+  auto answer = std::string{};
+  getline(std::cin, answer);
 
   return answer;
 }

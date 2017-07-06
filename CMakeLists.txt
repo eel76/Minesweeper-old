@@ -5,7 +5,6 @@ set (CMAKE_CXX_STANDARD 14)
 
 add_executable (
   ${PROJECT_NAME}
-  action.h
   ask.cpp
   ask.h
   board.h
