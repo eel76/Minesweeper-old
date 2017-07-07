@@ -1,5 +1,6 @@
 #include "preparation.h"
 #include "cells.h"
+#include "combos.h"
 #include "mine.h"
 
 using namespace minesweeper;

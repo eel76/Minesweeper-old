@@ -17,6 +17,8 @@ add_executable (
   column.h
   columns.cpp
   columns.h
+  combos.cpp
+  combos.h
   computer.cpp
   computer.h
   dimensions.h
