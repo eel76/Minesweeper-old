@@ -13,8 +13,11 @@ void play(Player player, Board board)
   evaluateGame(board);
 }
 
+#include <iostream>
+
 int main()
 {
   play(choosePlayer(), makeBoard(Dimensions{ 40_columns, 20_rows }, 100));
+  std::cin.get();
   return 0;
 }

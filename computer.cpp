@@ -18,8 +18,8 @@ bool anyOf(Cells cells, Test test)
 Test threatHidden(Board board)
 {
   return [=](auto cell) {
-    auto severity = int(get<Severity>(get<Threat>(cell)));
-    return severity == size(cells(board) | neighborOf(get<Position>(cell)) | !revealed());
+    auto neighbors = cells(board) | neighborOf(get<Position>(cell));
+    return size(neighbors | deadly()) == size(neighbors | !revealed());
   };
 }
 
@@ -52,9 +52,8 @@ Cells missingMark(Board board)
 Test threatRecognized(Board board)
 {
   return [=](auto cell) {
-    auto severity = int(get<Severity>(get<Threat>(cell)));
-    return severity ==
-           size(cells(board) | neighborOf(get<Position>(cell)) | recognized());
+    auto neighbors = cells(board) | neighborOf(get<Position>(cell));
+    return size(neighbors | deadly()) == size(neighbors | recognized());
   };
 }
 

@@ -4,6 +4,8 @@
 
 namespace minesweeper
 {
+  // using Action = std::function<Visibility(Visibility)>;
+
   using Action = std::map<Visibility, Visibility>;
   Action reveal();
   Action changeGuess();
