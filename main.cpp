@@ -15,6 +15,6 @@ void play(Player player, Board board)
 
 int main()
 {
-  play(choosePlayer(), makeBoard(Dimensions{ columns(40), rows(20) }, 100));
+  play(choosePlayer(), makeBoard(Dimensions{ 40_columns, 20_rows }, 100));
   return 0;
 }

@@ -1,32 +1,14 @@
 #include "visibility.h"
-#include <map>
+#include "action.h"
 
-using namespace minesweeper;
-using namespace std;
-
-using Action = map<Visibility, Visibility>;
-
-Visibility operator|(Visibility visibility, Action action)
+minesweeper::Visibility minesweeper::reveal(Visibility visibility)
 {
+  auto action = reveal();
   return action[visibility];
 }
 
-Action reveal()
+minesweeper::Visibility minesweeper::changeGuess(Visibility visibility)
 {
-  return { { Concealed, Revealed }, { Recognized, Concealed }, { Revealed, Revealed } };
-}
-
-Action changeGuess()
-{
-  return { { Concealed, Recognized }, { Recognized, Concealed }, { Revealed, Revealed } };
-}
-
-Visibility minesweeper::reveal(Visibility visibility)
-{
-  return visibility | ::reveal();
-}
-
-Visibility minesweeper::changeGuess(Visibility visibility)
-{
-  return visibility | ::changeGuess();
+  auto action = changeGuess();
+  return action[visibility];
 }

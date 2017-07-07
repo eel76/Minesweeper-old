@@ -1,14 +1,11 @@
 #include "columns.h"
 #include <algorithm>
 
-using namespace minesweeper;
-using namespace std;
-
-Columns minesweeper::columns(unsigned count)
+minesweeper::Columns minesweeper::operator"" _columns(unsigned long long count)
 {
   auto columns = Columns(count);
   generate(begin(columns), end(columns),
-           [=]() mutable { return Column(--count); });
+           [=]() mutable { return static_cast<Column>(--count); });
 
   return columns;
 }

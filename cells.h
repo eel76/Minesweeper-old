@@ -54,7 +54,7 @@ namespace minesweeper
     return is(Visibility::Revealed);
   }
 
-  inline Test at(Positions positions)
+  inline Test oneOf(Positions positions)
   {
     return [=](auto cell) {
       return find(begin(positions), end(positions), get<Position>(cell)) != end(positions);

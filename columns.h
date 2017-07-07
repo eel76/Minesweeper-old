@@ -1,9 +1,9 @@
 #pragma once
-#include <vector>
 #include "column.h"
+#include <vector>
 
 namespace minesweeper
 {
   using Columns = std::vector<Column>;
-  Columns columns(unsigned count);
+  Columns operator"" _columns(unsigned long long count);
 }
