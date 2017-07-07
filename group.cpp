@@ -1,14 +1,11 @@
 #include "group.h"
 
-using namespace minesweeper;
-using namespace std;
-
-map<Row, Positions> minesweeper::byRow(Positions positions)
+std::map<minesweeper::Row, minesweeper::Positions> minesweeper::byRow(Positions positions)
 {
-  auto rows = map<Row, Positions>{};
+  auto rows = std::map<Row, Positions>{};
 
   for (auto position : positions)
-    rows[get<Row>(position)].push_back(position);
+    rows[std::get<Row>(position)].push_back(position);
 
   return rows;
 }

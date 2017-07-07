@@ -6,6 +6,7 @@ namespace minesweeper
 {
   using Cells = std::vector<Cell>;
   Cells cells(Board board);
+  Cells shuffle(Cells cells);
 }
 
 #include "positions.h"

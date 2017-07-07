@@ -1,16 +1,14 @@
 #include "cells.h"
 #include <algorithm>
+#include <random>
 
-using namespace minesweeper;
-using namespace std;
-
-Cells minesweeper::operator|(Cells cells, Test test)
+minesweeper::Cells minesweeper::operator|(Cells cells, Test test)
 {
   cells.erase(remove_if(begin(cells), end(cells), !test), end(cells));
   return cells;
 }
 
-Positions minesweeper::toPositions(Cells cells)
+minesweeper::Positions minesweeper::toPositions(Cells cells)
 {
   auto positions = Positions{};
 
@@ -20,7 +18,13 @@ Positions minesweeper::toPositions(Cells cells)
   return positions;
 }
 
-Cells minesweeper::cells(Board board)
+minesweeper::Cells minesweeper::cells(Board board)
 {
   return Cells{ begin(board), end(board) };
+}
+
+minesweeper::Cells minesweeper::shuffle(Cells cells)
+{
+  shuffle(begin(cells), end(cells), std::ranlux48{ std::random_device{}() });
+  return cells;
 }

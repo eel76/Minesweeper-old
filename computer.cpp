@@ -66,14 +66,6 @@ Test revealPossible(Board board)
   };
 }
 
-#include <random>
-
-Cells shuffle(Cells cells)
-{
-  shuffle(begin(cells), end(cells), ranlux48{ random_device{}() });
-  return cells;
-}
-
 Cells revealPositions(Board board)
 {
   auto concealedCells = shuffle(cells(board) | concealed());
