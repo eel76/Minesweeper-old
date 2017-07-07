@@ -6,5 +6,5 @@ namespace minesweeper
 {
   using Positions = std::vector<Position>;
   Positions shuffle(Positions positions);
-  Positions sample(Positions positions, size_t count);
+  Positions first(size_t count, Positions positions);
 }

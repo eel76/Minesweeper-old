@@ -3,10 +3,8 @@
 
 int minesweeper::maximumDistance(Position first, Position second)
 {
-  auto rowDistance =
-  std::abs(index(std::get<Row>(first)) - index(std::get<Row>(second)));
-  auto columnDistance =
-  std::abs(index(std::get<Column>(first)) - index(std::get<Column>(second)));
+  auto rowDistance = distance(std::get<Row>(first), std::get<Row>(second));
+  auto columnDistance = distance(std::get<Column>(first), std::get<Column>(second));
 
   return std::max(rowDistance, columnDistance);
 }

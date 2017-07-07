@@ -8,8 +8,7 @@ minesweeper::Positions minesweeper::shuffle(Positions positions)
   return positions;
 }
 
-minesweeper::Positions minesweeper::sample(Positions positions, size_t count)
+minesweeper::Positions minesweeper::first(size_t count, Positions positions)
 {
-  positions = shuffle(positions);
   return { begin(positions), next(begin(positions), std::min({ size(positions), count })) };
 }
