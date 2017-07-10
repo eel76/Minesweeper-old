@@ -4,5 +4,5 @@
 
 namespace minesweeper
 {
-  std::vector<std::string> toStrings(Cells cells);
+  std::vector<std::string> toString(Cells cells);
 }

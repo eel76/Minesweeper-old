@@ -1,4 +1,5 @@
 #include "threat.h"
+#include <functional>
 #include <map>
 
 using namespace minesweeper;
