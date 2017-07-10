@@ -1,10 +1,11 @@
 #pragma once
-#include <string>
 #include "hazard.h"
+#include <string>
+
 
 namespace minesweeper
 {
   enum struct Severity { Negligible = Hazard::None, Deadly = Hazard::Mine };
-  std::string toString(Severity severity);
+  std::string to_string(Severity severity);
   Severity consider(Severity severity, Hazard hazard);
 }

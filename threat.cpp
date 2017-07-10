@@ -4,9 +4,9 @@
 using namespace minesweeper;
 using namespace std;
 
-std::string minesweeper::toString(Threat threat)
+std::string minesweeper::to_string(Threat threat)
 {
-  auto severity = toString(get<Severity>(threat));
+  auto severity = to_string(get<Severity>(threat));
   return map<Visibility, string>{ { Visibility::Concealed, "#"s },
                                   { Visibility::Recognized, "*"s },
                                   { Visibility::Revealed, severity } }[get<Visibility>(threat)];

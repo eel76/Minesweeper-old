@@ -3,7 +3,7 @@
 using namespace minesweeper;
 using namespace std;
 
-string minesweeper::toString(Severity severity)
+string minesweeper::to_string(Severity severity)
 {
   return { ".12345678XXXXXXXXX"[int(severity)] };
 }
