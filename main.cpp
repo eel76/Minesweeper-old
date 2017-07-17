@@ -17,7 +17,7 @@ void play(Player player, Board board)
 
 int main()
 {
-  play(choosePlayer(), makeBoard(Dimensions{ 10_columns, 10_rows }, 10));
+  play(choosePlayer(), makeBoard(Dimensions{ 9_columns, 9_rows }, 10));
   std::cin.get();
   return 0;
 }

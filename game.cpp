@@ -8,24 +8,6 @@
 using namespace minesweeper;
 using namespace std;
 
-bool flagsGood(Board board)
-{
-  auto deadlyCells     = cells(board) | deadly();
-  auto recognizedCells = cells(board) | recognized();
-
-  // FIXME: use equal()
-  return deadlyCells == recognizedCells;
-}
-
-bool flagsBad(Board board)
-{
-  auto deadlyCells     = cells(board) | deadly();
-  auto recognizedCells = cells(board) | recognized();
-
-  // FIXME: use equal()
-  return size(recognizedCells) >= size(deadlyCells) && deadlyCells != recognizedCells;
-}
-
 // enum struct GameState { Undecided, PlayerWon, PlayerLost };
 
 bool minesweeper::gameUndecided(Board board)
@@ -35,14 +17,14 @@ bool minesweeper::gameUndecided(Board board)
 
 bool minesweeper::gameLost(Board board)
 {
-  return flagsBad(board) || any_of(begin(board), end(board), [](auto cell) {
+  return any_of(begin(board), end(board), [](auto cell) {
            return isRevealed(get<Threat>(cell)) & isDeadly(get<Threat>(cell));
          });
 }
 
 bool minesweeper::gameWon(Board board)
 {
-  return flagsGood(board) || all_of(begin(board), end(board), [](auto cell) {
+  return all_of(begin(board), end(board), [](auto cell) {
            return isRevealed(get<Threat>(cell)) ^ isDeadly(get<Threat>(cell));
          });
 }
@@ -63,10 +45,7 @@ void printIf(std::string text, bool condition)
 
 void minesweeper::evaluateGame(Board board)
 {
-  auto correctedBoard =
-  changeGuess(board, toPositions(cells(board) | recognized() | deadly()));
-
-  print(reveal(correctedBoard, toPositions(cells(board) | deadly())));
+  print(reveal(board, toPositions(cells(board) | deadly())));
   printIf("Game lost :-(\n"s, gameLost(board));
   printIf("Game won :-)\n"s, gameWon(board));
 }

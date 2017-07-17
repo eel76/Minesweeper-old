@@ -9,7 +9,7 @@ std::string minesweeper::to_string(Threat threat)
 {
   auto severity = to_string(get<Severity>(threat));
   return map<Visibility, string>{ { Visibility::Concealed, "#"s },
-                                  { Visibility::Recognized, "*"s },
+                                  { Visibility::Recognized, "!"s },
                                   { Visibility::Revealed, severity } }[get<Visibility>(threat)];
 }
 
