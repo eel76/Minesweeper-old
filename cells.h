@@ -20,18 +20,15 @@ namespace minesweeper
 
   using std::get;
 
-  inline Test deadly()
+  inline Test isDeadly()
   {
-    return [](auto cell) {
-      return get<Severity>(get<Threat>(cell)) >= Severity::Deadly;
-    };
+    return [](auto cell) { return isDeadly(get<Severity>(get<Threat>(cell))); };
   }
 
-  inline Test safe()
+  inline Test isNegligible()
   {
-    return [](auto cell) {
-      return get<Severity>(get<Threat>(cell)) == Severity::Negligible;
-    };
+    return
+    [](auto cell) { return isNegligible(get<Severity>(get<Threat>(cell))); };
   }
 
   inline Test is(Visibility visibility)

@@ -19,7 +19,7 @@ Board minesweeper::reveal(Board board, Positions positions)
   for (auto cell : concealedCells)
     board[get<Position>(cell)] = reveal(get<Threat>(cell));
 
-  for (auto cell : concealedCells | safe())
+  for (auto cell : concealedCells | isNegligible())
     board = reveal(board, toPositions(cells(board) | neighborOf(get<Position>(cell))));
 
   return board;

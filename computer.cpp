@@ -19,7 +19,7 @@ Test threatHidden(Board board)
 {
   return [=](auto cell) {
     auto neighbors = cells(board) | neighborOf(get<Position>(cell));
-    return size(neighbors | deadly()) == size(neighbors | !revealed());
+    return size(neighbors | isDeadly()) == size(neighbors | !revealed());
   };
 }
 
@@ -53,7 +53,7 @@ Test threatRecognized(Board board)
 {
   return [=](auto cell) {
     auto neighbors = cells(board) | neighborOf(get<Position>(cell));
-    return size(neighbors | deadly()) == size(neighbors | recognized());
+    return size(neighbors | isDeadly()) == size(neighbors | recognized());
   };
 }
 

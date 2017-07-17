@@ -18,15 +18,15 @@ bool minesweeper::gameUndecided(Board board)
 bool minesweeper::gameLost(Board board)
 {
   return any_of(begin(board), end(board), [](auto cell) {
-           return isRevealed(get<Threat>(cell)) & isDeadly(get<Threat>(cell));
-         });
+    return isRevealed(get<Threat>(cell)) & isDeadly(get<Threat>(cell));
+  });
 }
 
 bool minesweeper::gameWon(Board board)
 {
   return all_of(begin(board), end(board), [](auto cell) {
-           return isRevealed(get<Threat>(cell)) ^ isDeadly(get<Threat>(cell));
-         });
+    return isRevealed(get<Threat>(cell)) ^ isDeadly(get<Threat>(cell));
+  });
 }
 
 Board minesweeper::playRound(Board board, Player player)
@@ -45,7 +45,7 @@ void printIf(std::string text, bool condition)
 
 void minesweeper::evaluateGame(Board board)
 {
-  print(reveal(board, toPositions(cells(board) | deadly())));
+  print(reveal(board, toPositions(cells(board) | isDeadly())));
   printIf("Game lost :-(\n"s, gameLost(board));
   printIf("Game won :-)\n"s, gameWon(board));
 }
