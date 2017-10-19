@@ -7,10 +7,10 @@ using namespace std;
 
 string minesweeper::to_string(Severity severity)
 {
-  return { ".12345678XXXXXXXXX"[severity.level] };
+  return { ".12345678XXXXXXXXX"[severity.m_level] };
 }
 
 Severity minesweeper::consider(Severity severity, Hazard hazard)
 {
-  return { severity.level + int(hazard) };
+  return { severity.m_level + int(hazard) };
 }
