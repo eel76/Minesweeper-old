@@ -9,7 +9,7 @@
 using namespace minesweeper;
 using namespace std;
 
-void minesweeper::print(std::string text)
+void minesweeper::print(std::string const& text)
 {
   cout << text;
 }

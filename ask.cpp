@@ -2,7 +2,7 @@
 #include "print.h"
 #include <iostream>
 
-std::string minesweeper::ask(std::string question)
+std::string minesweeper::ask(std::string const& question)
 {
   print(question);
 

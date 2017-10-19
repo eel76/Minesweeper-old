@@ -38,7 +38,7 @@ Board minesweeper::playRound(Board board, Player player)
   return move(board);
 }
 
-void printIf(std::string text, bool condition)
+void printIf(std::string const& text, bool condition)
 {
   print(map<bool, string>{ { false, ""s }, { true, text } }[condition]);
 }
