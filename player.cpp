@@ -2,6 +2,7 @@
 #include "ask.h"
 #include "computer.h"
 #include "parse.h"
+#include "game.h"
 
 using namespace minesweeper;
 using namespace std;
@@ -26,4 +27,12 @@ Player minesweeper::choosePlayer()
     player = players[ask("Player: (h)uman or (c)omputer? "s)];
 
   return player;
+}
+
+void minesweeper::play(Player player, Board board)
+{
+  while (gameUndecided(board))
+    board = playRound(board, player);
+
+  evaluateGame(board);
 }

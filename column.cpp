@@ -2,7 +2,7 @@
 
 int minesweeper::index(Column column)
 {
-  return int(column);
+  return static_cast<int>(column);
 }
 
 int minesweeper::distance(Column first, Column second)

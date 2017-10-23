@@ -21,7 +21,6 @@ add_executable (
   combos.h
   computer.cpp
   computer.h
-  dimensions.h
   game.cpp
   game.h
   group.cpp
