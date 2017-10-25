@@ -17,8 +17,8 @@ BraceWrapping:
     AfterClass: true
     AfterControlStatement: false
     AfterEnum : false
-    AfterFunction : true
-    AfterNamespace : true
+    AfterFunction : false
+    AfterNamespace : false
     AfterStruct : true
     AfterUnion : true
     BeforeCatch : false
@@ -30,11 +30,13 @@ BreakBeforeTernaryOperators: false
 BreakConstructorInitializersBeforeComma: false
 ColumnLimit: 80
 CommentPragmas: ''
+CompactNamespaces: true
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
 ConstructorInitializerIndentWidth: 0
 ContinuationIndentWidth: 0
 Cpp11BracedListStyle: false
 DerivePointerBinding: false
+FixNamespaceComments: false
 IncludeCategories:
   - Regex:           '^["]'
     Priority:        2

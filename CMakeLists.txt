@@ -21,8 +21,13 @@ add_executable (
   combos.h
   computer.cpp
   computer.h
+  concealed.h
+  deadly.h
+  flagged.h
   game.cpp
   game.h
+  getline.cpp
+  getline.h
   group.cpp
   group.h
   hazard.h
@@ -33,6 +38,10 @@ add_executable (
   mine.h
   move.cpp
   move.h
+  negligible.h
+  neighbor.h
+  oneof.h
+  only.h
   parse.cpp
   parse.h
   player.cpp
@@ -47,12 +56,14 @@ add_executable (
   print.h
   reveal.cpp
   reveal.h
+  revealed.h
   row.cpp
   row.h
   rows.cpp
   rows.h
   severity.cpp
   severity.h
+  take.h
   test.cpp
   test.h
   threat.cpp

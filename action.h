@@ -2,11 +2,8 @@
 #include "visibility.h"
 #include <map>
 
-namespace minesweeper
-{
-  // using Action = std::function<Visibility(Visibility)>;
-
-  using Action = std::map<Visibility, Visibility>;
+namespace minesweeper {
+  using Action = std::map<State, State>;
   Action reveal();
-  Action changeGuess();
-}
+  Action changeMark();
+} // namespace minesweeper

@@ -5,40 +5,33 @@
 using namespace minesweeper;
 using namespace std;
 
-std::string minesweeper::to_string(Threat threat)
-{
+std::string minesweeper::to_string(Threat threat) {
   auto severity = to_string(get<Severity>(threat));
-  return map<Visibility, string>{ { Visibility::Concealed, "#"s },
-                                  { Visibility::Recognized, "!"s },
-                                  { Visibility::Revealed, severity } }[get<Visibility>(threat)];
+  return map<State, string>{ { State::Concealed, "#"s },
+                             { State::Marked, "%"s },
+                             { State::Revealed, severity } }[get<State>(threat)];
 }
 
-Threat minesweeper::changeGuess(Threat threat)
-{
-  return Threat{ changeGuess(get<Visibility>(threat)), get<Severity>(threat) };
+Threat minesweeper::changeMark(Threat threat) {
+  return Threat{ changeMark(get<State>(threat)), get<Severity>(threat) };
 }
 
-Threat minesweeper::reveal(Threat threat)
-{
-  return Threat{ reveal(get<Visibility>(threat)), get<Severity>(threat) };
+Threat minesweeper::reveal(Threat threat) {
+  return Threat{ reveal(get<State>(threat)), get<Severity>(threat) };
 }
 
-Threat minesweeper::consider(Threat threat, Hazard hazard)
-{
-  return Threat{ get<Visibility>(threat), consider(get<Severity>(threat), hazard) };
+Threat minesweeper::consider(Threat threat, Hazard hazard) {
+  return Threat{ get<State>(threat), consider(get<Severity>(threat), hazard) };
 }
 
-bool minesweeper::isRevealed(Threat threat)
-{
-  return get<Visibility>(threat) == Visibility::Revealed;
+bool minesweeper::isRevealed(Threat threat) {
+  return get<State>(threat) == State::Revealed;
 }
 
-bool minesweeper::isRecognized(Threat threat)
-{
-  return get<Visibility>(threat) == Visibility::Recognized;
+bool minesweeper::isRecognized(Threat threat) {
+  return get<State>(threat) == State::Marked;
 }
 
-bool minesweeper::isDeadly(Threat threat)
-{
+bool minesweeper::isDeadly(Threat threat) {
   return isDeadly(get<Severity>(threat));
 }

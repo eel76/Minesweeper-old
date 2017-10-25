@@ -1,14 +1,12 @@
 #include "visibility.h"
 #include "action.h"
 
-minesweeper::Visibility minesweeper::reveal(Visibility visibility)
-{
+minesweeper::State minesweeper::reveal(State visibility) {
   auto action = reveal();
   return action[visibility];
 }
 
-minesweeper::Visibility minesweeper::changeGuess(Visibility visibility)
-{
-  auto action = changeGuess();
+minesweeper::State minesweeper::changeMark(State visibility) {
+  auto action = changeMark();
   return action[visibility];
 }

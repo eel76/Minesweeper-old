@@ -1,11 +1,11 @@
 #include "mine.h"
 #include "cells.h"
+#include "neighbor.h"
 
 using namespace minesweeper;
 using namespace std;
 
-Board minesweeper::layMine(Board board, Position position)
-{
+Board minesweeper::layMine(Board board, Position position) {
   for (auto neighbor : cells(board) | neighborOf(position))
     board[get<Position>(neighbor)] = consider(get<Threat>(neighbor), Hazard::AdjacentMine);
 
@@ -13,8 +13,7 @@ Board minesweeper::layMine(Board board, Position position)
   return board;
 }
 
-Board minesweeper::layMines(Board board, Positions positions)
-{
+Board minesweeper::layMines(Board board, Positions positions) {
   for (auto position : positions)
     board = layMine(board, position);
 

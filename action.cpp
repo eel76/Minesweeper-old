@@ -1,15 +1,13 @@
 #include "action.h"
 
-minesweeper::Action minesweeper::reveal()
-{
-  return { { Visibility::Concealed, Visibility::Revealed },
-           { Visibility::Recognized, Visibility::Concealed },
-           { Visibility::Revealed, Visibility::Revealed } };
+minesweeper::Action minesweeper::reveal() {
+  return { { State::Concealed, State::Revealed },
+           { State::Marked, State::Concealed },
+           { State::Revealed, State::Revealed } };
 }
 
-minesweeper::Action minesweeper::changeGuess()
-{
-  return { { Visibility::Concealed, Visibility::Recognized },
-           { Visibility::Recognized, Visibility::Concealed },
-           { Visibility::Revealed, Visibility::Revealed } };
+minesweeper::Action minesweeper::changeMark() {
+  return { { State::Concealed, State::Marked },
+           { State::Marked, State::Concealed },
+           { State::Revealed, State::Revealed } };
 }

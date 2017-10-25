@@ -9,8 +9,7 @@ using namespace std;
 template <class Value>
 using Generator = std::function<Value()>;
 
-Position minesweeper::parsePosition(std::string text)
-{
+Position minesweeper::parsePosition(std::string text) {
   auto match = smatch{};
   regex_match(text, match, regex{ "^ *([1-9]*[0-9]) *[,; ] *([1-9]*[0-9]) *$" });
 
@@ -30,12 +29,11 @@ Position minesweeper::parsePosition(std::string text)
 
 using Parse = std::map<std::string, Move>;
 
-Move minesweeper::parseMove(std::string text)
-{
+Move minesweeper::parseMove(std::string text) {
   auto match = smatch{};
   regex_match(text, match, regex{ "^ *(m?)(.+)$" });
 
   auto parse = Parse{ { ""s, reveal(parsePosition(match[2])) },
-                      { "m"s, toggle(parsePosition(match[2])) } };
+                      { "m"s, toggleFlag(parsePosition(match[2])) } };
   return parse[match[1]];
 }

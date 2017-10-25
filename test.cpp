@@ -1,9 +1,11 @@
 #include "test.h"
+#include <algorithm>
 
-using namespace minesweeper;
-using namespace std;
-
-Test minesweeper::operator!(Test test)
-{
+minesweeper::Filter minesweeper::operator!(Filter test) {
   return [=](auto cell) { return !test(cell); };
+}
+
+minesweeper::Cells minesweeper::operator|(Cells cells, Filter test) {
+  cells.erase(std::remove_if(begin(cells), end(cells), !test), end(cells));
+  return cells;
 }

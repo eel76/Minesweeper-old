@@ -1,8 +1,7 @@
 #pragma once
 
-namespace minesweeper
-{
-  enum struct Visibility { Concealed, Recognized, Revealed };
-  Visibility reveal(Visibility visibility);
-  Visibility changeGuess(Visibility visibility);
+namespace minesweeper {
+  enum struct State { Concealed, Marked, Revealed };
+  State reveal(State visibility);
+  State changeMark(State visibility);
 }

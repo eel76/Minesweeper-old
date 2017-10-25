@@ -1,9 +1,9 @@
 #pragma once
-#include "cell.h"
+#include "cells.h"
 #include <functional>
 
-namespace minesweeper
-{
-  using Test = std::function<bool(Cell)>;
-  Test operator!(Test test);
+namespace minesweeper {
+  using Filter = std::function<bool(Cell)>;
+  Filter operator!(Filter test);
+  Cells  operator|(Cells cells, Filter filter);
 }

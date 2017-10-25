@@ -3,8 +3,6 @@
 #include "threat.h"
 #include <map>
 
-namespace minesweeper
-{
-  using Cell  = std::pair<Position, Threat>;
+namespace minesweeper {
   using Board = std::map<Position, Threat>;
 }

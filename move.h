@@ -2,9 +2,8 @@
 #include "board.h"
 #include <functional>
 
-namespace minesweeper
-{
+namespace minesweeper {
   using Move = std::function<Board(Board)>;
   Move reveal(Position position);
-  Move toggle(Position position);
+  Move toggleFlag(Position position);
 }

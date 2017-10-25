@@ -1,14 +1,29 @@
 #include "preparation.h"
 #include "cells.h"
 #include "combos.h"
+#include "concealed.h"
+#include "deadly.h"
 #include "mine.h"
+#include "take.h"
 
-minesweeper::Board minesweeper::makeBoard()
-{
-  auto board = Board{};
+using namespace minesweeper;
 
-  for (auto position : allCombos(9_rows, 9_columns))
-    board[position] = Threat{};
+namespace {
+  Board emptyBoard(Rows rows, Columns columns) {
+    auto board = Board{};
 
-  return layMines(board, first(10, toPositions(shuffle(cells(board)))));
+    for (auto position : allCombos(rows, columns))
+      board[position] = Threat{};
+
+    return board;
+  }
+
+  Board layMines(Board board, unsigned count) {
+    auto const candidates = cells(board) | concealed() | !isDeadly();
+    return layMines(board, toPositions(shuffle(candidates) | take(count)));
+  }
+}
+
+minesweeper::Board minesweeper::makeBoard() {
+  return ::layMines(emptyBoard(10_rows, 10_columns), 10);
 }

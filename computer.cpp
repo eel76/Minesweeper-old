@@ -1,8 +1,13 @@
 #include "computer.h"
+#include "concealed.h"
+#include "deadly.h"
+#include "flagged.h"
 #include "join.h"
 #include "move.h"
+#include "neighbor.h"
 #include "parse.h"
 #include "positions.h"
+#include "revealed.h"
 #include <algorithm>
 #include <functional>
 #include <iostream>
@@ -10,75 +15,53 @@
 using namespace minesweeper;
 using namespace std;
 
-bool anyOf(Cells cells, Test test)
-{
+bool anyOf(Cells cells, Filter test) {
   return any_of(begin(cells), end(cells), test);
 }
 
-Test threatHidden(Board board)
-{
+Filter threatHidden(Board board) {
   return [=](auto cell) {
     auto neighbors = cells(board) | neighborOf(get<Position>(cell));
     return size(neighbors | isDeadly()) == size(neighbors | !revealed());
   };
 }
 
-bool wrongMark(Board board, Position position)
-{
-  auto hints = cells(board) | neighborOf(position) | revealed();
-
-  // FIXME: noneOf ?
-  return !anyOf(hints, threatHidden(board));
-}
-
-Cells wrongMark(Board board)
-{
-  return cells(board) | recognized() |
-         [=](auto cell) { return wrongMark(board, get<Position>(cell)); };
-}
-
-bool missingMark(Board board, Position position)
-{
+bool missingFlag(Board board, Position position) {
   auto hints = cells(board) | neighborOf(position) | revealed();
   return anyOf(hints, threatHidden(board));
 }
 
-Cells missingMark(Board board)
-{
+Cells missingFlag(Board board) {
   return cells(board) | concealed() |
-         [=](auto cell) { return missingMark(board, get<Position>(cell)); };
+         [=](auto cell) { return missingFlag(board, get<Position>(cell)); };
 }
 
-Test threatRecognized(Board board)
-{
+Filter threatRecognized(Board board) {
   return [=](auto cell) {
     auto neighbors = cells(board) | neighborOf(get<Position>(cell));
-    return size(neighbors | isDeadly()) == size(neighbors | recognized());
+    return size(neighbors | isDeadly()) == size(neighbors | flagged());
   };
 }
 
-Test revealPossible(Board board)
-{
+Filter revealPossible(Board board) {
   return [=](auto cell) {
     return anyOf(cells(board) | neighborOf(get<Position>(cell)) | revealed(),
                  threatRecognized(board));
   };
 }
 
-Cells revealPositions(Board board)
-{
+Cells revealCandidates(Board board) {
   auto concealedCells = shuffle(cells(board) | concealed());
   return join({ concealedCells | revealPossible(board), concealedCells });
 }
 
-Move minesweeper::computerMove(Board board)
-{
+Move minesweeper::computerMove(Board board) {
   auto moves = vector<Move>{};
 
-  for (auto cell : join({ wrongMark(board), missingMark(board) }))
-    moves.push_back(toggle(get<Position>(cell)));
+  for (auto cell : missingFlag(board))
+    moves.push_back(toggleFlag(get<Position>(cell)));
 
-  for (auto cell : revealPositions(board))
+  for (auto cell : revealCandidates(board))
     moves.push_back(reveal(get<Position>(cell)));
 
   return moves[0];
