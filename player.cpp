@@ -1,25 +1,22 @@
 #include "player.h"
 #include "ask.h"
 #include "computer.h"
-#include "parse.h"
 #include "game.h"
+#include "parse.h"
 
 using namespace minesweeper;
 using namespace std;
 
-Player human()
-{
+Player human() {
   return
   [](auto) { return parseMove(ask("Your move: [(m)ark] <row> <column>: "s)); };
 }
 
-Player computer()
-{
+Player computer() {
   return [](auto board) { return computerMove(board); };
 }
 
-Player minesweeper::choosePlayer()
-{
+Player minesweeper::choosePlayer() {
   auto players = map<string, Player>{ { "h"s, human() }, { "c"s, computer() } };
   auto player  = Player{};
 
@@ -29,8 +26,7 @@ Player minesweeper::choosePlayer()
   return player;
 }
 
-void minesweeper::play(Player player, Board board)
-{
+void minesweeper::play(Player player, Board board) {
   while (gameUndecided(board))
     board = playRound(board, player);
 
