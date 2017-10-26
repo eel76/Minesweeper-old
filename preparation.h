@@ -4,5 +4,6 @@
 #include "rows.h"
 
 namespace minesweeper {
-  Board emptyBoard(Rows rows, Columns columns);
+  Board setupBoard(Rows rows, Columns columns);
+  Board setupMines(unsigned count);
 }

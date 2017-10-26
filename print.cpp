@@ -22,6 +22,6 @@ void minesweeper::print(Board board) {
 }
 
 void minesweeper::printCountdown(Board board) {
-  auto countdown = size(cells(board) | isDeadly()) - size(cells(board) | flagged());
+  auto countdown = size(cells(board) | deadly()) - size(cells(board) | flagged());
   print("Mines left: "s + std::to_string(countdown) + "\n"s);
 }

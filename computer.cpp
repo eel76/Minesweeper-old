@@ -22,7 +22,7 @@ bool anyOf(Cells cells, Filter test) {
 Filter threatHidden(Board board) {
   return [=](auto cell) {
     auto neighbors = cells(board) | neighborOf(get<Position>(cell));
-    return size(neighbors | isDeadly()) == size(neighbors | !revealed());
+    return size(neighbors | deadly()) == size(neighbors | !revealed());
   };
 }
 
@@ -38,7 +38,7 @@ Filter markMissing(Board board) {
 Filter threatMarked(Board board) {
   return [=](auto cell) {
     auto neighbors = cells(board) | neighborOf(get<Position>(cell));
-    return size(neighbors | isDeadly()) == size(neighbors | flagged());
+    return size(neighbors | deadly()) == size(neighbors | flagged());
   };
 }
 

@@ -11,5 +11,5 @@ namespace minesweeper {
   std::string to_string(Threat threat);
   bool        isRevealed(Threat threat);
   bool        isRecognized(Threat threat);
-  bool        isDeadly(Threat threat);
+  bool        deadly(Threat threat);
 } // namespace minesweeper

@@ -32,6 +32,6 @@ bool minesweeper::isRecognized(Threat threat) {
   return get<State>(threat) == State::Marked;
 }
 
-bool minesweeper::isDeadly(Threat threat) {
-  return isDeadly(get<Severity>(threat));
+bool minesweeper::deadly(Threat threat) {
+  return deadly(get<Severity>(threat));
 }

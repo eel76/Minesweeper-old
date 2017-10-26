@@ -2,18 +2,15 @@
 #include "hazard.h"
 #include <string>
 
-namespace minesweeper
-{
+namespace minesweeper {
   struct AdjacentMines
   {
     int m_count;
   };
-  inline int count(AdjacentMines adjacentMines)
-  {
+  inline int count(AdjacentMines adjacentMines) {
     return adjacentMines.m_count;
   }
-  inline AdjacentMines increment(AdjacentMines adjacentMines)
-  {
+  inline AdjacentMines increment(AdjacentMines adjacentMines) {
     return { count(adjacentMines) + 1 };
   }
 
@@ -21,12 +18,10 @@ namespace minesweeper
   {
     int m_level;
   };
-  inline bool isDeadly(Severity severity)
-  {
+  inline bool deadly(Severity severity) {
     return severity.m_level >= 9;
   }
-  inline bool isNegligible(Severity severity)
-  {
+  inline bool isNegligible(Severity severity) {
     return severity.m_level == 0;
   }
   std::string to_string(Severity severity);

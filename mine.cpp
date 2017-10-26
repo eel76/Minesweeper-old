@@ -1,6 +1,7 @@
 #include "mine.h"
 #include "cells.h"
 #include "concealed.h"
+#include "deadly.h"
 #include "neighbor.h"
 #include "take.h"
 
@@ -21,6 +22,6 @@ minesweeper::Board minesweeper::layMines(Board board, Positions positions) {
 }
 
 minesweeper::Board minesweeper::layMines(Board board, unsigned count) {
-  auto const concealedCells = cells(board) | concealed();
+  auto const concealedCells = cells(board) | !deadly() | concealed();
   return layMines(board, toPositions(shuffle(concealedCells) | take(count)));
 }

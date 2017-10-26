@@ -6,6 +6,6 @@
 using namespace minesweeper;
 
 int main() {
-  play(choosePlayer(), layMines(emptyBoard(10_rows, 10_columns), 10));
+  play(choosePlayer(), layMines(setupBoard(10_rows, 10_columns), 10));
   std::cin.get();
 }
