@@ -50,13 +50,17 @@ Filter safe(Board board) {
 }
 
 Move minesweeper::computerMove(Board board) {
-  auto concealedCells = shuffle(cells(board) | concealed());
+  auto const concealedCells = cells(board) | concealed();
 
   for (auto cell : concealedCells | markMissing(board))
-    return toggleFlag(get<Position>(cell));
+    return mark(get<Position>(cell));
 
   for (auto cell : concealedCells | safe(board))
     return reveal(get<Position>(cell));
 
-  return reveal(get<Position>(concealedCells[0]));
+  return reveal(get<Position>(shuffle(concealedCells)[0]));
+}
+
+minesweeper::Player minesweeper::computerPlayer() {
+  return [](auto board) { return computerMove(board); };
 }

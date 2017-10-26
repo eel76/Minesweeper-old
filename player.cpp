@@ -12,13 +12,9 @@ Player human() {
   [](auto) { return parseMove(ask("Your move: [(m)ark] <row> <column>: "s)); };
 }
 
-Player computer() {
-  return [](auto board) { return computerMove(board); };
-}
-
 Player minesweeper::choosePlayer() {
-  auto players = map<string, Player>{ { "h"s, human() }, { "c"s, computer() } };
-  auto player  = Player{};
+  auto players = map<string, Player>{ { "h"s, human() }, { "c"s, computerPlayer() } };
+  auto player = Player{};
 
   while (!player)
     player = players[ask("Player: (h)uman or (c)omputer? "s)];

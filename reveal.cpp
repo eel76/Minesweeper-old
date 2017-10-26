@@ -8,9 +8,9 @@
 using namespace minesweeper;
 using namespace std;
 
-Board minesweeper::changeMark(Board board, Positions positions) {
+Board minesweeper::mark(Board board, Positions positions) {
   for (auto cell : cells(board) | oneOf(positions))
-    board[get<Position>(cell)] = changeMark(get<Threat>(cell));
+    board[get<Position>(cell)] = mark(get<Threat>(cell));
 
   return board;
 }

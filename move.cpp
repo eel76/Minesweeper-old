@@ -18,9 +18,9 @@ Move minesweeper::reveal(Position position) {
   };
 }
 
-Move minesweeper::toggleFlag(Position position) {
+Move minesweeper::mark(Position position) {
   return [=](auto board) {
     print("toggle mark "s + to_string(position) + "\n"s);
-    return changeMark(board, { position });
+    return mark(board, { position });
   };
 }

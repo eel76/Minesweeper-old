@@ -6,7 +6,7 @@ minesweeper::State minesweeper::reveal(State state) {
   return action[state];
 }
 
-minesweeper::State minesweeper::changeMark(State state) {
-  auto action = changeMark();
+minesweeper::State minesweeper::mark(State state) {
+  auto action = mark();
   return action[state];
 }

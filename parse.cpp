@@ -34,6 +34,6 @@ Move minesweeper::parseMove(std::string text) {
   regex_match(text, match, regex{ "^ *(m?)(.+)$" });
 
   auto parse = Parse{ { ""s, reveal(parsePosition(match[2])) },
-                      { "m"s, toggleFlag(parsePosition(match[2])) } };
+                      { "m"s, mark(parsePosition(match[2])) } };
   return parse[match[1]];
 }

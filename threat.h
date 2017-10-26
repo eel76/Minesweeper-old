@@ -5,7 +5,7 @@
 
 namespace minesweeper {
   using Threat = std::pair<State, Severity>;
-  Threat      changeMark(Threat threat);
+  Threat      mark(Threat threat);
   Threat      reveal(Threat threat);
   Threat      consider(Threat threat, Hazard hazard);
   std::string to_string(Threat threat);

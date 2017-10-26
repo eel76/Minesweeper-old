@@ -6,7 +6,7 @@ minesweeper::Action minesweeper::reveal() {
            { State::Revealed, State::Revealed } };
 }
 
-minesweeper::Action minesweeper::changeMark() {
+minesweeper::Action minesweeper::mark() {
   return { { State::Concealed, State::Marked },
            { State::Marked, State::Concealed },
            { State::Revealed, State::Revealed } };

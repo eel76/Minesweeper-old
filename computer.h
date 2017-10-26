@@ -1,7 +1,7 @@
 #pragma once
-#include "move.h"
+#include "player.h"
 
-namespace minesweeper
-{
-  Move computerMove(Board board);
+namespace minesweeper {
+  Move   computerMove(Board board);
+  Player computerPlayer();
 }

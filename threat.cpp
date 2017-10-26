@@ -12,8 +12,8 @@ std::string minesweeper::to_string(Threat threat) {
                              { State::Revealed, severity } }[get<State>(threat)];
 }
 
-Threat minesweeper::changeMark(Threat threat) {
-  return Threat{ changeMark(get<State>(threat)), get<Severity>(threat) };
+Threat minesweeper::mark(Threat threat) {
+  return Threat{ mark(get<State>(threat)), get<Severity>(threat) };
 }
 
 Threat minesweeper::reveal(Threat threat) {

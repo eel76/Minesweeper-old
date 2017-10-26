@@ -1,11 +1,11 @@
+#include "mine.h"
 #include "player.h"
 #include "preparation.h"
 #include <iostream>
 
-int main()
-{
-  using namespace minesweeper;
+using namespace minesweeper;
 
-  play(choosePlayer(), makeBoard());
+int main() {
+  play(choosePlayer(), layMines(emptyBoard(10_rows, 10_columns), 10));
   std::cin.get();
 }
