@@ -20,6 +20,9 @@ bool minesweeper::gameLost(Board board) {
 }
 
 bool minesweeper::gameWon(Board board) {
+  // FIXME: (deadly => marked) and (!deadly => revealed)
+  // (!deadly || marked) && (deadly || revealed)
+
   return all_of(begin(board), end(board), [](auto cell) {
     return isRevealed(get<Threat>(cell)) ^ deadly(get<Threat>(cell));
   });

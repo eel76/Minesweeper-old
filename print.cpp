@@ -3,22 +3,20 @@
 #include "deadly.h"
 #include "flagged.h"
 #include "group.h"
-#include "join.h"
 #include "oneof.h"
 #include "transform.h"
 #include <iostream>
 #include <string>
 
-using namespace minesweeper;
-using namespace std;
+using namespace std::string_literals;
 
 void minesweeper::print(std::string const& text) {
-  cout << text;
+  std::cout << text;
 }
 
 void minesweeper::print(Board board) {
   for (auto row : byRow(toPositions(cells(board))))
-    print(join(toString(cells(board) | oneOf(get<Positions>(row)))) + "\n"s);
+    print(to_string(cells(board) | oneOf(std::get<Positions>(row))) + "\n"s);
 }
 
 void minesweeper::printCountdown(Board board) {

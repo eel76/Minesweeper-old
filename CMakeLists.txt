@@ -30,8 +30,6 @@ add_executable (
   group.cpp
   group.h
   hazard.h
-  join.cpp
-  join.h
   main.cpp
   mine.cpp
   mine.h

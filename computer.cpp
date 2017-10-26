@@ -2,7 +2,6 @@
 #include "concealed.h"
 #include "deadly.h"
 #include "flagged.h"
-#include "join.h"
 #include "move.h"
 #include "neighbor.h"
 #include "parse.h"

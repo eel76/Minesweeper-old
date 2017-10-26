@@ -1,10 +1,9 @@
 #include "transform.h"
-#include <algorithm>
+#include <numeric>
 
-std::vector<std::string> minesweeper::toString(Cells cells) {
-  auto strings = std::vector<std::string>{ cells.size() };
-  transform(begin(cells), end(cells), begin(strings),
-            [](auto cell) { return to_string(std::get<Threat>(cell)); });
-
-  return strings;
+std::string minesweeper::to_string(Cells cells) {
+  using namespace std::string_literals;
+  return accumulate(begin(cells), end(cells), ""s, [](auto s, auto cell) {
+    return s + to_string(std::get<Threat>(cell));
+  });
 }
