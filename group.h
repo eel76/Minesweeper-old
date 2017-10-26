@@ -2,7 +2,6 @@
 #include "positions.h"
 #include <map>
 
-namespace minesweeper
-{
+namespace minesweeper {
   std::map<Row, Positions> byRow(Positions positions);
 }

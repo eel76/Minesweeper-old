@@ -2,7 +2,7 @@
 
 minesweeper::Action minesweeper::reveal() {
   return { { State::Concealed, State::Revealed },
-           { State::Marked, State::Concealed },
+           { State::Marked, State::Marked },
            { State::Revealed, State::Revealed } };
 }
 

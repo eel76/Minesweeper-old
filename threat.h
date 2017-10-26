@@ -12,4 +12,4 @@ namespace minesweeper {
   bool        isRevealed(Threat threat);
   bool        isRecognized(Threat threat);
   bool        deadly(Threat threat);
-} // namespace minesweeper
+}

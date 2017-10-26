@@ -1,7 +1,6 @@
 #include "group.h"
 
-std::map<minesweeper::Row, minesweeper::Positions> minesweeper::byRow(Positions positions)
-{
+std::map<minesweeper::Row, minesweeper::Positions> minesweeper::byRow(Positions positions) {
   auto rows = std::map<Row, Positions>{};
 
   for (auto position : positions)
