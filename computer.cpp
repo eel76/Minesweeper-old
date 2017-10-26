@@ -26,43 +26,37 @@ Filter threatHidden(Board board) {
   };
 }
 
-bool missingFlag(Board board, Position position) {
+bool markMissing(Board board, Position position) {
   auto hints = cells(board) | neighborOf(position) | revealed();
   return anyOf(hints, threatHidden(board));
 }
 
-Cells missingFlag(Board board) {
-  return cells(board) | concealed() |
-         [=](auto cell) { return missingFlag(board, get<Position>(cell)); };
+Filter markMissing(Board board) {
+  return [=](auto cell) { return markMissing(board, get<Position>(cell)); };
 }
 
-Filter threatRecognized(Board board) {
+Filter threatMarked(Board board) {
   return [=](auto cell) {
     auto neighbors = cells(board) | neighborOf(get<Position>(cell));
     return size(neighbors | isDeadly()) == size(neighbors | flagged());
   };
 }
 
-Filter revealPossible(Board board) {
+Filter safe(Board board) {
   return [=](auto cell) {
     return anyOf(cells(board) | neighborOf(get<Position>(cell)) | revealed(),
-                 threatRecognized(board));
+                 threatMarked(board));
   };
 }
 
-Cells revealCandidates(Board board) {
-  auto concealedCells = shuffle(cells(board) | concealed());
-  return join({ concealedCells | revealPossible(board), concealedCells });
-}
-
 Move minesweeper::computerMove(Board board) {
-  auto moves = vector<Move>{};
+  auto concealedCells = shuffle(cells(board) | concealed());
 
-  for (auto cell : missingFlag(board))
-    moves.push_back(toggleFlag(get<Position>(cell)));
+  for (auto cell : concealedCells | markMissing(board))
+    return toggleFlag(get<Position>(cell));
 
-  for (auto cell : revealCandidates(board))
-    moves.push_back(reveal(get<Position>(cell)));
+  for (auto cell : concealedCells | safe(board))
+    return reveal(get<Position>(cell));
 
-  return moves[0];
+  return reveal(get<Position>(concealedCells[0]));
 }

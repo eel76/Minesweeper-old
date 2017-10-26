@@ -7,7 +7,6 @@ add_executable (
   ${PROJECT_NAME}
   action.cpp
   action.h
-  ask.cpp
   ask.h
   board.h
   cell.h

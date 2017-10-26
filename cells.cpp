@@ -3,7 +3,7 @@
 #include <random>
 
 minesweeper::Cells minesweeper::cells(Board board) {
-  return Cells{ begin(board), end(board) };
+  return { begin(board), end(board) };
 }
 
 minesweeper::Cells minesweeper::shuffle(Cells cells) {

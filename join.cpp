@@ -4,8 +4,7 @@
 using namespace minesweeper;
 using namespace std;
 
-Cells minesweeper::join(std::initializer_list<Cells> cellLists)
-{
+Cells minesweeper::join(std::initializer_list<Cells> cellLists) {
   auto joined = Cells{};
 
   for (auto cells : cellLists)
@@ -14,8 +13,7 @@ Cells minesweeper::join(std::initializer_list<Cells> cellLists)
   return joined;
 }
 
-Positions minesweeper::join(std::initializer_list<Positions> positionLists)
-{
+Positions minesweeper::join(std::initializer_list<Positions> positionLists) {
   auto joined = Positions{};
 
   for (auto positions : positionLists)
@@ -24,7 +22,6 @@ Positions minesweeper::join(std::initializer_list<Positions> positionLists)
   return joined;
 }
 
-std::string minesweeper::join(std::vector<std::string> strings)
-{
-  return accumulate(begin(strings), end(strings), string(""));
+std::string minesweeper::join(std::vector<std::string> strings) {
+  return accumulate(begin(strings), end(strings), ""s);
 }
