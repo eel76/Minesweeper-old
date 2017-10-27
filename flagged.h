@@ -2,7 +2,7 @@
 #include "only.h"
 
 namespace minesweeper {
-  inline Filter flagged() {
+  inline Filter marked() {
     return only(State::Marked);
   }
 } // namespace minesweeper

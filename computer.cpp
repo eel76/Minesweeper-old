@@ -14,37 +14,31 @@
 using namespace minesweeper;
 using namespace std;
 
-bool anyOf(Cells cells, Filter test) {
-  return any_of(begin(cells), end(cells), test);
-}
-
-Filter threatHidden(Board board) {
-  return [=](auto cell) {
-    auto neighbors = cells(board) | neighborOf(get<Position>(cell));
+Filter threatMarkable(Board board) {
+  return [board](auto cell) {
+    auto const neighbors = cells(board) | neighborOf(get<Position>(cell));
     return size(neighbors | deadly()) == size(neighbors | !revealed());
   };
 }
 
-bool markMissing(Board board, Position position) {
-  auto hints = cells(board) | neighborOf(position) | revealed();
-  return anyOf(hints, threatHidden(board));
+Filter threatMarked(Board board) {
+  return [board](auto cell) {
+    auto const neighbors = cells(board) | neighborOf(get<Position>(cell));
+    return size(neighbors | deadly()) == size(neighbors | marked());
+  };
 }
 
 Filter markMissing(Board board) {
-  return [=](auto cell) { return markMissing(board, get<Position>(cell)); };
-}
-
-Filter threatMarked(Board board) {
-  return [=](auto cell) {
-    auto neighbors = cells(board) | neighborOf(get<Position>(cell));
-    return size(neighbors | deadly()) == size(neighbors | flagged());
+  return [board](auto cell) {
+    auto const hints = cells(board) | revealed() | neighborOf(get<Position>(cell));
+    return any_of(begin(hints), end(hints), threatMarkable(board));
   };
 }
 
 Filter safe(Board board) {
-  return [=](auto cell) {
-    return anyOf(cells(board) | neighborOf(get<Position>(cell)) | revealed(),
-                 threatMarked(board));
+  return [board](auto cell) {
+    auto const hints = cells(board) | revealed() | neighborOf(get<Position>(cell));
+    return any_of(begin(hints), end(hints), threatMarked(board));
   };
 }
 
