@@ -1,7 +1,7 @@
 #include "computer.h"
 #include "concealed.h"
 #include "deadly.h"
-#include "flagged.h"
+#include "marked.h"
 #include "move.h"
 #include "neighbor.h"
 #include "parse.h"

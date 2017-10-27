@@ -1,4 +1,4 @@
-#include "test.h"
+#include "filter.h"
 #include <algorithm>
 
 minesweeper::Filter minesweeper::operator!(Filter test) {

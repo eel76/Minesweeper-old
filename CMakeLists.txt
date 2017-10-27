@@ -21,7 +21,8 @@ add_executable (
   computer.h
   concealed.h
   deadly.h
-  flagged.h
+  filter.cpp
+  filter.h
   game.cpp
   game.h
   getline.cpp
@@ -30,6 +31,7 @@ add_executable (
   group.h
   hazard.h
   main.cpp
+  marked.h
   mine.cpp
   mine.h
   move.cpp
@@ -60,8 +62,6 @@ add_executable (
   severity.cpp
   severity.h
   take.h
-  test.cpp
-  test.h
   threat.cpp
   threat.h
   to_string.cpp

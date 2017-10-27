@@ -1,5 +1,5 @@
 #pragma once
-#include "test.h"
+#include "filter.h"
 
 namespace minesweeper {
   inline Filter neighborOf(Position position) {

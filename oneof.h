@@ -1,6 +1,6 @@
 #pragma once
+#include "filter.h"
 #include "positions.h"
-#include "test.h"
 #include <algorithm>
 
 namespace minesweeper {
@@ -10,4 +10,4 @@ namespace minesweeper {
              end(positions);
     };
   }
-} // namespace minesweeper
+}
