@@ -9,7 +9,6 @@ add_executable (
   action.h
   ask.h
   board.h
-  cell.h
   cells.cpp
   cells.h
   column.cpp

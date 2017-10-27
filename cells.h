@@ -1,5 +1,5 @@
 #pragma once
-#include "cell.h"
+#include "board.h"
 #include <vector>
 
 namespace minesweeper {
