@@ -4,6 +4,6 @@
 
 namespace minesweeper {
   using Action = std::map<State, State>;
-  Action reveal();
-  Action mark();
+  Action revealAction();
+  Action markAction();
 }

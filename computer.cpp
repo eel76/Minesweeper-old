@@ -46,12 +46,12 @@ Move minesweeper::computerMove(Board board) {
   auto const concealedCells = cells(board) | concealed();
 
   for (auto cell : concealedCells | markMissing(board))
-    return mark(get<Position>(cell));
+    return markAction(get<Position>(cell));
 
   for (auto cell : concealedCells | safe(board))
-    return reveal(get<Position>(cell));
+    return revealAction(get<Position>(cell));
 
-  return reveal(get<Position>(shuffle(concealedCells)[0]));
+  return revealAction(get<Position>(shuffle(concealedCells)[0]));
 }
 
 minesweeper::Player minesweeper::computerPlayer() {

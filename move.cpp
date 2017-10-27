@@ -11,16 +11,16 @@ namespace minesweeper {
   }
 }
 
-Move minesweeper::reveal(Position position) {
+Move minesweeper::revealAction(Position position) {
   return [=](auto board) {
     print("reveal "s + to_string(position) + "\n"s);
-    return reveal(board, { position });
+    return revealAction(board, { position });
   };
 }
 
-Move minesweeper::mark(Position position) {
+Move minesweeper::markAction(Position position) {
   return [=](auto board) {
     print("toggle mark "s + to_string(position) + "\n"s);
-    return mark(board, { position });
+    return markAction(board, { position });
   };
 }

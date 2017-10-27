@@ -2,11 +2,11 @@
 #include "action.h"
 
 minesweeper::State minesweeper::reveal(State state) {
-  auto action = reveal();
+  auto action = revealAction();
   return action[state];
 }
 
 minesweeper::State minesweeper::mark(State state) {
-  auto action = mark();
+  auto action = markAction();
   return action[state];
 }

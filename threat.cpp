@@ -1,22 +1,13 @@
 #include "threat.h"
-#include <functional>
-#include <map>
 
 using namespace minesweeper;
 using namespace std;
 
-std::string minesweeper::to_string(Threat threat) {
-  auto severity = to_string(get<Severity>(threat));
-  return map<State, string>{ { State::Concealed, "#"s },
-                             { State::Marked, "%"s },
-                             { State::Revealed, severity } }[get<State>(threat)];
-}
-
-Threat minesweeper::mark(Threat threat) {
+Threat minesweeper::markAction(Threat threat) {
   return Threat{ mark(get<State>(threat)), get<Severity>(threat) };
 }
 
-Threat minesweeper::reveal(Threat threat) {
+Threat minesweeper::revealAction(Threat threat) {
   return Threat{ reveal(get<State>(threat)), get<Severity>(threat) };
 }
 

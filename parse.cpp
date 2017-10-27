@@ -33,7 +33,7 @@ Move minesweeper::parseMove(std::string text) {
   auto match = smatch{};
   regex_match(text, match, regex{ "^ *(m?)(.+)$" });
 
-  auto parse = Parse{ { ""s, reveal(parsePosition(match[2])) },
-                      { "m"s, mark(parsePosition(match[2])) } };
+  auto parse = Parse{ { ""s, revealAction(parsePosition(match[2])) },
+                      { "m"s, markAction(parsePosition(match[2])) } };
   return parse[match[1]];
 }
