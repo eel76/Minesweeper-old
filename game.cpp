@@ -41,7 +41,7 @@ void printIf(std::string const& text, bool condition) {
 }
 
 void minesweeper::evaluateGame(Board board) {
-  print(revealAction(board, toPositions(cells(board) | deadly())));
+  print(reveal(board, toPositions(cells(board) | deadly())));
   printIf("Game lost :-(\n"s, gameLost(board));
   printIf("Game won :-)\n"s, gameWon(board));
 }
