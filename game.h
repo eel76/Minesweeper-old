@@ -7,6 +7,6 @@ namespace minesweeper
   bool  gameUndecided(Board board);
   bool  gameLost(Board board);
   bool  gameWon(Board board);
-  Board playRound(Board board, Player player);
+  Board roundPlayed(Board board, Player player);
   void  evaluateGame(Board board);
 }

@@ -6,23 +6,23 @@
 #include "oneof.h"
 
 using namespace minesweeper;
-using namespace std;
 
-Board minesweeper::mark(Board board, Positions positions) {
+Board minesweeper::marked(Board board, Positions positions) {
   for (auto cell : cells(board) | oneOf(positions))
-    board[get<Position>(cell)] = markAction(get<Threat>(cell));
+    board[std::get<Position>(cell)] = markAction(std::get<Threat>(cell));
 
   return board;
 }
 
-Board minesweeper::reveal(Board board, Positions positions) {
+Board minesweeper::revealed(Board board, Positions positions) {
   auto concealedCells = cells(board) | concealed() | oneOf(positions);
 
   for (auto cell : concealedCells)
-    board[get<Position>(cell)] = revealAction(get<Threat>(cell));
+    board[std::get<Position>(cell)] = revealAction(std::get<Threat>(cell));
 
   for (auto cell : concealedCells | isNegligible())
-    board = reveal(board, toPositions(cells(board) | neighborOf(get<Position>(cell))));
+    board =
+    revealed(board, toPositions(cells(board) | neighborOf(std::get<Position>(cell))));
 
   return board;
 }

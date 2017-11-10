@@ -5,23 +5,23 @@
 #include "neighbor.h"
 #include "take.h"
 
-minesweeper::Board minesweeper::layMine(Board board, Position position) {
+minesweeper::Board minesweeper::mineLayed(Board board, Position position) {
   for (auto neighbor : cells(board) | neighborOf(position))
     board[std::get<Position>(neighbor)] =
-    consider(std::get<Threat>(neighbor), Hazard::AdjacentMine);
+    considered(std::get<Threat>(neighbor), Hazard::AdjacentMine);
 
-  board[position] = consider(board[position], Hazard::Mine);
+  board[position] = considered(board[position], Hazard::Mine);
   return board;
 }
 
-minesweeper::Board minesweeper::layMines(Board board, Positions positions) {
+minesweeper::Board minesweeper::minesLayed(Board board, Positions positions) {
   for (auto position : positions)
-    board = layMine(board, position);
+    board = mineLayed(board, position);
 
   return board;
 }
 
-minesweeper::Board minesweeper::layMines(Board board, unsigned count) {
-  auto const concealedCells = cells(board) | !deadly() | concealed();
-  return layMines(board, toPositions(shuffle(concealedCells) | take(count)));
+minesweeper::Board minesweeper::minesLayed(Board board, unsigned count) {
+  auto const concealedCells = cells(board) | !isDeadly() | concealed();
+  return minesLayed(board, toPositions(shuffled(concealedCells) | take(count)));
 }

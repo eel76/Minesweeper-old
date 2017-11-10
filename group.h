@@ -1,7 +1,7 @@
 #pragma once
-#include "positions.h"
+#include "cells.h"
 #include <map>
 
 namespace minesweeper {
-  std::map<Row, Positions> byRow(Positions positions);
+  std::map<Row, Cells> byRow(Cells cells);
 }

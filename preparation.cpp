@@ -4,7 +4,7 @@
 minesweeper::Board minesweeper::setupBoard(Rows rows, Columns columns) {
   auto board = Board{};
 
-  for (auto position : allCombos(rows, columns))
+  for (auto position : combos(rows, columns))
     board[position] = Threat{};
 
   return board;

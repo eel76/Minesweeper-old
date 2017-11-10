@@ -2,6 +2,6 @@
 
 namespace minesweeper {
   enum struct State { Concealed, Marked, Revealed };
-  State reveal(State state);
-  State mark(State state);
+  State revealed(State state);
+  State marked(State state);
 }

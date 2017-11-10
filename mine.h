@@ -3,7 +3,7 @@
 #include "positions.h"
 
 namespace minesweeper {
-  Board layMine(Board board, Position position);
-  Board layMines(Board board, Positions positions);
-  Board layMines(Board board, unsigned count);
+  Board mineLayed(Board board, Position position);
+  Board minesLayed(Board board, Positions positions);
+  Board minesLayed(Board board, unsigned count);
 }

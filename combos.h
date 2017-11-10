@@ -5,6 +5,6 @@
 
 namespace minesweeper
 {
-  Positions allCombos(Rows rows, Column column);
-  Positions allCombos(Rows rows, Columns columns);
+  Positions combos(Rows rows, Column column);
+  Positions combos(Rows rows, Columns columns);
 }

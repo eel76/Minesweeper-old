@@ -3,6 +3,6 @@
 
 namespace minesweeper {
   inline Filter take(unsigned count) {
-    return [count, tested = 0u](auto cell) mutable { return ++tested <= count; };
+    return [count, seen = 0u](auto cell) mutable { return ++seen <= count; };
   }
 }

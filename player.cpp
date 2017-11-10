@@ -8,23 +8,26 @@ using namespace minesweeper;
 using namespace std;
 
 Player human() {
-  return
-  [](auto) { return parseMove(ask("Your move: [(m)ark] <row> <column>: "s)); };
+  return [](auto) {
+    return parseMove(askString("Your move: [(m)ark] <row> <column>: "s));
+  };
 }
 
 Player minesweeper::choosePlayer() {
-  auto players = map<string, Player>{ { "h"s, human() }, { "c"s, computerPlayer() } };
+  auto players =
+  map<std::string, Player>{ { "h"s, human() }, { "c"s, computerPlayer() } };
   auto player = Player{};
 
   while (!player)
-    player = players[ask("Player: (h)uman or (c)omputer? "s)];
+    player = players[askString("Player: (h)uman or (c)omputer? "s)];
 
   return player;
 }
 
 void minesweeper::play(Player player, Board board) {
   while (gameUndecided(board))
-    board = playRound(board, player);
+    board = roundPlayed(board, player);
 
   evaluateGame(board);
+  askString("Press ENTER to quit...");
 }

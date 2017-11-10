@@ -12,7 +12,7 @@ namespace {
   }
 }
 
-minesweeper::Positions minesweeper::allCombos(Rows rows, Column column) {
+minesweeper::Positions minesweeper::combos(Rows rows, Column column) {
   auto positions = Positions{};
 
   for (auto row : rows)
@@ -21,11 +21,11 @@ minesweeper::Positions minesweeper::allCombos(Rows rows, Column column) {
   return positions;
 }
 
-minesweeper::Positions minesweeper::allCombos(Rows rows, Columns columns) {
+minesweeper::Positions minesweeper::combos(Rows rows, Columns columns) {
   auto positions = Positions{};
 
   for (auto column : columns)
-    positions = join({ positions, allCombos(rows, column) });
+    positions = join({ positions, combos(rows, column) });
 
   return positions;
 }

@@ -8,7 +8,9 @@ add_executable (
   action.cpp
   action.h
   ask.h
+  board.cpp
   board.h
+  cell.h
   cells.cpp
   cells.h
   column.cpp
@@ -61,12 +63,12 @@ add_executable (
   rows.h
   severity.cpp
   severity.h
+  state.cpp
+  state.h
   take.h
   threat.cpp
   threat.h
   to_string.cpp
   to_string.h
-  visibility.cpp
-  visibility.h
   Readme.md
   )

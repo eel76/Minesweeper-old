@@ -1,5 +1,5 @@
 #pragma once
-#include "visibility.h"
+#include "state.h"
 #include <map>
 
 namespace minesweeper {

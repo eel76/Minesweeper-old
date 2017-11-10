@@ -14,13 +14,13 @@ namespace minesweeper {
 Move minesweeper::revealAction(Position position) {
   return [=](auto board) {
     print("reveal "s + to_string(position) + "\n"s);
-    return reveal(board, { position });
+    return revealed(board, { position });
   };
 }
 
 Move minesweeper::markAction(Position position) {
   return [=](auto board) {
     print("toggle mark "s + to_string(position) + "\n"s);
-    return mark(board, { position });
+    return marked(board, { position });
   };
 }

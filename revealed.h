@@ -5,4 +5,4 @@ namespace minesweeper {
   inline Filter revealed() {
     return only(State::Revealed);
   }
-} // namespace minesweeper
+}

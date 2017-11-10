@@ -3,6 +3,6 @@
 #include "positions.h"
 
 namespace minesweeper {
-  Board mark(Board board, Positions positions);
-  Board reveal(Board board, Positions positions);
-} // namespace minesweeper
+  Board marked(Board board, Positions positions);
+  Board revealed(Board board, Positions positions);
+}

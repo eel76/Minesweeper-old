@@ -17,14 +17,14 @@ using namespace std;
 Filter threatMarkable(Board board) {
   return [board](auto cell) {
     auto const neighbors = cells(board) | neighborOf(get<Position>(cell));
-    return size(neighbors | deadly()) == size(neighbors | !revealed());
+    return size(neighbors | isDeadly()) == size(neighbors | !revealed());
   };
 }
 
 Filter threatMarked(Board board) {
   return [board](auto cell) {
     auto const neighbors = cells(board) | neighborOf(get<Position>(cell));
-    return size(neighbors | deadly()) == size(neighbors | marked());
+    return size(neighbors | isDeadly()) == size(neighbors | marked());
   };
 }
 
@@ -51,7 +51,7 @@ Move minesweeper::computerMove(Board board) {
   for (auto cell : concealedCells | safe(board))
     return revealAction(get<Position>(cell));
 
-  return revealAction(get<Position>(shuffle(concealedCells)[0]));
+  return revealAction(get<Position>(shuffled(concealedCells)[0]));
 }
 
 minesweeper::Player minesweeper::computerPlayer() {
