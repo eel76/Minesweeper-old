@@ -22,6 +22,6 @@ minesweeper::Board minesweeper::minesLayed(Board board, Positions positions) {
 }
 
 minesweeper::Board minesweeper::minesLayed(Board board, unsigned count) {
-  auto const concealedCells = cells(board) | !isDeadly() | concealed();
+  auto const concealedCells = cells(board) | !isDeadly() | isConcealed();
   return minesLayed(board, toPositions(shuffled(concealedCells) | take(count)));
 }

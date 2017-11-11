@@ -2,7 +2,7 @@
 #include "only.h"
 
 namespace minesweeper {
-  inline Filter concealed() {
+  inline Filter isConcealed() {
     return only(State::Concealed);
   }
-} // namespace minesweeper
+}

@@ -43,7 +43,7 @@ Filter safe(Board board) {
 }
 
 Move minesweeper::computerMove(Board board) {
-  auto const concealedCells = cells(board) | concealed();
+  auto const concealedCells = cells(board) | isConcealed();
 
   for (auto cell : concealedCells | markMissing(board))
     return markAction(get<Position>(cell));

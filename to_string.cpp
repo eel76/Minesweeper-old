@@ -20,3 +20,7 @@ std::string minesweeper::to_string(Cells cells) {
     return s + to_string(std::get<Threat>(cell));
   });
 }
+
+std::string minesweeper::to_string(Position position) {
+  return to_string(std::get<Row>(position)) + ", "s + to_string(std::get<Column>(position));
+}

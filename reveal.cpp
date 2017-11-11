@@ -5,24 +5,19 @@
 #include "neighbor.h"
 #include "oneof.h"
 
-using namespace minesweeper;
-
-Board minesweeper::marked(Board board, Positions positions) {
-  for (auto cell : cells(board) | oneOf(positions))
+minesweeper::Board minesweeper::marked(Board board, Cells cells) {
+  for (auto cell : cells)
     board[std::get<Position>(cell)] = markAction(std::get<Threat>(cell));
 
   return board;
 }
 
-Board minesweeper::revealed(Board board, Positions positions) {
-  auto concealedCells = cells(board) | concealed() | oneOf(positions);
-
-  for (auto cell : concealedCells)
+minesweeper::Board minesweeper::revealed(Board board, Cells cs) {
+  for (auto cell : cs | isConcealed())
     board[std::get<Position>(cell)] = revealAction(std::get<Threat>(cell));
 
-  for (auto cell : concealedCells | isNegligible())
-    board =
-    revealed(board, toPositions(cells(board) | neighborOf(std::get<Position>(cell))));
+  for (auto cell : cs | isConcealed() | isNegligible())
+    board = revealed(board, cells(board) | neighborOf(std::get<Position>(cell)));
 
   return board;
 }
