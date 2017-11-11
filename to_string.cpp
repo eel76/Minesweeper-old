@@ -22,5 +22,6 @@ std::string minesweeper::to_string(Cells cells) {
 }
 
 std::string minesweeper::to_string(Position position) {
-  return to_string(std::get<Row>(position)) + ", "s + to_string(std::get<Column>(position));
+  return std::to_string(index(std::get<Row>(position))) + ", "s +
+         std::to_string(index(std::get<Column>(position)));
 }
