@@ -5,8 +5,8 @@
 
 namespace minesweeper {
   using Threat = std::pair<State, Severity>;
-  Threat markAction(Threat threat);
-  Threat revealAction(Threat threat);
+  Threat marked(Threat threat);
+  Threat revealed(Threat threat);
   Threat considered(Threat threat, Hazard hazard);
   bool   isRevealed(Threat threat);
   bool   isRecognized(Threat threat);

@@ -1,10 +1,10 @@
 #include "threat.h"
 
-minesweeper::Threat minesweeper::markAction(Threat threat) {
+minesweeper::Threat minesweeper::marked(Threat threat) {
   return Threat{ marked(std::get<State>(threat)), std::get<Severity>(threat) };
 }
 
-minesweeper::Threat minesweeper::revealAction(Threat threat) {
+minesweeper::Threat minesweeper::revealed(Threat threat) {
   return Threat{ revealed(std::get<State>(threat)), std::get<Severity>(threat) };
 }
 

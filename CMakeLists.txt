@@ -40,7 +40,6 @@ add_executable (
   move.h
   negligible.h
   neighbor.h
-  oneof.h
   only.h
   parse.cpp
   parse.h
