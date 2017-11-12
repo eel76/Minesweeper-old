@@ -1,12 +1,20 @@
 #include "state.h"
 #include "action.h"
 
-minesweeper::State minesweeper::revealed(State state) {
+auto minesweeper::revealed(State state) -> State {
   auto action = revealAction();
   return action[state];
 }
 
-minesweeper::State minesweeper::marked(State state) {
+auto minesweeper::marked(State state) -> State {
   auto action = markAction();
   return action[state];
+}
+
+auto minesweeper::isRevealed(State state) -> bool {
+  return state == State::Revealed;
+}
+
+auto minesweeper::isMarked(State state) -> bool {
+  return state == State::Marked;
 }

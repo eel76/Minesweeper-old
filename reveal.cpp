@@ -4,14 +4,14 @@
 #include "negligible.h"
 #include "neighbor.h"
 
-minesweeper::Board minesweeper::marked(Board board, Cells cells) {
+auto minesweeper::marked(Board board, Cells cells) -> Board {
   for (auto cell : cells)
     board[std::get<Position>(cell)] = marked(std::get<Threat>(cell));
 
   return board;
 }
 
-minesweeper::Board minesweeper::revealed(Board board, Cells cs) {
+auto minesweeper::revealed(Board board, Cells cs) -> Board {
   for (auto cell : cs | isConcealed())
     board[std::get<Position>(cell)] = revealed(std::get<Threat>(cell));
 

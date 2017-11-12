@@ -1,13 +1,13 @@
 #include "severity.h"
 
-bool minesweeper::isDeadly(Severity severity) {
+auto minesweeper::considered(Severity severity, Hazard hazard) -> Severity {
+  return { severity.m_level + int(hazard) };
+}
+
+auto minesweeper::isDeadly(Severity severity) -> bool {
   return severity.m_level >= 9;
 }
 
-bool minesweeper::isNegligible(Severity severity) {
+auto minesweeper::isNegligible(Severity severity) -> bool {
   return severity.m_level == 0;
-}
-
-minesweeper::Severity minesweeper::considered(Severity severity, Hazard hazard) {
-  return { severity.m_level + int(hazard) };
 }

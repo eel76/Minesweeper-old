@@ -13,11 +13,11 @@ minesweeper::Threat minesweeper::considered(Threat threat, Hazard hazard) {
 }
 
 bool minesweeper::isRevealed(Threat threat) {
-  return std::get<State>(threat) == State::Revealed;
+  return isRevealed(std::get<State>(threat));
 }
 
-bool minesweeper::isRecognized(Threat threat) {
-  return std::get<State>(threat) == State::Marked;
+bool minesweeper::isMarked(Threat threat) {
+  return isMarked(std::get<State>(threat));
 }
 
 bool minesweeper::isDeadly(Threat threat) {

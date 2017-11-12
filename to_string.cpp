@@ -2,26 +2,27 @@
 #include <map>
 #include <numeric>
 
-using namespace std::string_literals;
+using namespace std;
+using namespace string_literals;
 
-std::string minesweeper::to_string(Severity severity) {
+string minesweeper::to_string(Severity severity) {
   return { ".12345678XXXXXXXXX"[severity.m_level] };
 }
 
-std::string minesweeper::to_string(Threat threat) {
-  auto severity = to_string(std::get<Severity>(threat));
-  return std::map<State, std::string>{ { State::Concealed, "#"s },
-                                       { State::Marked, "%"s },
-                                       { State::Revealed, severity } }[std::get<State>(threat)];
+string minesweeper::to_string(Threat threat) {
+  auto severity = to_string(get<Severity>(threat));
+  return map<State, string>{ { State::Concealed, "#"s },
+                             { State::Marked, "%"s },
+                             { State::Revealed, severity } }[get<State>(threat)];
 }
 
-std::string minesweeper::to_string(Cells cells) {
+string minesweeper::to_string(Cells cells) {
   return accumulate(begin(cells), end(cells), ""s, [](auto s, auto cell) {
-    return s + to_string(std::get<Threat>(cell));
+    return s + to_string(get<Threat>(cell));
   });
 }
 
-std::string minesweeper::to_string(Position position) {
-  return std::to_string(index(std::get<Row>(position))) + ", "s +
-         std::to_string(index(std::get<Column>(position)));
+string minesweeper::to_string(Position position) {
+  return std::to_string(index(get<Row>(position))) + ", "s +
+         std::to_string(index(get<Column>(position)));
 }

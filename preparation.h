@@ -5,5 +5,4 @@
 
 namespace minesweeper {
   Board setupBoard(Rows rows, Columns columns);
-  Board setupMines(unsigned count);
 }
