@@ -6,4 +6,4 @@ namespace minesweeper {
     return
     [=](auto cell) { return std::get<State>(std::get<Threat>(cell)) == state; };
   }
-} // namespace minesweeper
+}

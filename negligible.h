@@ -7,4 +7,4 @@ namespace minesweeper {
       return isNegligible(std::get<Severity>(std::get<Threat>(cell)));
     };
   }
-} // namespace minesweeper
+}

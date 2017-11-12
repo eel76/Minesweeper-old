@@ -7,4 +7,4 @@ namespace minesweeper {
       return maximumDistance(std::get<Position>(cell), position) == 1;
     };
   }
-} // namespace minesweeper
+}
