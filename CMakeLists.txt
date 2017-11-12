@@ -32,6 +32,8 @@ add_executable (
   group.cpp
   group.h
   hazard.h
+  human.cpp
+  human.h
   main.cpp
   marked.h
   mine.cpp
