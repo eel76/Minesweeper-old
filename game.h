@@ -1,6 +1,5 @@
 #pragma once
 #include "board.h"
-#include "player.h"
 
 namespace minesweeper {
   bool gameUndecided(Board board);

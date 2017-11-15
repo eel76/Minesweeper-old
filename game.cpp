@@ -1,12 +1,5 @@
 #include "game.h"
-#include "cells.h"
-#include "deadly.h"
-#include "move.h"
-#include "print.h"
-#include "reveal.h"
 #include <algorithm>
-
-using namespace std::string_literals;
 
 auto minesweeper::gameUndecided(Board board) -> bool {
   return !gameLost(board) && !gameWon(board);
