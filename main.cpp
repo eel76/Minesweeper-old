@@ -3,5 +3,5 @@
 int main() {
   using namespace minesweeper;
 
-  play(choosePlayer(), makeBoard());
+  play(choosePlayer(), setupBoard());
 }

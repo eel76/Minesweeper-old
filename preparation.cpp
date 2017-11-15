@@ -1,7 +1,7 @@
 #include "preparation.h"
 #include "combos.h"
 
-auto minesweeper::setupBoard(Rows rows, Columns columns) -> Board {
+auto minesweeper::makeBoard(Rows rows, Columns columns) -> Board {
   auto board = Board{};
 
   for (auto position : combos(rows, columns))

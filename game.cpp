@@ -26,24 +26,3 @@ auto minesweeper::gameWon(Board board) -> bool {
     return isRevealed(std::get<Threat>(cell)) ^ isDeadly(std::get<Threat>(cell));
   });
 }
-
-auto minesweeper::roundPlayed(Board board, Player player) -> Board {
-  print(board);
-  printCountdown(board);
-
-  auto move = player(board);
-  return move(board);
-}
-
-namespace minesweeper { namespace {
-
-  void printIf(std::string const& text, bool condition) {
-    print(std::map<bool, std::string>{ { true, text } }[condition]);
-  }
-}}
-
-void minesweeper::evaluateGame(Board board) {
-  print(revealed(board, cells(board) | isDeadly()));
-  printIf("Game lost :-(\n"s, gameLost(board));
-  printIf("Game won :-)\n"s, gameWon(board));
-}

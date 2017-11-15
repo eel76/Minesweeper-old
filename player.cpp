@@ -1,10 +1,20 @@
 #include "player.h"
 #include "ask.h"
+#include "cells.h"
 #include "computer.h"
+#include "deadly.h"
 #include "game.h"
 #include "human.h"
+#include "reveal.h"
 
 using namespace std::string_literals;
+
+namespace minesweeper { namespace {
+
+  void printIf(std::string const& text, bool condition) {
+    print(std::map<bool, std::string>{ { true, text } }[condition]);
+  }
+}}
 
 auto minesweeper::choosePlayer() -> Player {
   auto players = std::map<std::string, Player>{ { "h"s, humanPlayer() },
@@ -21,6 +31,16 @@ void minesweeper::play(Player player, Board board) {
   while (gameUndecided(board))
     board = roundPlayed(board, player);
 
-  evaluateGame(board);
+  print(revealed(board, cells(board) | isDeadly()));
+  printIf("Game lost :-(\n"s, gameLost(board));
+  printIf("Game won :-)\n"s, gameWon(board));
   askString("Press ENTER to quit...");
+}
+
+auto minesweeper::roundPlayed(Board board, Player player) -> Board {
+  print(board);
+  printCountdown(board);
+
+  auto move = player(board);
+  return move(board);
 }
