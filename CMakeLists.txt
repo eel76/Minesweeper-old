@@ -49,7 +49,6 @@ add_executable (
   player.h
   position.cpp
   position.h
-  positions.cpp
   positions.h
   preparation.cpp
   preparation.h
