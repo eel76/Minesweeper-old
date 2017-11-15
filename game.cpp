@@ -6,29 +6,28 @@
 #include "reveal.h"
 #include <algorithm>
 
-using namespace minesweeper;
-using namespace std;
+using namespace std::string_literals;
 
-bool minesweeper::gameUndecided(Board board) {
+auto minesweeper::gameUndecided(Board board) -> bool {
   return !gameLost(board) && !gameWon(board);
 }
 
-bool minesweeper::gameLost(Board board) {
+auto minesweeper::gameLost(Board board) -> bool {
   return any_of(begin(board), end(board), [](auto cell) {
-    return isRevealed(get<Threat>(cell)) & isDeadly(get<Threat>(cell));
+    return isRevealed(std::get<Threat>(cell)) & isDeadly(std::get<Threat>(cell));
   });
 }
 
-bool minesweeper::gameWon(Board board) {
+auto minesweeper::gameWon(Board board) -> bool {
   // FIXME: (deadly => marked) and (!deadly => revealed)
   // (!deadly || marked) && (deadly || revealed)
 
   return all_of(begin(board), end(board), [](auto cell) {
-    return isRevealed(get<Threat>(cell)) ^ isDeadly(get<Threat>(cell));
+    return isRevealed(std::get<Threat>(cell)) ^ isDeadly(std::get<Threat>(cell));
   });
 }
 
-Board minesweeper::roundPlayed(Board board, Player player) {
+auto minesweeper::roundPlayed(Board board, Player player) -> Board {
   print(board);
   printCountdown(board);
 
@@ -36,9 +35,12 @@ Board minesweeper::roundPlayed(Board board, Player player) {
   return move(board);
 }
 
-void printIf(std::string const& text, bool condition) {
-  print(map<bool, string>{ { true, text } }[condition]);
-}
+namespace minesweeper { namespace {
+
+  void printIf(std::string const& text, bool condition) {
+    print(std::map<bool, std::string>{ { true, text } }[condition]);
+  }
+}}
 
 void minesweeper::evaluateGame(Board board) {
   print(revealed(board, cells(board) | isDeadly()));

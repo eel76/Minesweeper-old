@@ -1,6 +1,6 @@
 #include "positions.h"
 
-minesweeper::Positions minesweeper::toPositions(Cells cells) {
+auto minesweeper::toPositions(Cells cells) -> Positions {
   auto positions = Positions{};
 
   for (auto cell : cells)

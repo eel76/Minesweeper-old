@@ -12,7 +12,7 @@ namespace {
   }
 }
 
-minesweeper::Positions minesweeper::combos(Rows rows, Column column) {
+auto minesweeper::combos(Rows rows, Column column) -> Positions {
   auto positions = Positions{};
 
   for (auto row : rows)
@@ -21,7 +21,7 @@ minesweeper::Positions minesweeper::combos(Rows rows, Column column) {
   return positions;
 }
 
-minesweeper::Positions minesweeper::combos(Rows rows, Columns columns) {
+auto minesweeper::combos(Rows rows, Columns columns) -> Positions {
   auto positions = Positions{};
 
   for (auto column : columns)

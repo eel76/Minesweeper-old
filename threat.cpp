@@ -1,25 +1,25 @@
 #include "threat.h"
 
-minesweeper::Threat minesweeper::marked(Threat threat) {
+auto minesweeper::marked(Threat threat) -> Threat {
   return Threat{ marked(std::get<State>(threat)), std::get<Severity>(threat) };
 }
 
-minesweeper::Threat minesweeper::revealed(Threat threat) {
+auto minesweeper::revealed(Threat threat) -> Threat {
   return Threat{ revealed(std::get<State>(threat)), std::get<Severity>(threat) };
 }
 
-minesweeper::Threat minesweeper::considered(Threat threat, Hazard hazard) {
+auto minesweeper::considered(Threat threat, Hazard hazard) -> Threat {
   return Threat{ std::get<State>(threat), considered(std::get<Severity>(threat), hazard) };
 }
 
-bool minesweeper::isRevealed(Threat threat) {
+auto minesweeper::isRevealed(Threat threat) -> bool {
   return isRevealed(std::get<State>(threat));
 }
 
-bool minesweeper::isMarked(Threat threat) {
+auto minesweeper::isMarked(Threat threat) -> bool {
   return isMarked(std::get<State>(threat));
 }
 
-bool minesweeper::isDeadly(Threat threat) {
+auto minesweeper::isDeadly(Threat threat) -> bool {
   return isDeadly(std::get<Severity>(threat));
 }

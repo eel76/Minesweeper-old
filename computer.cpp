@@ -11,49 +11,51 @@
 #include <functional>
 #include <iostream>
 
-using namespace minesweeper;
-using namespace std;
+namespace minesweeper { namespace {
 
-Filter threatMarkable(Board board) {
-  return [board](auto cell) {
-    auto const neighbors = cells(board) | neighborOf(get<Position>(cell));
-    return size(neighbors | isDeadly()) == size(neighbors | !revealed());
-  };
-}
+  Filter threatMarkable(Board board) {
+    return [board](auto cell) {
+      auto const neighbors = cells(board) | neighborOf(std::get<Position>(cell));
+      return size(neighbors | isDeadly()) == size(neighbors | !revealed());
+    };
+  }
 
-Filter threatMarked(Board board) {
-  return [board](auto cell) {
-    auto const neighbors = cells(board) | neighborOf(get<Position>(cell));
-    return size(neighbors | isDeadly()) == size(neighbors | marked());
-  };
-}
+  Filter threatMarked(Board board) {
+    return [board](auto cell) {
+      auto const neighbors = cells(board) | neighborOf(std::get<Position>(cell));
+      return size(neighbors | isDeadly()) == size(neighbors | marked());
+    };
+  }
 
-Filter markMissing(Board board) {
-  return [board](auto cell) {
-    auto const hints = cells(board) | revealed() | neighborOf(get<Position>(cell));
-    return any_of(begin(hints), end(hints), threatMarkable(board));
-  };
-}
+  Filter markMissing(Board board) {
+    return [board](auto cell) {
+      auto const hints =
+      cells(board) | revealed() | neighborOf(std::get<Position>(cell));
+      return any_of(begin(hints), end(hints), threatMarkable(board));
+    };
+  }
 
-Filter safe(Board board) {
-  return [board](auto cell) {
-    auto const hints = cells(board) | revealed() | neighborOf(get<Position>(cell));
-    return any_of(begin(hints), end(hints), threatMarked(board));
-  };
-}
+  Filter safe(Board board) {
+    return [board](auto cell) {
+      auto const hints =
+      cells(board) | revealed() | neighborOf(std::get<Position>(cell));
+      return any_of(begin(hints), end(hints), threatMarked(board));
+    };
+  }
+}}
 
-Move minesweeper::computerMove(Board board) {
+auto minesweeper::computerMove(Board board) -> Move {
   auto const concealedCells = cells(board) | isConcealed();
 
   for (auto cell : concealedCells | markMissing(board))
-    return markAction(get<Position>(cell));
+    return markAction(std::get<Position>(cell));
 
   for (auto cell : concealedCells | safe(board))
-    return revealAction(get<Position>(cell));
+    return revealAction(std::get<Position>(cell));
 
-  return revealAction(get<Position>(shuffled(concealedCells)[0]));
+  return revealAction(std::get<Position>(shuffled(concealedCells)[0]));
 }
 
-minesweeper::Player minesweeper::computerPlayer() {
-  return [](auto board) { return computerMove(board); };
+auto minesweeper::computerPlayer() -> Player {
+  return &computerMove;
 }

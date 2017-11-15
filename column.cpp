@@ -1,10 +1,10 @@
 #include "column.h"
 #include <cmath>
 
-int minesweeper::index(Column column) {
+auto minesweeper::index(Column column) -> int {
   return static_cast<int>(column);
 }
 
-int minesweeper::distance(Column first, Column second) {
+auto minesweeper::distance(Column first, Column second) -> int {
   return std::abs(index(first) - index(second));
 }
