@@ -3,7 +3,6 @@
 #include "cells.h"
 #include "computer.h"
 #include "deadly.h"
-#include "game.h"
 #include "human.h"
 #include "reveal.h"
 
@@ -28,12 +27,12 @@ auto minesweeper::choosePlayer() -> Player {
 }
 
 void minesweeper::play(Player player, Board board) {
-  while (gameUndecided(board))
+  while (!isLost(board) && !isWon(board))
     board = roundPlayed(board, player);
 
   print(revealed(board, cells(board) | isDeadly()));
-  printIf("Game lost :-(\n"s, gameLost(board));
-  printIf("Game won :-)\n"s, gameWon(board));
+  printIf("Game lost :-(\n"s, isLost(board));
+  printIf("Game won :-)\n"s, isWon(board));
   askString("Press ENTER to quit...");
 }
 

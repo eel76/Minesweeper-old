@@ -4,5 +4,6 @@
 
 namespace minesweeper {
   using Board = std::map<Cell::first_type, Cell::second_type>;
-  Board setupBoard();
+  bool isLost(Board board);
+  bool isWon(Board board);
 }

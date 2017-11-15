@@ -1,7 +1,12 @@
+#include "mine.h"
 #include "player.h"
+#include "preparation.h"
 
 int main() {
   using namespace minesweeper;
 
-  play(choosePlayer(), setupBoard());
+  auto const board  = minesLayed(makeBoard(20_rows, 40_columns), 100);
+  auto const player = choosePlayer();
+
+  play(player, board);
 }

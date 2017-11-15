@@ -25,8 +25,6 @@ add_executable (
   deadly.h
   filter.cpp
   filter.h
-  game.cpp
-  game.h
   getline.cpp
   getline.h
   group.cpp
