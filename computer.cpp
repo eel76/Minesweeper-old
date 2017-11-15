@@ -48,12 +48,12 @@ auto minesweeper::computerMove(Board board) -> Move {
   auto const concealedCells = cells(board) | isConcealed();
 
   for (auto cell : concealedCells | markMissing(board))
-    return markAction(std::get<Position>(cell));
+    return markingMove(std::get<Position>(cell));
 
   for (auto cell : concealedCells | safe(board))
-    return revealAction(std::get<Position>(cell));
+    return revealingMove(std::get<Position>(cell));
 
-  return revealAction(std::get<Position>(shuffled(concealedCells)[0]));
+  return revealingMove(std::get<Position>(shuffled(concealedCells)[0]));
 }
 
 auto minesweeper::computerPlayer() -> Player {

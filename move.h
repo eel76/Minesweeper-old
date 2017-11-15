@@ -4,6 +4,6 @@
 
 namespace minesweeper {
   using Move = std::function<Board(Board)>;
-  Move revealAction(Position position);
-  Move markAction(Position position);
+  Move revealingMove(Position position);
+  Move markingMove(Position position);
 }
