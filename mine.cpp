@@ -14,14 +14,11 @@ auto minesweeper::mineLayed(Board board, Position position) -> Board {
   return board;
 }
 
-auto minesweeper::minesLayed(Board board, Cells cells) -> Board {
-  for (auto cell : cells)
-    board = mineLayed(board, std::get<Position>(cell));
+auto minesweeper::minesLayed(Board board, unsigned count) -> Board {
+  auto const possibleMines = cells(board) | isConcealed() | !isDeadly();
+
+  for (auto mine : shuffled(possibleMines) | take(count))
+    board = mineLayed(board, std::get<Position>(mine));
 
   return board;
-}
-
-auto minesweeper::minesLayed(Board board, unsigned count) -> Board {
-  auto const possibleCells = cells(board) | !isDeadly() | isConcealed();
-  return minesLayed(board, shuffled(possibleCells) | take(count));
 }
