@@ -1,14 +1,18 @@
 #include "state.h"
-#include "action.h"
+#include <map>
 
 auto minesweeper::revealed(State state) -> State {
-  auto action = revealAction();
-  return action[state];
+  using Revealed = std::map<State, State>;
+  return Revealed{ { State::Concealed, State::Revealed },
+                   { State::Marked, State::Marked },
+                   { State::Revealed, State::Revealed } }[state];
 }
 
 auto minesweeper::marked(State state) -> State {
-  auto action = markAction();
-  return action[state];
+  using Marked = std::map<State, State>;
+  return Marked{ { State::Concealed, State::Marked },
+                 { State::Marked, State::Concealed },
+                 { State::Revealed, State::Revealed } }[state];
 }
 
 auto minesweeper::isRevealed(State state) -> bool {

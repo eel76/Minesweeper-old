@@ -16,8 +16,8 @@ auto minesweeper::to_string(Threat threat) -> std::string {
 }
 
 auto minesweeper::to_string(Cells cells) -> std::string {
-  return accumulate(begin(cells), end(cells), ""s, [](auto s, auto cell) {
-    return s + to_string(std::get<Threat>(cell));
+  return accumulate(begin(cells), end(cells), ""s, [](auto text, auto cell) {
+    return text + to_string(std::get<Threat>(cell));
   });
 }
 
