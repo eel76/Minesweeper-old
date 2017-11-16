@@ -32,8 +32,8 @@ add_executable (
   human.h
   main.cpp
   marked.h
-  mine.cpp
-  mine.h
+  mined.cpp
+  mined.h
   move.cpp
   move.h
   negligible.h
