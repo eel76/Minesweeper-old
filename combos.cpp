@@ -1,4 +1,5 @@
 #include "combos.h"
+#include <initializer_list>
 
 namespace {
   template <class Container>

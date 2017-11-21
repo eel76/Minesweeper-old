@@ -1,7 +1,7 @@
 #include "severity.h"
 
 auto minesweeper::considered(Severity severity, Hazard hazard) -> Severity {
-  return { severity.m_level + int(hazard) };
+  return { severity.m_level + static_cast<int>(hazard) };
 }
 
 auto minesweeper::isDeadly(Severity severity) -> bool {

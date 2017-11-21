@@ -1,4 +1,4 @@
-#include "mine.h"
+#include "mined.h"
 #include "player.h"
 #include "preparation.h"
 
