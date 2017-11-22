@@ -3,20 +3,18 @@
 #include <map>
 #include <regex>
 
-using namespace minesweeper;
-using namespace std;
+// FIXME: use unknownMove()
 
-template <class Value>
-using Generator = std::function<Value()>;
+using namespace std::string_literals;
 
-Position minesweeper::parsePosition(std::string text) {
-  auto match = smatch{};
-  regex_match(text, match, regex{ "^ *([1-9]*[0-9]) *[,; ] *([1-9]*[0-9]) *$" });
+auto minesweeper::parsePosition(std::string text) -> Position {
+  auto match = std::smatch{};
+  regex_match(text, match, std::regex{ "^ *([1-9]*[0-9]) *[,; ] *([1-9]*[0-9]) *$" });
 
-  auto positions = map<bool, Generator<Position>>{
+  auto positions = std::map<bool, std::function<Position()>>{
     { false,
       [=] {
-        return Position{ Row(stoi(match[1])), Column(stoi(match[2])) };
+        return Position{ Row(std::stoi(match[1])), Column(std::stoi(match[2])) };
       } },
     { true,
       [] {
@@ -27,13 +25,12 @@ Position minesweeper::parsePosition(std::string text) {
   return positions[match.empty()]();
 }
 
-using Parse = std::map<std::string, Move>;
+auto minesweeper::parseMove(std::string text) -> Move {
+  auto match = std::smatch{};
+  regex_match(text, match, std::regex{ "^ *(m?)(.+)$" });
 
-Move minesweeper::parseMove(std::string text) {
-  auto match = smatch{};
-  regex_match(text, match, regex{ "^ *(m?)(.+)$" });
-
-  auto parse = Parse{ { ""s, revealingMove(parsePosition(match[2])) },
-                      { "m"s, markingMove(parsePosition(match[2])) } };
+  auto parse =
+  std::map<std::string, Move>{ { ""s, revealingMove(parsePosition(match[2])) },
+                               { "m"s, markingMove(parsePosition(match[2])) } };
   return parse[match[1]];
 }

@@ -18,3 +18,10 @@ auto minesweeper::markingMove(Position position) -> Move {
     return marked(board, { Cell{ position, board[position] } });
   };
 }
+
+auto minesweeper::unknownMove() -> Move {
+  return [=](auto board) {
+    print("Unknown move. Please enter again.\n"s);
+    return board;
+  };
+}

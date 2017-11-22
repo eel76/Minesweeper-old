@@ -7,18 +7,17 @@
 
 auto minesweeper::mined(Board board, Position position) -> Board {
   for (auto neighbor : cells(board) | neighborOf(position))
-    board[std::get<Position>(neighbor)] =
-    considered(std::get<Threat>(neighbor), Hazard::AdjacentMine);
+    board[std::get<Position>(neighbor)] = mined(std::get<Threat>(neighbor), position);
 
-  board[position] = considered(board[position], Hazard::Mine);
+  board[position] = mined(board[position], position);
   return board;
 }
 
 auto minesweeper::mined(Board board, unsigned count) -> Board {
-  auto const possibleMines = cells(board) | isConcealed() | !isDeadly();
+  auto const concealedCells = cells(board) | isConcealed();
 
-  for (auto mine : shuffled(possibleMines) | take(count))
-    board = mined(board, std::get<Position>(mine));
+  for (auto cell : shuffled(concealedCells | !isDeadly()) | take(count))
+    board = mined(board, std::get<Position>(cell));
 
   return board;
 }

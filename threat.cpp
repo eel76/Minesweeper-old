@@ -8,8 +8,8 @@ auto minesweeper::revealed(Threat threat) -> Threat {
   return Threat{ revealed(std::get<State>(threat)), std::get<Severity>(threat) };
 }
 
-auto minesweeper::considered(Threat threat, Hazard hazard) -> Threat {
-  return Threat{ std::get<State>(threat), considered(std::get<Severity>(threat), hazard) };
+auto minesweeper::mined(Threat threat, Position position) -> Threat {
+  return Threat{ std::get<State>(threat), mined(std::get<Severity>(threat), position) };
 }
 
 auto minesweeper::isRevealed(Threat threat) -> bool {
