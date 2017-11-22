@@ -3,8 +3,6 @@
 
 namespace minesweeper {
   inline Filter isNegligible() {
-    return [](auto cell) {
-      return isNegligible(std::get<Severity>(std::get<Threat>(cell)));
-    };
+    return [](auto cell) { return isNegligible(std::get<Threat>(cell)); };
   }
 }

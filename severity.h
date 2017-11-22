@@ -1,20 +1,18 @@
 #pragma once
-#include "position.h"
-#include <set>
+#include "hazard.h"
+#include <map>
 
 namespace minesweeper {
-  using Deadly   = std::set<Position>;
-  using Severity = std::pair<Deadly, Position>;
+  using Severity = std::map<Hazard, int>;
 
-  inline Severity mined(Severity severity, Position position) {
-    auto deadly = std::get<Deadly>(severity);
-    deadly.emplace(position);
-    return { deadly, std::get<Position>(severity) };
+  inline Severity mined(Severity severity, Hazard hazard) {
+    severity[hazard]++;
+    return severity;
   }
   inline bool isDeadly(Severity severity) {
-    return std::get<Deadly>(severity).count(std::get<Position>(severity)) != 0;
+    return severity[Hazard::Mine] != 0;
   }
   inline bool isNegligible(Severity severity) {
-    return std::get<Deadly>(severity).empty();
+    return severity.empty();
   }
 }

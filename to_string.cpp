@@ -5,9 +5,8 @@
 using namespace std::string_literals;
 
 auto minesweeper::to_string(Severity severity) -> std::string {
-  return std::map<bool, char>{
-    { true, 'X' }, { false, ".12345678"[std::get<Deadly>(severity).count()] }
-  }[isDeadly(severity)];
+  return std::to_string(
+  ".12345678XXXXXXXX"[severity[Hazard::Mine] * 9 + severity[Hazard::NearbyMine]]);
 }
 
 auto minesweeper::to_string(Threat threat) -> std::string {
