@@ -4,7 +4,7 @@
 #include <utility>
 
 namespace minesweeper {
-  using Threat = std::pair<State, Severity>;
+  using Threat = std::pair<State, Mines>;
   Threat marked(Threat threat);
   Threat revealed(Threat threat);
   Threat mined(Threat threat, Hazard hazard);

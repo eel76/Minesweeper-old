@@ -1,5 +1,5 @@
 #pragma once
 
 namespace minesweeper {
-  enum struct Hazard { NearbyMine, Mine };
+  enum struct Hazard { Nearby, Deadly };
 }

@@ -3,16 +3,16 @@
 #include <map>
 
 namespace minesweeper {
-  using Severity = std::map<Hazard, int>;
+  using Mines = std::map<Hazard, int>;
 
-  inline Severity mined(Severity severity, Hazard hazard) {
+  inline Mines mined(Mines severity, Hazard hazard) {
     severity[hazard]++;
     return severity;
   }
-  inline bool isDeadly(Severity severity) {
-    return severity[Hazard::Mine] != 0;
+  inline bool isDeadly(Mines severity) {
+    return severity[Hazard::Deadly] != 0;
   }
-  inline bool isNegligible(Severity severity) {
+  inline bool isNegligible(Mines severity) {
     return severity.empty();
   }
 }

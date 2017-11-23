@@ -4,16 +4,15 @@
 
 using namespace std::string_literals;
 
-auto minesweeper::to_string(Severity severity) -> std::string {
-  return std::to_string(
-  ".12345678XXXXXXXX"[severity[Hazard::Mine] * 9 + severity[Hazard::NearbyMine]]);
+auto minesweeper::to_string(Mines mines) -> std::string {
+  return ""s + ".12345678XXXXXXXX"[mines[Hazard::Nearby] + 9 * mines[Hazard::Deadly]];
 }
 
 auto minesweeper::to_string(Threat threat) -> std::string {
-  auto severity = to_string(std::get<Severity>(threat));
+  auto mines = to_string(std::get<Mines>(threat));
   return std::map<State, std::string>{ { State::Concealed, "#"s },
                                        { State::Marked, "%"s },
-                                       { State::Revealed, severity } }[std::get<State>(threat)];
+                                       { State::Revealed, mines } }[std::get<State>(threat)];
 }
 
 auto minesweeper::to_string(Cells cells) -> std::string {

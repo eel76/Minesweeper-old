@@ -8,9 +8,9 @@
 auto minesweeper::mined(Board board, Position position) -> Board {
   for (auto neighbor : cells(board) | neighborOf(position))
     board[std::get<Position>(neighbor)] =
-    mined(std::get<Threat>(neighbor), Hazard::NearbyMine);
+    mined(std::get<Threat>(neighbor), Hazard::Nearby);
 
-  board[position] = mined(board[position], Hazard::Mine);
+  board[position] = mined(board[position], Hazard::Deadly);
   return board;
 }
 
