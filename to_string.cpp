@@ -11,7 +11,7 @@ auto minesweeper::to_string(Mines mines) -> std::string {
 auto minesweeper::to_string(Threat threat) -> std::string {
   auto mines = to_string(std::get<Mines>(threat));
   return std::map<State, std::string>{ { State::Concealed, "#"s },
-                                       { State::Marked, "%"s },
+                                       { State::Marked, "*"s },
                                        { State::Revealed, mines } }[std::get<State>(threat)];
 }
 
