@@ -8,8 +8,6 @@
 #include "positions.h"
 #include "revealed.h"
 #include <algorithm>
-#include <functional>
-#include <iostream>
 
 namespace minesweeper { namespace {
 

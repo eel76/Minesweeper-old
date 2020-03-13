@@ -1,29 +1,37 @@
 #include "threat.h"
 
+auto minesweeper::state(Threat threat) -> State {
+  return threat.state;
+}
+
+auto minesweeper::mines(Threat threat) -> Mines {
+  return threat.mines;
+}
+
 auto minesweeper::marked(Threat threat) -> Threat {
-  return Threat{ marked(std::get<State>(threat)), std::get<Mines>(threat) };
+  return { marked(state(threat)), mines(threat) };
 }
 
 auto minesweeper::revealed(Threat threat) -> Threat {
-  return Threat{ revealed(std::get<State>(threat)), std::get<Mines>(threat) };
+  return { revealed(state(threat)), mines(threat) };
 }
 
 auto minesweeper::mined(Threat threat, Hazard hazard) -> Threat {
-  return Threat{ std::get<State>(threat), mined(std::get<Mines>(threat), hazard) };
+  return { state(threat), mined(mines(threat), hazard) };
 }
 
 auto minesweeper::isRevealed(Threat threat) -> bool {
-  return isRevealed(std::get<State>(threat));
+  return isRevealed(state(threat));
 }
 
 auto minesweeper::isMarked(Threat threat) -> bool {
-  return isMarked(std::get<State>(threat));
+  return isMarked(state(threat));
 }
 
 auto minesweeper::isDeadly(Threat threat) -> bool {
-  return isDeadly(std::get<Mines>(threat));
+  return isDeadly(mines(threat));
 }
 
 auto minesweeper::isNegligible(Threat threat) -> bool {
-  return isNegligible(std::get<Mines>(threat));
+  return isNegligible(mines(threat));
 }

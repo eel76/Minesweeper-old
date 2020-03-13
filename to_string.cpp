@@ -1,4 +1,5 @@
 #include "to_string.h"
+
 #include <map>
 #include <numeric>
 
@@ -9,10 +10,10 @@ auto minesweeper::to_string(Mines mines) -> std::string {
 }
 
 auto minesweeper::to_string(Threat threat) -> std::string {
-  auto mines = to_string(std::get<Mines>(threat));
   return std::map<State, std::string>{ { State::Concealed, "#"s },
                                        { State::Marked, "*"s },
-                                       { State::Revealed, mines } }[std::get<State>(threat)];
+                                       { State::Revealed,
+                                         to_string(mines(threat)) } }[state(threat)];
 }
 
 auto minesweeper::to_string(Cells cells) -> std::string {
@@ -22,6 +23,6 @@ auto minesweeper::to_string(Cells cells) -> std::string {
 }
 
 auto minesweeper::to_string(Position position) -> std::string {
-  return std::to_string(index(std::get<Row>(position))) + ", "s +
-         std::to_string(index(std::get<Column>(position)));
+  return std::to_string(index(row(position))) + ", "s +
+         std::to_string(index(column(position)));
 }

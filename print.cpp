@@ -12,8 +12,8 @@ void minesweeper::print(std::string const& text) {
 }
 
 void minesweeper::print(Board board) {
-  for (auto row : byRow(cells(board)))
-    print(to_string(std::get<Cells>(row)) + "\n"s);
+  for (auto&& [row, cells] : byRow(cells(board)))
+    print(to_string(cells) + "\n"s);
 }
 
 void minesweeper::printCountdown(Board board) {
