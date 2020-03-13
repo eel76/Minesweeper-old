@@ -1,4 +1,4 @@
-Calisthenics rules:
+Imperative Calisthenics rules:
  * No Preprocessor macros
  * Max. one indentation level per function
  * No 'else'
