@@ -1,9 +1,10 @@
 #pragma once
-#include "cell.h"
+#include "position.h"
+#include "threat.h"
 #include <map>
 
 namespace minesweeper {
-  using Board = std::map<Cell::first_type, Cell::second_type>;
+  using Board = std::map<Position, Threat>;
   bool isLost(Board board);
   bool isWon(Board board);
 }

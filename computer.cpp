@@ -15,14 +15,14 @@ namespace minesweeper { namespace {
 
   Filter threatMarkable(Board board) {
     return [board](auto cell) {
-      auto const neighbors = cells(board) | neighborOf(std::get<Position>(cell));
+      auto const neighbors = cells(board) | neighborOf(position(cell));
       return size(neighbors | isDeadly()) == size(neighbors | !revealed());
     };
   }
 
   Filter threatMarked(Board board) {
     return [board](auto cell) {
-      auto const neighbors = cells(board) | neighborOf(std::get<Position>(cell));
+      auto const neighbors = cells(board) | neighborOf(position(cell));
       return size(neighbors | isDeadly()) == size(neighbors | marked());
     };
   }
@@ -30,7 +30,7 @@ namespace minesweeper { namespace {
   Filter markMissing(Board board) {
     return [board](auto cell) {
       auto const hints =
-      cells(board) | revealed() | neighborOf(std::get<Position>(cell));
+      cells(board) | revealed() | neighborOf(position(cell));
       return any_of(begin(hints), end(hints), threatMarkable(board));
     };
   }
@@ -38,7 +38,7 @@ namespace minesweeper { namespace {
   Filter safe(Board board) {
     return [board](auto cell) {
       auto const hints =
-      cells(board) | revealed() | neighborOf(std::get<Position>(cell));
+      cells(board) | revealed() | neighborOf(position(cell));
       return any_of(begin(hints), end(hints), threatMarked(board));
     };
   }
@@ -48,12 +48,12 @@ auto minesweeper::computerMove(Board board) -> Move {
   auto const concealedCells = cells(board) | isConcealed();
 
   for (auto cell : concealedCells | markMissing(board))
-    return markingMove(std::get<Position>(cell));
+    return markingMove(position(cell));
 
   for (auto cell : concealedCells | safe(board))
-    return revealingMove(std::get<Position>(cell));
+    return revealingMove(position(cell));
 
-  return revealingMove(std::get<Position>(shuffled(concealedCells)[0]));
+  return revealingMove(position(shuffled(concealedCells)[0]));
 }
 
 auto minesweeper::computerPlayer() -> Player {

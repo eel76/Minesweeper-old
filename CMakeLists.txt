@@ -8,6 +8,7 @@ add_executable (
   ask.h
   board.cpp
   board.h
+  cell.cpp
   cell.h
   cells.cpp
   cells.h

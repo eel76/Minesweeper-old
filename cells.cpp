@@ -1,9 +1,16 @@
 #include "cells.h"
+
 #include <algorithm>
 #include <random>
 
 auto minesweeper::cells(Board board) -> Cells {
-  return { begin(board), end(board) };
+  auto cells = Cells{};
+  cells.reserve(size (board));
+
+  for (auto [position, threat] : board)
+    cells.emplace_back(Cell{position, threat});
+
+  return cells;
 }
 
 auto minesweeper::shuffled(Cells cells) -> Cells {

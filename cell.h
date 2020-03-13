@@ -1,7 +1,12 @@
 #pragma once
-#include "position.h"
-#include "threat.h"
+#include "board.h"
 
 namespace minesweeper {
-  using Cell = std::pair<Position, Threat>;
+  struct Cell
+  {
+    Board::key_type position;
+    Board::mapped_type threat;  
+  };
+  auto position(Cell cell) -> Position;
+  auto threat(Cell cell) -> Threat;
 }

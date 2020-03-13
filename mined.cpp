@@ -5,12 +5,12 @@
 #include "neighbor.h"
 #include "take.h"
 
-auto minesweeper::mined(Board board, Position position) -> Board {
-  for (auto neighbor : cells(board) | neighborOf(position))
-    board[std::get<Position>(neighbor)] =
-    mined(std::get<Threat>(neighbor), Hazard::Nearby);
+auto minesweeper::mined(Board board, Position p) -> Board {
+  for (auto neighbor : cells(board) | neighborOf(p))
+    board[position(neighbor)] =
+    mined(threat(neighbor), Hazard::Nearby);
 
-  board[position] = mined(board[position], Hazard::Deadly);
+  board[p] = mined(board[p], Hazard::Deadly);
   return board;
 }
 
@@ -18,7 +18,7 @@ auto minesweeper::mined(Board board, unsigned count) -> Board {
   auto const concealedCells = cells(board) | isConcealed();
 
   for (auto cell : shuffled(concealedCells | !isDeadly()) | take(count))
-    board = mined(board, std::get<Position>(cell));
+    board = mined(board, position(cell));
 
   return board;
 }

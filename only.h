@@ -4,6 +4,6 @@
 namespace minesweeper {
   inline Filter only(State state) {
     return
-    [=](auto cell) { return std::get<State>(std::get<Threat>(cell)) == state; };
+    [=](auto cell) { return std::get<State>(threat(cell)) == state; };
   }
 }

@@ -1,9 +1,9 @@
 #pragma once
-#include "board.h"
+#include "cell.h"
 #include <vector>
 
 namespace minesweeper {
   using Cells = std::vector<Cell>;
-  Cells cells(Board board);
-  Cells shuffled(Cells cells);
+  auto cells(Board board) -> Cells;
+  auto shuffled(Cells cells) -> Cells;
 }

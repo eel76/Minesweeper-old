@@ -2,9 +2,9 @@
 #include "filter.h"
 
 namespace minesweeper {
-  inline Filter neighborOf(Position position) {
+  inline Filter neighborOf(Position p) {
     return [=](auto cell) {
-      return maximumDistance(std::get<Position>(cell), position) == 1;
+      return maximumDistance(position(cell), p) == 1;
     };
   }
 }

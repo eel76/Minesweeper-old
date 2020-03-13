@@ -6,17 +6,17 @@
 
 auto minesweeper::marked(Board board, Cells cells) -> Board {
   for (auto cell : cells)
-    board[std::get<Position>(cell)] = marked(std::get<Threat>(cell));
+    board[position(cell)] = marked(threat(cell));
 
   return board;
 }
 
 auto minesweeper::revealed(Board board, Cells cs) -> Board {
   for (auto cell : cs | isConcealed())
-    board[std::get<Position>(cell)] = revealed(std::get<Threat>(cell));
+    board[position(cell)] = revealed(threat(cell));
 
   for (auto cell : cs | isConcealed() | isNegligible())
-    board = revealed(board, cells(board) | neighborOf(std::get<Position>(cell)));
+    board = revealed(board, cells(board) | neighborOf(position(cell)));
 
   return board;
 }
