@@ -2,7 +2,7 @@
 #include "only.h"
 
 namespace minesweeper {
-  inline Filter isConcealed() {
-    return only(State::Concealed);
+  inline auto concealed(Cells cells) -> Cells {
+    return cells | only(State::Concealed);
   }
 }

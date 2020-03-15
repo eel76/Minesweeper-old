@@ -12,10 +12,10 @@ auto minesweeper::marked(Board board, Cells cells) -> Board {
 }
 
 auto minesweeper::revealed(Board board, Cells cs) -> Board {
-  for (auto cell : cs | isConcealed())
+  for (auto cell : concealed(cs))
     board[position(cell)] = revealed(threat(cell));
 
-  for (auto cell : cs | isConcealed() | isNegligible())
+  for (auto cell : concealed(cs) | isNegligible())
     board = revealed(board, cells(board) | neighborOf(position(cell)));
 
   return board;

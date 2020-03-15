@@ -43,7 +43,7 @@ namespace minesweeper { namespace {
 }}
 
 auto minesweeper::computerMove(Board board) -> Move {
-  auto const concealedCells = cells(board) | isConcealed();
+  auto const concealedCells = concealed(cells(board));
 
   for (auto cell : concealedCells | markMissing(board))
     return markingMove(position(cell));
@@ -51,7 +51,7 @@ auto minesweeper::computerMove(Board board) -> Move {
   for (auto cell : concealedCells | safe(board))
     return revealingMove(position(cell));
 
-  return revealingMove(position(shuffled(concealedCells)[0]));
+  return revealingMove(position(shuffle(concealedCells)[0]));
 }
 
 auto minesweeper::computerPlayer() -> Player {
