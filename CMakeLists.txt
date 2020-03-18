@@ -18,7 +18,9 @@ add_executable (
   include/columns.h
   src/combos.cpp
   include/combos.h
+  src/player/choose.cpp
   src/player/computer.cpp
+  include/player/choose.h
   include/player/computer.h
   include/concealed.h
   include/deadly.h
@@ -44,7 +46,6 @@ add_executable (
   include/parse.h
   src/play.cpp
   include/play.h
-  src/player.cpp
   include/player.h
   src/position.cpp
   include/position.h

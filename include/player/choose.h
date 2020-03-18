@@ -2,5 +2,5 @@
 #include "player.h"
 
 namespace minesweeper::player {
-  auto human() -> Player;
+  auto choose() -> Player;
 }
