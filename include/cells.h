@@ -4,6 +4,5 @@
 
 namespace minesweeper {
   using Cells = std::vector<Cell>;
-  auto cells(Board board) -> Cells;
-  auto shuffle(Cells cells) -> Cells;
+  auto cellsOf(Board board) -> Cells;
 }

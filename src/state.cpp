@@ -1,14 +1,14 @@
 #include "state.h"
 #include <map>
 
-auto minesweeper::revealed(State state) -> State {
+auto minesweeper::reveal(State state) -> State {
   using Revealed = std::map<State, State>;
   return Revealed{ { State::Concealed, State::Revealed },
                    { State::Marked, State::Marked },
                    { State::Revealed, State::Revealed } }[state];
 }
 
-auto minesweeper::marked(State state) -> State {
+auto minesweeper::mark(State state) -> State {
   using Marked = std::map<State, State>;
   return Marked{ { State::Concealed, State::Marked },
                  { State::Marked, State::Concealed },

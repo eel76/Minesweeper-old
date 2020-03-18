@@ -11,12 +11,14 @@ auto minesweeper::toggleMark(Board board, Cells cells) -> Board {
   return board;
 }
 
-auto minesweeper::reveal(Board board, Cells cs) -> Board {
-  for (auto cell : concealed(cs))
+auto minesweeper::reveal(Board board, Cells cells) -> Board {
+  auto const concealedCells = concealed(cells);
+
+  for (auto cell : concealedCells)
     board[position(cell)] = reveal(threat(cell));
 
-  for (auto cell : concealed(cs) | isNegligible())
-    board = reveal(board, cells(board) | neighborOf(cell));
+  for (auto cell : concealedCells | isNegligible())
+    board = reveal(board, cellsOf(board) | neighborOf(cell));
 
   return board;
 }

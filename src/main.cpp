@@ -1,5 +1,5 @@
 #include "mined.h"
-#include "player.h"
+#include "play.h"
 #include "preparation.h"
 
 int main() {
@@ -8,5 +8,5 @@ int main() {
   auto const board  = mined(makeBoard(20_rows, 40_columns), 100);
   auto const player = choosePlayer();
 
-  play(player, board);
+  play(board, player);
 }

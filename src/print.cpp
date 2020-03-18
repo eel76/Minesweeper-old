@@ -12,11 +12,11 @@ void minesweeper::print(std::string const& text) {
 }
 
 void minesweeper::print(Board board) {
-  for (auto&& [row, cells] : byRow(cells(board)))
+  for (auto&& [row, cells] : byRow(cellsOf(board)))
     print(to_string(cells) + "\n"s);
 }
 
 void minesweeper::printCountdown(Board board) {
-  auto countdown = size(cells(board) | isDeadly()) - size(cells(board) | marked());
+  auto countdown = size(cellsOf(board) | isDeadly()) - size(cellsOf(board) | marked());
   print("Mines left: "s + std::to_string(countdown) + "\n"s);
 }
