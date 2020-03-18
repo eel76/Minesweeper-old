@@ -16,7 +16,7 @@ auto minesweeper::reveal(Board board, Cells cs) -> Board {
     board[position(cell)] = reveal(threat(cell));
 
   for (auto cell : concealed(cs) | isNegligible())
-    board = reveal(board, cells(board) | neighborOf(position(cell)));
+    board = reveal(board, cells(board) | neighborOf(cell));
 
   return board;
 }

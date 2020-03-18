@@ -6,5 +6,5 @@ namespace minesweeper {
   using Player = std::function<Move(Board)>;
   Player choosePlayer();
   void   play(Player player, Board board);
-  Board  roundPlayed(Board board, Player player);
+  Board  playRound(Board board, Player player);
 }

@@ -28,7 +28,7 @@ auto minesweeper::choosePlayer() -> Player {
 
 void minesweeper::play(Player player, Board board) {
   while (!isLost(board) && !isWon(board))
-    board = roundPlayed(board, player);
+    board = playRound(board, player);
 
   print(reveal(board, cells(board) | isDeadly()));
   printIf("Game lost :-(\n"s, isLost(board));
@@ -36,7 +36,7 @@ void minesweeper::play(Player player, Board board) {
   askString("Press ENTER to quit...");
 }
 
-auto minesweeper::roundPlayed(Board board, Player player) -> Board {
+auto minesweeper::playRound(Board board, Player player) -> Board {
   print(board);
   printCountdown(board);
 

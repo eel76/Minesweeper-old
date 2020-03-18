@@ -1,4 +1,5 @@
 #include "computer.h"
+
 #include "concealed.h"
 #include "deadly.h"
 #include "marked.h"
@@ -7,36 +8,35 @@
 #include "parse.h"
 #include "positions.h"
 #include "revealed.h"
+
 #include <algorithm>
 
 namespace minesweeper { namespace {
 
   Filter threatMarkable(Board board) {
     return [board](auto cell) {
-      auto const neighbors = cells(board) | neighborOf(position(cell));
+      auto const neighbors = cells(board) | neighborOf(cell);
       return size(neighbors | isDeadly()) == size(neighbors | !revealed());
     };
   }
 
   Filter threatMarked(Board board) {
     return [board](auto cell) {
-      auto const neighbors = cells(board) | neighborOf(position(cell));
+      auto const neighbors = cells(board) | neighborOf(cell);
       return size(neighbors | isDeadly()) == size(neighbors | marked());
     };
   }
 
   Filter markMissing(Board board) {
     return [board](auto cell) {
-      auto const hints =
-      cells(board) | revealed() | neighborOf(position(cell));
+      auto const hints = cells(board) | revealed() | neighborOf(cell);
       return any_of(begin(hints), end(hints), threatMarkable(board));
     };
   }
 
   Filter safe(Board board) {
     return [board](auto cell) {
-      auto const hints =
-      cells(board) | revealed() | neighborOf(position(cell));
+      auto const hints = cells(board) | revealed() | neighborOf(cell);
       return any_of(begin(hints), end(hints), threatMarked(board));
     };
   }
