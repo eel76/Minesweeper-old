@@ -3,6 +3,6 @@
 #include "cells.h"
 
 namespace minesweeper {
-  Board marked(Board board, Cells cells);
-  Board revealed(Board board, Cells cells);
+  Board toggleMark(Board board, Cells cells);
+  Board reveal(Board board, Cells cells);
 }

@@ -4,19 +4,19 @@
 #include "negligible.h"
 #include "neighbor.h"
 
-auto minesweeper::marked(Board board, Cells cells) -> Board {
+auto minesweeper::toggleMark(Board board, Cells cells) -> Board {
   for (auto cell : cells)
-    board[position(cell)] = marked(threat(cell));
+    board[position(cell)] = toggleMark(threat(cell));
 
   return board;
 }
 
-auto minesweeper::revealed(Board board, Cells cs) -> Board {
+auto minesweeper::reveal(Board board, Cells cs) -> Board {
   for (auto cell : concealed(cs))
-    board[position(cell)] = revealed(threat(cell));
+    board[position(cell)] = reveal(threat(cell));
 
   for (auto cell : concealed(cs) | isNegligible())
-    board = revealed(board, cells(board) | neighborOf(position(cell)));
+    board = reveal(board, cells(board) | neighborOf(position(cell)));
 
   return board;
 }

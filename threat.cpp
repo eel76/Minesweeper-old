@@ -8,11 +8,11 @@ auto minesweeper::mines(Threat threat) -> Mines {
   return threat.mines;
 }
 
-auto minesweeper::marked(Threat threat) -> Threat {
+auto minesweeper::toggleMark(Threat threat) -> Threat {
   return { marked(state(threat)), mines(threat) };
 }
 
-auto minesweeper::revealed(Threat threat) -> Threat {
+auto minesweeper::reveal(Threat threat) -> Threat {
   return { revealed(state(threat)), mines(threat) };
 }
 

@@ -12,8 +12,8 @@ namespace minesweeper {
   };
   auto   state(Threat threat) -> State;
   auto   mines(Threat threat) -> Mines;
-  Threat marked(Threat threat);
-  Threat revealed(Threat threat);
+  Threat toggleMark(Threat threat);
+  Threat reveal(Threat threat);
   Threat mined(Threat threat, Hazard hazard);
   bool   isRevealed(Threat threat);
   bool   isMarked(Threat threat);

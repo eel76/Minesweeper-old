@@ -30,7 +30,7 @@ void minesweeper::play(Player player, Board board) {
   while (!isLost(board) && !isWon(board))
     board = roundPlayed(board, player);
 
-  print(revealed(board, cells(board) | isDeadly()));
+  print(reveal(board, cells(board) | isDeadly()));
   printIf("Game lost :-(\n"s, isLost(board));
   printIf("Game won :-)\n"s, isWon(board));
   askString("Press ENTER to quit...");
