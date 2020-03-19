@@ -2,39 +2,42 @@
 
 #include "move/mark.h"
 #include "move/reveal.h"
+#include "print.h"
 
 #include <functional>
 #include <map>
 #include <regex>
+#include <string_view>
 
 using namespace std::string_literals;
 
 namespace minesweeper::move { namespace {
-  auto parsePosition(std::string text) -> Position {
-    auto match = std::smatch{};
-    regex_match(text, match, std::regex{ "^ *([1-9]*[0-9]) *[,; ] *([1-9]*[0-9]) *$" });
-
-    auto positions = std::map<bool, std::function<Position()>>{
-      { false,
-        [=] {
-          return Position{ Row(std::stoi(match[1])), Column(std::stoi(match[2])) };
-        } },
-      { true,
-        [] {
-          return Position{ Row::Invalid, Column::Invalid };
-        } }
+  auto invalid(std::string text) -> Move {
+    return [=](auto board) {
+      print("'"s + text + "' is not a valid move. Please try again.\n");
+      return board;
     };
+  }
 
-    return positions[match.empty()]();
+  auto match(std::string_view text, std::string_view pattern) {
+    auto match = std::cmatch{};
+    regex_match(&*begin(text), &*end(text), match,
+                std::regex{ begin(pattern), end(pattern) });
+
+    return match;
   }
 }}
 
 auto minesweeper::move::parse(std::string text) -> Move {
-  auto match = std::smatch{};
-  regex_match(text, match, std::regex{ "^ *(m?)(.+)$" });
+  auto const match =
+  move::match(text, "^ *(m?) *([1-9]*[0-9]) *[,; ] *([1-9]*[0-9]) *$");
+  if (match.empty())
+    return invalid(text);
 
-  auto parse =
-  std::map<std::string, Move>{ { ""s, move::revealingMove(parsePosition(match[2])) },
-                               { "m"s, move::markingMove(parsePosition(match[2])) } };
-  return parse[match[1]];
+  auto const position =
+  Position{ Row{ std::stoi(match[2]) }, Column{ std::stoi(match[3]) } };
+
+  using Moves = std::map<std::string, Move>;
+  auto moves = Moves{ { ""s, move::reveal(position) }, { "m"s, move::mark(position) } };
+  return moves[match[1]];
 }

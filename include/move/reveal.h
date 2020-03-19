@@ -2,5 +2,5 @@
 #include "move.h"
 
 namespace minesweeper::move {
-  Move revealingMove(Position position);
+  auto reveal(Position position) -> Move;
 }

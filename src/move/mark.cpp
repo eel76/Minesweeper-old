@@ -6,7 +6,7 @@
 
 using namespace std::string_literals;
 
-auto minesweeper::move::markingMove(Position position) -> Move {
+auto minesweeper::move::mark(Position position) -> Move {
   return [=](auto board) {
     print("toggle mark "s + to_string(position) + "\n"s);
     return toggleMark(board, { Cell{ position, board[position] } });

@@ -9,6 +9,7 @@
 #include "neighbor.h"
 #include "positions.h"
 #include "revealed.h"
+#include "take.h"
 
 #include <algorithm>
 #include <random>
@@ -43,18 +44,23 @@ namespace minesweeper { namespace {
     };
   }
 
+  auto partition(Cells cells, Filter filter) {
+    std::partition(begin(cells), end(cells), filter);
+    return cells;
+  }
+
   auto computerMove(Board board) -> Move {
-    auto concealedCells = concealed(cellsOf(board));
-    // FIXME: concealedCells isEmpty()
+    auto const concealedCells = concealed(cellsOf(board));
+    if (concealedCells.empty())
+      throw;
 
-    for (auto cell : concealedCells | markMissing(board))
-      return move::markingMove(position(cell));
+    if (auto cells = concealedCells | markMissing(board) | take (1); !cells.empty())
+      return move::mark(position(cells.front()));
 
-    std::partition(begin(concealedCells), end(concealedCells), safe(board));
-    return move::revealingMove(position(concealedCells[0]));
+    return move::reveal(position(partition(concealedCells, safe(board))[0]));
   }
 }}
 
 auto minesweeper::player::computer() -> Player {
-  return computerMove;
+  return [](auto board) { return computerMove(board); };
 }
