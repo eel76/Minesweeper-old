@@ -4,8 +4,9 @@
 #include "deadly.h"
 #include "marked.h"
 #include "move.h"
+#include "move/mark.h"
+#include "move/reveal.h"
 #include "neighbor.h"
-#include "parse.h"
 #include "positions.h"
 #include "revealed.h"
 
@@ -47,10 +48,10 @@ namespace minesweeper { namespace {
     // FIXME: concealedCells isEmpty()
 
     for (auto cell : concealedCells | markMissing(board))
-      return markingMove(position(cell));
+      return move::markingMove(position(cell));
 
     std::partition(begin(concealedCells), end(concealedCells), safe(board));
-    return revealingMove(position(concealedCells[0]));
+    return move::revealingMove(position(concealedCells[0]));
   }
 }}
 
