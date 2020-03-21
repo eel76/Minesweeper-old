@@ -14,5 +14,4 @@ Imperative Calisthenics rules:
  Additional guidelines:
   * Every method is available through a header file
   * No ref (&) at all (lambda captures, local variables, ...)
-  * No 'if' or 'switch'
   * print (to_string(board))

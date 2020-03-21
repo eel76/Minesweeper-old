@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.0)
+cmake_minimum_required (VERSION 3.15)
 
 project (Minesweeper CXX)
 set (CMAKE_CXX_STANDARD 17)
@@ -23,6 +23,7 @@ target_sources (${PROJECT_NAME} PRIVATE
   include/hazard.h
   include/marked.h
   include/mined.h
+  include/game/play.h
   include/move/mark.h
   include/move/parse.h
   include/move/reveal.h
@@ -30,7 +31,6 @@ target_sources (${PROJECT_NAME} PRIVATE
   include/negligible.h
   include/neighbor.h
   include/only.h
-  include/play.h
   include/player/choose.h
   include/player/computer.h
   include/player/human.h
@@ -54,6 +54,7 @@ target_sources (${PROJECT_NAME} PRIVATE
   src/column.cpp
   src/columns.cpp
   src/combos.cpp
+  src/game/play.cpp
   src/move/mark.cpp
   src/move/parse.cpp
   src/move/reveal.cpp
@@ -65,7 +66,6 @@ target_sources (${PROJECT_NAME} PRIVATE
   src/player/human.cpp
   src/main.cpp
   src/mined.cpp
-  src/play.cpp
   src/position.cpp
   src/preparation.cpp
   src/print.cpp
