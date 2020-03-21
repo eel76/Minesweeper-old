@@ -24,6 +24,7 @@ target_sources (${PROJECT_NAME} PRIVATE
   include/marked.h
   include/mined.h
   include/game/play.h
+  include/io/print.h
   include/move/mark.h
   include/move/parse.h
   include/move/reveal.h
@@ -38,7 +39,6 @@ target_sources (${PROJECT_NAME} PRIVATE
   include/position.h
   include/positions.h
   include/preparation.h
-  include/print.h
   include/reveal.h
   include/revealed.h
   include/row.h
@@ -55,6 +55,7 @@ target_sources (${PROJECT_NAME} PRIVATE
   src/columns.cpp
   src/combos.cpp
   src/game/play.cpp
+  src/io/print.cpp
   src/move/mark.cpp
   src/move/parse.cpp
   src/move/reveal.cpp
@@ -68,7 +69,6 @@ target_sources (${PROJECT_NAME} PRIVATE
   src/mined.cpp
   src/position.cpp
   src/preparation.cpp
-  src/print.cpp
   src/reveal.cpp
   src/row.cpp
   src/rows.cpp

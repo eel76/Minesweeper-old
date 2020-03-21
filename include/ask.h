@@ -1,10 +1,10 @@
 #pragma once
 #include "getline.h"
-#include "print.h"
+#include "io/print.h"
 
 namespace minesweeper {
   inline std::string askString(std::string const& question) {
-    print(question);
+    io::print(question);
     return getline();
   }
 }

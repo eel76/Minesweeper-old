@@ -14,12 +14,16 @@ namespace minesweeper::game { namespace {
 
   void print(Board board) {
     for (auto&& [row, cells] : byRow(cellsOf(board)))
-      minesweeper::print(to_string(cells) + "\n"s);
+      io::print(to_string(cells) + "\n"s);
+
+    auto const countdown =
+    size(cellsOf(board) | isDeadly()) - size(cellsOf(board) | marked());
+    io::print("Mines left: "s + std::to_string(countdown) + "\n"s);
   }
 
-  void printCountdown(Board board) {
-    auto countdown = size(cellsOf(board) | isDeadly()) - size(cellsOf(board) | marked());
-    minesweeper::print("Mines left: "s + std::to_string(countdown) + "\n"s);
+  void printIf(std::string const& text, bool condition) {
+    if (condition)
+      io::print(text);
   }
 
   auto perform(Move move, Board board) -> Board {
@@ -28,18 +32,13 @@ namespace minesweeper::game { namespace {
 
   auto doMove(Player player, Board board) -> Board {
     print(board);
-    printCountdown(board);
 
     return perform(requestMove(player, board), board);
-  }
-
-  auto isPlayable(Board board) -> bool {
-    return !isLost(board) && !isWon(board);
   }
 }}
 
 void minesweeper::game::play(Player player, Board board) {
-  while (isPlayable(board))
+  while (!isLost(board) && !isWon(board))
     board = doMove(player, board);
 
   print(reveal(board, cellsOf(board) | isDeadly()));
