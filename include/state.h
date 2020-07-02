@@ -5,5 +5,4 @@ namespace minesweeper {
   State reveal(State state);
   State mark(State state);
   bool  isRevealed(State state);
-  bool  isMarked(State state);
 }

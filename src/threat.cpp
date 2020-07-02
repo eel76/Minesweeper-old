@@ -24,10 +24,6 @@ auto minesweeper::isRevealed(Threat threat) -> bool {
   return isRevealed(state(threat));
 }
 
-auto minesweeper::isMarked(Threat threat) -> bool {
-  return isMarked(state(threat));
-}
-
 auto minesweeper::isDeadly(Threat threat) -> bool {
   return isDeadly(mines(threat));
 }

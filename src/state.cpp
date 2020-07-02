@@ -19,6 +19,3 @@ auto minesweeper::isRevealed(State state) -> bool {
   return state == State::Revealed;
 }
 
-auto minesweeper::isMarked(State state) -> bool {
-  return state == State::Marked;
-}

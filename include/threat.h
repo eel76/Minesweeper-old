@@ -16,7 +16,6 @@ namespace minesweeper {
   Threat reveal(Threat threat);
   Threat mined(Threat threat, Hazard hazard);
   bool   isRevealed(Threat threat);
-  bool   isMarked(Threat threat);
   bool   isDeadly(Threat threat);
   bool   isNegligible(Threat threat);
 }
